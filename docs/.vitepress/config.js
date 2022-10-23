@@ -1,4 +1,8 @@
 export default {
-  title: 'Blog',
-  description: `LiJunlin's Blog`
+  title: `LiJunlin's Blog`,
+  titleTemplate: false,
+  themeConfig: {
+    siteTitle: `LiJunlin's Blog`,
+    logo: '/clover.png'
+  }
 }
