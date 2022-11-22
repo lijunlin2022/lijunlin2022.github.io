@@ -11,7 +11,6 @@ hero:
   actions:
     - theme: brand
       text: Read Blog
-      link: /meditation/why-do-I-write-blogs
     - theme: alt
       text: View on GitHub
       link: https://github.com/lijunlin2022
