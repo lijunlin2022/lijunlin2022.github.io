@@ -42,10 +42,11 @@
 但按照 Brendan Eich（JavaScript 设计者）的说法，上面的代码是他 1996 年写的。之所以这样写，也是为了填 1995 年的坑，只不过 1995 年的代码已经找不到了。
 
 > Hi Axel -- small correction: the code you show is from SpiderMonkey, which I wrote in 1996 to pay off tech debt in Mocha, the first JS implementation from the 10 days in May 1995. Mocha used a discriminated union in C (struct with type tag and union whose arms corresponded to the enumerated tag values). Same bug, though. Just a historical detail. Regards,
-> 
-> Hi Axel -- 小更正：你展示的代码来自 SpiderMonkey，是我在 1996 年写的，目的是偿还 Mocha 的技术债务。1995 年 5 月 10 日，第一次 JavaScript 实现，Mocha 在 C 语言中使用了一个  discriminated union（discriminated union 是具有类型标记和 union 的结构，它的 arms 和枚举的标记值相对应）。当然 Bug 和这里的是一样的，我只是讲一下历史的细节。
-> 
-> [The history of "typeof null"](https://2ality.com/2013/10/typeof-null.html)
+
+翻译：
+
+> Hi Axel 小更正：你展示的代码来自 SpiderMonkey，是我在 1996 年写的，目的是偿还 Mocha 的技术债务。1995 年 5 月 10 日，第一次 JavaScript 实现，Mocha 在 C 语言中使用了一个  discriminated union（discriminated union 是具有类型标记和 union 的结构，它的 arms 和枚举的标记值相对应）。当然 Bug 和这里的是一样的，我只是讲一下历史的细节。
+> —— [The history of "typeof null"](https://2ality.com/2013/10/typeof-null.html)
 
 
 ### 3.2 为何现代 V8 引擎代码中 typeof null === 'object'
@@ -62,8 +63,7 @@ GotoIf(
 ```
 
 > ODDBALL_TYPE 如果翻译成中文的话，可能会叫奇怪类型，至少从 ODDBALL_TYPE 的命名来看，V8 也认为 null 是一个不走寻常路的类型。
-> 
-> [typeof 与 Javascript 类型源码分析 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/143590829)
+> —— [typeof 与 Javascript 类型源码分析 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/143590829)
 
 ## 4 解决办法
 
