@@ -2,25 +2,21 @@
 
 ## 1 问题描述
 
-前端程序员都知道，在 JavaScript 中，尽量不要使用 typeof 进行类型判断。
+前端程序员都知道，`typeof null` 是一个坑，会出现不符合预期的结果。 `typeof null === 'object'`。
 
-原因之一是：使用  typeof 判断 null 会出现不符合预期的结果。 `typeof null === 'object'`。
-
-那么，更根本的原因是什么呢？
+更本质的原因是什么呢？
 
 ## 2 简要解释
 
-`typeof null === 'object'` 是 JavaScript 中第一个版本中就有的 bug。
+`typeof null === 'object'` 是 JavaScript 中第一个版本中就有的 bug。后来有人想修复这个 bug，但提案没有被接受。
 
-之后有人编写了修复这个 bug 的提案，但这个提案没有被接受。
-
-久而久之，这个 bug 就变为了大家公认的一个 feature 了，以至于后续浏览器的代码得为 `typeof null` 填坑。
+久而久之，这个 bug 就成为大家公认的 feature 了，后续 V8 引擎单独处理了 `typeof null` 的情况。
 
 ## 3 详细解释
 
 ### 3.1 为何古老的代码中 typeof null === 'object'
 
-目前有关这一 bug ，能找到的最古老的代码是 1996 年的（JavaScript 是 1995 年发布的）。
+目前有关这一 bug，Axel Rauschmayer 找到了 1996 年的老代码（JavaScript 是 1995 年发布的）。
 
 在这一版的代码中，JavaScript 通过 32 bit 来存储值。定义了 5 种类型和 2 个特殊值。
 
@@ -39,7 +35,7 @@
 
 因此导致了 `typeof null === 'object'`。
 
-但按照 Brendan Eich（JavaScript 设计者）的说法，上面的代码是他 1996 年写的。之所以这样写，也是为了填 1995 年的坑，只不过 1995 年的代码已经找不到了。
+但按照 Brendan Eich（JavaScript 设计者）的说法，他之所以这样写，也是为了填 1995 年的坑。
 
 > Hi Axel -- small correction: the code you show is from SpiderMonkey, which I wrote in 1996 to pay off tech debt in Mocha, the first JS implementation from the 10 days in May 1995. Mocha used a discriminated union in C (struct with type tag and union whose arms corresponded to the enumerated tag values). Same bug, though. Just a historical detail. Regards,
 
@@ -67,25 +63,21 @@ GotoIf(
 
 ## 4 解决办法
 
-如果我们需要判断变量 val 是否为 null 类型的话，可以采用两种办法。推荐采用第一种办法。
+如果我们需要判断变量 val 是否为 null 话，可以采用两种办法。推荐采用第一种办法。
 
 ```js
 // 第一种办法
 if (val === null) {
-
+  // ...
 }
 
 // 第二种办法
-if (
-  Object.prototype.toString.call(val) === '[object Null]'
-) {
-
+if (Object.prototype.toString.call(val) === '[object Null]') {
+  // ...
 }
 ```
 
-## 5 扩展
-
-## 6 参考
+## 5 参考
 
 - [The history of "typeof null"](https://2ality.com/2013/10/typeof-null.html)
 - [typeof 与 Javascript 类型源码分析 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/143590829)
