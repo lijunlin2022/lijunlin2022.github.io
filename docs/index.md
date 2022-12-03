@@ -1,4 +1,9 @@
 ---
+head:
+  - - meta
+    - name: google-site-verification
+      content: z1w9iBabIBZmBrBiQPn3K-e8msiNRO_hR9O3oWhdcok
+
 layout: home
 
 hero:
@@ -11,6 +16,7 @@ hero:
   actions:
     - theme: brand
       text: Read Blog
+      link: /blog/basic-knowledge-of-javascript/
     - theme: alt
       text: View on GitHub
       link: https://github.com/lijunlin2022

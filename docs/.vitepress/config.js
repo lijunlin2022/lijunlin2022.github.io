@@ -3,6 +3,7 @@ const { getSidebarItems } = require('./getSidebarItems')
 export default {
   title: `LiJunlin's Blog`,
   titleTemplate: false,
+  lastUpdated: true,
   themeConfig: {
     siteTitle: `LiJunlin's Blog`,
     logo: '/clover.png',
