@@ -38,6 +38,10 @@ export default {
           {
             text: 'Underscore 源码解析',
             link: '/blog/underscore-source-code-analysis/'
+          },
+          {
+            text: 'VitePress',
+            link: '/blog/vitepress/'
           }
         ]
       },
@@ -74,6 +78,10 @@ export default {
       '/blog/node/': [{
         text: 'Node',
         items: getSidebarItems('../blog/node/')
+      }],
+      '/blog/vitepress': [{
+        text: 'VitePress',
+        items: getSidebarItems('../blog/vitepress/')
       }],
       '/meditation/': [{
         text: '英文随笔',
