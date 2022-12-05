@@ -46,6 +46,19 @@ export default {
         ]
       },
       {
+        text: 'Experience',
+        items: [
+          {
+            text: 'Work',
+            link: '/experience/work/'
+          },
+          {
+            text: 'Life',
+            link: '/experience/life/'
+          }
+        ]
+      },
+      {
         text: 'Meditation',
         link: '/meditation/'
       }
@@ -82,6 +95,14 @@ export default {
       '/blog/vitepress': [{
         text: 'VitePress',
         items: getSidebarItems('../blog/vitepress/')
+      }],
+      '/experience/work/': [{
+        text: 'Work',
+        items: getSidebarItems('../experience/work/')
+      }],
+      '/experience/life/': [{
+        text: 'Life',
+        items: getSidebarItems('../experience/life/')
       }],
       '/meditation/': [{
         text: '英文随笔',
