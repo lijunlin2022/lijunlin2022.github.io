@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./app.2be4be53.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"meditation/index.md","lastUpdated":1670679481000}'),n={name:"meditation/index.md"};function o(r,s,d,i,c,p){return a(),t("div")}const f=e(n,[["render",o]]);export{m as __pageData,f as default};
