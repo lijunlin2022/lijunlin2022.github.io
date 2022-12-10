@@ -64,10 +64,16 @@ export default {
       }
     ],
     sidebar: {
-      '/blog/basic-knowledge-of-javascript/': [{
-        text: 'JavaScript 基础知识',
-        items: getSidebarItems('../blog/basic-knowledge-of-javascript/')
-      }],
+      '/blog/basic-knowledge-of-javascript/': [
+        {
+          text: '碎片的 JavaScript 知识',
+          items: getSidebarItems('../blog/basic-knowledge-of-javascript/fragment/')
+        },
+        {
+          text: 'Underscore 源码解析',
+          items: getSidebarItems('../blog/basic-knowledge-of-javascript/underscore/')
+        },
+      ],
       '/blog/wechat-mini-program/': [{
         text: '微信小程序',
         items: getSidebarItems('../blog/wechat-mini-program/')
@@ -83,10 +89,6 @@ export default {
       '/blog/react-native/': [{
         text: 'React Native',
         items: getSidebarItems('../blog/react-native/')
-      }],
-      '/blog/underscore-source-code-analysis/': [{
-        text: 'Underscore 源码解析',
-        items: getSidebarItems('../blog/underscore-source-code-analysis/')
       }],
       '/blog/node/': [{
         text: 'Node',
