@@ -13,7 +13,7 @@ export default {
         items: [
           {
             text: 'JavaScript 基础知识',
-            link: '/blog/basic-knowledge-of-javascript/'
+            link: '/blog/basic-javascript-knowledge/'
           },
           {
             text: '微信小程序',
@@ -34,10 +34,6 @@ export default {
           {
             text: 'Node',
             link: '/blog/node/'
-          },
-          {
-            text: 'Underscore 源码解析',
-            link: '/blog/underscore-source-code-analysis/'
           },
           {
             text: 'VitePress',
@@ -64,14 +60,14 @@ export default {
       }
     ],
     sidebar: {
-      '/blog/basic-knowledge-of-javascript/': [
+      '/blog/basic-javascript-knowledge/': [
         {
           text: '碎片的 JavaScript 知识',
-          items: getSidebarItems('../blog/basic-knowledge-of-javascript/fragment/')
+          items: getSidebarItems('../blog/basic-javascript-knowledge/fragment/')
         },
         {
           text: 'Underscore 源码解析',
-          items: getSidebarItems('../blog/basic-knowledge-of-javascript/underscore/')
+          items: getSidebarItems('../blog/basic-javascript-knowledge/underscore/')
         },
       ],
       '/blog/wechat-mini-program/': [{
