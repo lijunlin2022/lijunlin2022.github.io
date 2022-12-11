@@ -16,7 +16,7 @@ hero:
   actions:
     - theme: brand
       text: Read Blog
-      link: /blog/basic-knowledge-of-javascript/
+      link: /blog/basic-javascript-knowledge/
     - theme: alt
       text: View on GitHub
       link: https://github.com/lijunlin2022
