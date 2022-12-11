@@ -16,11 +16,48 @@ console.log('👨‍👩‍👦‍👦'.length) // 11
 
 ## 2 简要解释
 
-对于一些生僻字，JavaScript 把它当成了当个字
+对处于基础平面的字，JavaScript 将其当做长度为 1
+
+处于扩展平面的字，JavaScript 将其当做长度为 2
+
+有部分 emoji 相当于是多个字符组合而成。
 
 ## 3 详细解释
+
+```js
+const arr = '✅'.split('')
+
+// ['✅']
+console.log(arr)
+```
+
+
+```js
+const arr = '❤️'.split('')
+
+// ['❤️', '']
+console.log(arr)
+```
+
+```js
+const arr = '👨‍👩‍👦'.split('')
+
+// ['\uD83D', '\uDC68', '‍', '\uD83D', '\uDC69', '‍', '\uD83D', '\uDC66']
+console.log(arr)
+```
+
+```js
+const arr = '👨‍👩‍👦‍👦'.split('')
+
+// ['\uD83D', '\uDC68', '‍', '\uD83D', '\uDC69', '‍', '\uD83D', '\uDC66', '‍', '\uD83D', '\uDC66']
+console.log(arr)
+```
 
 ## 4 解决办法
 
 ```js
 ```
+
+## 5 参考
+
+https://github.com/SamHwang1990/blog/issues/2

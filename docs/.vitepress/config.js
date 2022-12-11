@@ -38,6 +38,10 @@ export default {
           {
             text: 'VitePress',
             link: '/blog/vitepress/'
+          },
+          {
+            text: '计算机基础知识',
+            link: '/blog/basic-computer-knowledge/'
           }
         ]
       },
@@ -105,6 +109,10 @@ export default {
       '/meditation/': [{
         text: '英文随笔',
         items: getSidebarItems('../meditation/')
+      }],
+      '/blog/basic-computer-knowledge/': [{
+        text: '计算机基础知识',
+        items: getSidebarItems('../blog/basic-computer-knowledge/code/')
       }]
     }
   }
