@@ -82,7 +82,7 @@ export default {
         text: 'Vue',
         items: getSidebarItems('../blog/vue/')
       }],
-      '/blog/react': [{
+      '/blog/react/': [{
         text: 'React',
         items: getSidebarItems('../blog/react/')
       }],

@@ -18,7 +18,6 @@ const getSidebarItems = (relativePath) => {
   return items
 }
 
-console.log(getSidebarItems('../blog/vitepress/'))
 module.exports = {
   getSidebarItems
 }
