@@ -3,7 +3,7 @@ const path = require('path')
 
 const getSidebarItems = (relativePath) => {
   const dirPath = path.join(__dirname, relativePath)
-  const fileNames = fs.readdirSync(dirPath).filter(v => v !== 'index.md')
+  const fileNames = fs.readdirSync(dirPath).filter(v => v !== 'index.md' && v !== 'img')
   const items = []
   fileNames.forEach(name => {
     const filePath = dirPath + name
