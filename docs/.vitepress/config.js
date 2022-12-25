@@ -44,7 +44,7 @@ export default {
             text: '计算机基础知识',
             link: getNavbarItemLink('../blog/basic-computer-knowledge/code/')
           }
-        ].filter(v => v.link !== null)
+        ]
       },
       {
         text: 'Experience',
@@ -52,12 +52,8 @@ export default {
           {
             text: 'Work',
             link: getNavbarItemLink('../experience/work/')
-          },
-          {
-            text: 'Life',
-            link: getNavbarItemLink('../experience/life/')
           }
-        ].filter(v => v.link !== null)
+        ]
       },
       {
         text: "Don't Starve",
@@ -111,11 +107,6 @@ export default {
         text: 'Work',
         collapsible: true,
         items: getSidebarItems('../experience/work/')
-      }],
-      '/experience/life/': [{
-        text: 'Life',
-        collapsible: true,
-        items: getSidebarItems('../experience/life/')
       }],
       '/do-not-starve/': [{
         text: '饥荒',
