@@ -3,11 +3,13 @@ const path = require('path')
 
 const getNavbarItemLink = (relativePath) => {
   const dirPath = path.join(__dirname, relativePath)
-  const fileNames = fs.readdirSync(dirPath).filter(v => v !== 'index.md' && v !== 'img')
-  if (!fileNames.length) {
-    return null
+  if (fs.existsSync(dirPath)) {
+    const fileNames = fs.readdirSync(dirPath).filter(v => v !== 'index.md' && v !== 'img')
+    if (fileNames.length) {
+      return relativePath.split('.').pop() + fileNames[0]
+    }
   }
-  return relativePath.split('.').pop() + fileNames[0]
+  return null
 }
 
 module.exports = {
