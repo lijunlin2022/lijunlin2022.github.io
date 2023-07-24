@@ -1,0 +1,141 @@
+# 同源和跨域
+
+Ajax 请求有限制, 只能向自己的服务器发送请求. Ajax 的限制属于同源政策的一部分
+
+## 什么是同源
+
+如果两个页面拥有相同的协议、域名和端口, 那么这两个页面就属于同一个源, 其中只要有一个不相同, 就是不同源
+
+## 同源政策的目的
+
+同源政策是为了保证用户信息的安全, 防止恶意的网站窃取数据。最初的同源政策是指 A 网站在客户端设置的 Cookie, B 网站是不能访问的
+
+随着互联网的发展, 同源政策也越来越严格, 在不同源的情况下, 其中有一项规定就是无法向非同源地址发送 Ajax 请求, 如果请求, 浏览器就会报错
+
+## 解决同源限制问题 (跨域问题) 办法
+
+- JSONP
+- CORS
+- 代理服务器
+
+**所有的跨域, 都必须经过 server 端允许和配合**
+
+### 使用 JSONP 解决同源限制问题
+
+JSONP 是 json with padding (带填充的 JSON) 的缩写, 它不属于 Ajax 请求, 但它可以模拟 Ajax 请求。
+
+它的原理是**加载图片 css js 可以无视同源策略**
+
+比如:
+
+- `<img />` 可用于统计打点, 可使用第三方统计服务
+- `link/>` `< script>` 可使用 CDN, CDN 一般都是外域
+- `<script>` 可实现 JSONP
+
+下面介绍 JSONP 的使用步骤:
+
+1. 将不同源的服务器端请求地址写在 script 标签的 src 属性中
+
+```html
+<script src="http://localhost:3000/jsonp"></script>
+```
+
+script 标签请求地址不一定必须以.js 结尾, 但是必须返回合法的 JavaScript 代码
+
+2. 服务器端响应数据必须是一个函数的调用, 真正要发送给客户端的数据需要作为函数调用的参数
+
+```js
+server.on("request", (req, res) => {
+  if (req.url === "/jsonp") {
+    const data = "fn({name:'张三', age: 20 })"
+    res.end(data)
+  }
+})
+```
+
+3. 在客户端全局作用域下定义函数 fn
+
+```html
+<script>
+function fn() {};
+</script>
+<script src="http://localhost:3000/jsonp"></script>
+```
+
+定义 fn 函数必须在获得 jsonp 的 script 标签之前
+
+4. 在 fn 函数内部对服务端返回的数据进行处理
+
+```html
+<script>
+function fn(data) {
+  console.log(data)
+}
+</script>
+<script src="http://localhost:3000/jsonp"></script>
+```
+
+以上只是简单地介绍了 jsonp 的用法。
+
+### CORS 跨域资源共享
+
+> CORS 是一个 W3C 标准，全称是"跨域资源共享"（Cross-origin resource sharing）。
+
+> 它允许浏览器向跨源服务器，发出 XMLHttpRequest 请求，从而克服了 AJAX 只能同源使用的限制。
+
+对于简单请求, 浏览器会给跨域的 AJAX 请求添加一个 Origin 字段
+
+> Origin 字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。
+
+> 如果 Origin 指定的源，不在许可范围内，服务器会返回一个正常的 HTTP 回应。浏览器发现，这个回应的头信息没有包含 Access-Control-Allow-Origin 字段（详见下文），就知道出错了，从而抛出一个错误，被 XMLHttpRequest 的 onerror 回调函数捕获
+
+总的来说, 就是浏览器代码不用改 (origin 由浏览器自动添加), 服务器代码的响应头部多出 `Access-Control-Allow-Origin` 方法
+
+```html
+<script>
+var xhr = new XMLHttpRequest()
+xhr.open("get", "http://localhost:3000/ajax")
+xhr.send()
+xhr.onload = function() {
+  console.log(xhr.responseText)
+}
+</script>
+```
+
+```js
+server.on("request", (req, res) => {
+  if (req.url === "/ajax") {
+    const data = "hello"
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.end(data)
+  }
+})
+```
+
+**withCredentials 属性**
+
+在使用 Ajax 技术发送跨域请求时, 默认情兄下不会在请求中携带 cookie 信息
+
+`withCredentials`: 指定在涉及到跨域请求时, 是否携带 cookie 信息, 默认值为 false
+
+`Access-Control-Allow-Credentials: true` 允许客户端发送请求时携带 cookie
+
+```js
+xhr.open("get", "http://localhost:3001/checkLogin")
+xhr.withCredentials = true
+```
+
+```js
+res.setHeader("Access-Control-Allow-Credentials", true)
+```
+
+### 代理服务器
+
+```
+浏览器 --请求--> 代理服务器;
+代理服务器 --转发请求--> 服务器;
+服务器 --响应--> 代理服务器;
+代理服务器 --转发响应--> 浏览器;
+```
+
+能使用代理服务器的原因, 是服务器和服务器之间没有同源政策。
