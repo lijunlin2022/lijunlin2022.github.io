@@ -2,3 +2,12 @@
   width: 100%;
   overflow: hidden;
 }
+
+.mobileContainer {
+  width: 100%;
+  height: calc(100vh - var(--ifm-navbar-height));
+  background-image: url('../img/grey-camel.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+}

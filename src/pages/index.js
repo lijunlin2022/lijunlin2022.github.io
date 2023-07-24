@@ -4,17 +4,25 @@ import styles from './index.module.css'
 import ParallaxHeader from '../components/ParallaxHeader';
 import ParallaxFooter from '../components/ParallaxFooter';
 import Parallax from '../components/Parallax';
+import { isMobile } from '../utils/env';
 
 export default function Home() {
   return (
     <Layout>
-      <div className={styles.container}>
-        <ParallaxHeader />
-        <Parallax />
-        <Parallax hasText={true} />
-        <Parallax hasText={true} />
-        <ParallaxFooter />
-      </div>
+      {
+        isMobile ? (
+          <div className={styles.mobileContainer}>
+          </div>
+        ) : (
+          <div className={styles.container}>
+            <ParallaxHeader />
+            <Parallax />
+            <Parallax hasText={true} />
+            <Parallax hasText={true} />
+            <ParallaxFooter />
+          </div>
+        )
+      }
     </Layout>
   );
 }
