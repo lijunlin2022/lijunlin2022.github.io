@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[1135],{7995:e=>{e.exports=JSON.parse('{"title":"js","slug":"/category/js","permalink":"/docs/category/js","navigation":{"next":{"title":"\u503c\u7c7b\u578b\u548c\u5f15\u7528\u7c7b\u578b","permalink":"/docs/js/value-and-reference"}}}')}}]);
