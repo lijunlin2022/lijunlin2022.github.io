@@ -4,19 +4,19 @@
 
 1. GitHub 仓库中，选择 Settings -> Pages -> GitHub Actions -> browse all workflows
 
-![](./assets/mdbook1.png)
+![](./img/mdbook1.png)
 
 2. 点击 Pages 右侧的 View all 按钮
 
-![](./assets/mdbook2.png)
+![](./img/mdbook2.png)
 
 3. 选择 mdBook，点击 Configure 按钮
 
-![](./assets/mdbook3.png)
+![](./img/mdbook3.png)
 
 4. 之后 GitHub 会自动创建一个 yml 文件
 
-![](./assets/mdbook4.png)
+![](./img/mdbook4.png)
 
 5. 我们可以将整个仓库克隆到本地，按照 [mdBook 官方指南](https://rust-lang.github.io/mdBook/) 的指导书写 Markdown 文件。当我们提交后，会自动触发 GitHub Actions 将网站部署到 GitHub Pages 下。
 

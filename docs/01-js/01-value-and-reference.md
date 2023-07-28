@@ -22,7 +22,7 @@ console.log(b) // 100
 
 值类型保存在栈中，可以直接取到变量的值，堆栈图为：
 
-![](./assets/value-and-reference1.png)
+![](./img/value-and-reference1.png)
 
 ## 引用类型原理
 
@@ -35,7 +35,7 @@ console.log(a.age) // 21
 
 引用类型保存在堆中，栈中取到的只是堆的地址，堆栈图为：
 
-![](./assets/value-and-reference2.png)
+![](./img/value-and-reference2.png)
 
 ## 深拷贝
 
@@ -76,7 +76,7 @@ console.log(a.age) // 20
 
 深拷贝的引用类型在堆中新分配了空间，堆栈图如下：
 
-![](./assets/value-and-reference3.png)
+![](./img/value-and-reference3.png)
 
 ## 常见的值类型与引用类型
 

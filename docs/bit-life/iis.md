@@ -4,31 +4,31 @@
 
 **搜索启用或关闭 Windows 功能**
 
-![](./assets/iis1.png)
+![](./img/iis1.png)
 
 **点击展开 Internet Information Services**
 
-![](./assets/iis2.png)
+![](./img/iis2.png)
 
 **勾选选项如图所示(黑色方块表示已选中)**，然后确认
 
-![](./assets/iis3.png)
+![](./img/iis3.png)
 
 **搜索点击 IIS**
 
-![](./assets/iis4.png)
+![](./img/iis4.png)
 
 **添加网站**
 
-![](./assets/iis5.png)
+![](./img/iis5.png)
 
 **配置网站**
 
-![](./assets/iis6.png)
+![](./img/iis6.png)
 
 **在物理路径下创建 index.html 文件和 test.asp (修改txt文件得到)**
 
-![](./assets/iis7.png)
+![](./img/iis7.png)
 
 **在 iisstart.htm 中添加如下内容, 保存**
 
@@ -59,11 +59,11 @@
 
 **在浏览器输入 localhost:8080, 就可以看到如下界面**
 
-![](./assets/iis8.png)
+![](./img/iis8.png)
 
 **链接可以跳转到 test.asp**
 
-![](./assets/iis9.png)
+![](./img/iis9.png)
 
 之后就可以在 Website 这个目录下放你写好的代码啦，
 
@@ -73,21 +73,21 @@
 
 我放了一些培训时写的代码：
 
-![](./assets/iis10.png)
+![](./img/iis10.png)
 
 结果如下：
 
-![](./assets/iis11.png)
+![](./img/iis11.png)
 
 ## 用什么编辑器写 ASP
 
 我推荐 VScode，只要装一些插件就可以了
 
-![](./assets/iis12.png)
+![](./img/iis12.png)
 
 代码高亮效果如下：
 
-![](./assets/iis13.png)
+![](./img/iis13.png)
 
 ## ASP 几个小例子
 
@@ -120,10 +120,10 @@ asp 的基础语法看这个链接：https://www.w3school.com.cn/asp/index.asp
 
 效果如下：
 
-![](./assets/iis14.png)
+![](./img/iis14.png)
 
 ## 踩坑经验
 
-![](./assets/iis15.png)
+![](./img/iis15.png)
 
 这个是因为端口 8080 被别的程序占用，更改端口就可以了。

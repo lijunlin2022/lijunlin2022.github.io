@@ -13,7 +13,7 @@ Promise 是 JavaScript 中进行异步编程的新的解决方法，从语法上
 
 ## Promise 的基本流程
 
-![](./assets/promise1.png)
+![](./img/promise1.png)
 
 ## Promise 的基本使用
 

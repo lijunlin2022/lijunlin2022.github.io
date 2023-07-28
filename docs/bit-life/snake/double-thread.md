@@ -2,7 +2,7 @@
 
 ## 双线程的作用
 
-![](./assets/snake5.jpg)
+![](./img/snake5.jpg)
 
 在我们的设计中，开了两个线程，第一个线程用于获取键盘输入，它将影响一个全局变量 `globalMovementDirection` ，当需要移动蛇的时候，第二个线程将读取 `globalMovementDirection` 作为控制信号
 

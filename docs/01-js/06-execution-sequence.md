@@ -20,7 +20,7 @@ JavaScript 和 DOM 渲染共用同一个线程。（因为 JS 可修改 DOM 结�
 
 由于主线程不断的重复获得任务、执行任务、再获取任务再执行，所以这种机制称为**事件循环**
 
-![](./assets/execution-sequence1.png)
+![](./img/execution-sequence1.png)
 
 > JS 的异步一般都是用回调函数实现, 这并不意味着回调函数就是异步
 
@@ -89,7 +89,7 @@ JavaScript 是单线程执行的，它的异步要基于回调来实现，event 
 
 如下图所示：
 
-![](./assets/execution-sequence2.png)
+![](./img/execution-sequence2.png)
 
 1. 同步代码，一行一行放在 Call Stack 执行
 2. 遇到异步，会先记录下，等待时机（定时、网络请求等）
@@ -112,7 +112,7 @@ alert("打印之后, 渲染之前");
 
 执行效果为：
 
-![](./assets/execution-sequence3.png)
+![](./img/execution-sequence3.png)
 
 这是因为，JavaScript 是单线程的，而且和 DOM 渲染共用一个线程。
 
@@ -127,7 +127,7 @@ alert("打印之后, 渲染之前");
 
 当`微任务`执行时，它不会经过 Web APIs，而是处于另外一个队列中，即 `微队列`，这也是我们之前就看过的图：
 
-![](./assets/execution-sequence4.png)
+![](./img/execution-sequence4.png)
 
 这是因为：
 

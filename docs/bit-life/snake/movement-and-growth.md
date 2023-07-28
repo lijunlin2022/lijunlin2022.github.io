@@ -29,17 +29,17 @@ x
 
 我们的做法是如下图所示：
 
-![](./assets/snake2.jpg)
+![](./img/snake2.jpg)
 
 现在我们来看蛇头左转和右转的情况，（贪吃蛇不能掉头）
 
-![](./assets/snake3.jpg)
+![](./img/snake3.jpg)
 
 ## 蛇的生长
 
 蛇的生长和蛇的移动有所不同，如下图所示
 
-![](./assets/snake4.jpg)
+![](./img/snake4.jpg)
 
 蛇增加一段长度，可以看作将原来的 `globalSnakeArr` 全部向后挪动一个位置之后，再在蛇头的位置标上坐标
 

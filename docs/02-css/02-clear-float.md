@@ -52,11 +52,11 @@
 
 效果为：
 
-![](./assets/clear-float1.jpg)
+![](./img/clear-float1.jpg)
 
 而我们需要父元素的高度，将子元素包围起来，也就是清除浮动，清除浮动后的效果如下：
 
-![](./assets/clear-float2.jpg)
+![](./img/clear-float2.jpg)
 
 **清除浮动的本质**
 

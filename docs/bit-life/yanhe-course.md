@@ -6,11 +6,11 @@
 
 在视频播放时按 F12 打开控制台，在 network 部分找到视频的请求链接，可以看到视频是一个个 .ts 文件，当文件快要播放完成时，又继续请求 .ts 文件
 
-![](./assets/yanhe1.jpg)
+![](./img/yanhe1.jpg)
 
 点击请求后在 header 部分可以看到请求链接
 
-![](./assets/yanhe2.jpg)
+![](./img/yanhe2.jpg)
 
 ## 2 批量下载 .ts 文件
 
@@ -33,7 +33,7 @@ for (var i = 1008; i <= 1225; i++) {
 
 为了用这些链接批量下载文件，可以为 chrome 浏览器装一个 chrono 下载管理器，它可以批量导入链接
 
-![](./assets/yanhe3.jpg)
+![](./img/yanhe3.jpg)
 
 ## 合并 .ts 文件变成 mp4 文件
 
@@ -45,6 +45,6 @@ for (var i = 1008; i <= 1225; i++) {
 copy/b *.ts new.mp4
 ```
 
-![](./assets/yanhe4.jpg)
+![](./img/yanhe4.jpg)
 
 至此，大功告成。

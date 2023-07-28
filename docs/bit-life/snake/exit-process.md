@@ -2,7 +2,7 @@
 
 ## 回忆游戏流程
 
-![](./assets/snake1.jpg)
+![](./img/snake1.jpg)
 
 ## ExitProcess
 
