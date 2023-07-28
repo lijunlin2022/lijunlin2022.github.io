@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7048],{9317:e=>{e.exports=JSON.parse('{"title":"mdbook","slug":"/category/mdbook","permalink":"/docs/category/mdbook","navigation":{"previous":{"title":"sms","permalink":"/docs/nestjs/sms"},"next":{"title":"github pages","permalink":"/docs/mdbook/github-pages"}}}')}}]);

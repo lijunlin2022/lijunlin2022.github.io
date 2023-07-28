@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[5565],{2687:e=>{e.exports=JSON.parse('{"title":"nodejs","slug":"/category/nodejs","permalink":"/docs/category/nodejs","navigation":{"previous":{"title":"\u5783\u573e\u56de\u6536","permalink":"/docs/js/garbage-collection"},"next":{"title":"\u6587\u4ef6","permalink":"/docs/nodejs/file"}}}')}}]);

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7399],{5664:e=>{e.exports=JSON.parse('{"title":"rust","slug":"/category/rust","permalink":"/docs/category/rust","navigation":{"previous":{"title":"sitemap","permalink":"/docs/mdbook/sitemap"},"next":{"title":"\u6574\u578b","permalink":"/docs/rust/integer"}}}')}}]);
