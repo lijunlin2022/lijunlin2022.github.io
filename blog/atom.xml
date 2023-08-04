@@ -2,11 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://your-docusaurus-test-site.com/blog</id>
     <title>李俊霖的网络日志 Blog</title>
-    <updated>2023-07-08T00:00:00.000Z</updated>
+    <updated>2023-07-30T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://your-docusaurus-test-site.com/blog"/>
     <subtitle>李俊霖的网络日志 Blog</subtitle>
     <icon>https://your-docusaurus-test-site.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[滚动居中的实现方法]]></title>
+        <id>https://your-docusaurus-test-site.com/blog/2023/07/30/scroll-into-view</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2023/07/30/scroll-into-view"/>
+        <updated>2023-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[使用 scrollIntoView 实现的典型居中例子：]]></summary>
+        <content type="html"><![CDATA[<p>使用 scrollIntoView 实现的典型居中例子：</p><p><a href="https://codesandbox.io/s/center-the-scrollable-tab-using-scrollintoview-gngg97" target="_blank" rel="noopener noreferrer">center-the-scrollable-tab-using-scrollIntoView | codesandbox</a></p><p>使用 scrollTo 实现典型居中的例子：</p><p><a href="https://codesandbox.io/s/center-the-scrollable-tab-using-scrollto-22939z" target="_blank" rel="noopener noreferrer">center-the-scrollable-tab-using-scrollTo | codesanbox</a></p>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[《斗破苍穹》和《武动乾坤》]]></title>
         <id>https://your-docusaurus-test-site.com/blog/break-the-sky-and-move-the-universe</id>

@@ -4,10 +4,18 @@
         <title>李俊霖的网络日志 Blog</title>
         <link>https://your-docusaurus-test-site.com/blog</link>
         <description>李俊霖的网络日志 Blog</description>
-        <lastBuildDate>Sat, 08 Jul 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 30 Jul 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-Hans</language>
+        <item>
+            <title><![CDATA[滚动居中的实现方法]]></title>
+            <link>https://your-docusaurus-test-site.com/blog/2023/07/30/scroll-into-view</link>
+            <guid>https://your-docusaurus-test-site.com/blog/2023/07/30/scroll-into-view</guid>
+            <pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[使用 scrollIntoView 实现的典型居中例子：]]></description>
+            <content:encoded><![CDATA[<p>使用 scrollIntoView 实现的典型居中例子：</p><p><a href="https://codesandbox.io/s/center-the-scrollable-tab-using-scrollintoview-gngg97" target="_blank" rel="noopener noreferrer">center-the-scrollable-tab-using-scrollIntoView | codesandbox</a></p><p>使用 scrollTo 实现典型居中的例子：</p><p><a href="https://codesandbox.io/s/center-the-scrollable-tab-using-scrollto-22939z" target="_blank" rel="noopener noreferrer">center-the-scrollable-tab-using-scrollTo | codesanbox</a></p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[《斗破苍穹》和《武动乾坤》]]></title>
             <link>https://your-docusaurus-test-site.com/blog/break-the-sky-and-move-the-universe</link>
