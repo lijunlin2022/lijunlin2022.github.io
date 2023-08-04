@@ -6,4 +6,6 @@
 
 使用 scrollTo 实现典型居中的例子：
 
-[center-the-scrollable-tab-using-scrollTo | codesanbox](https://codesandbox.io/s/center-the-scrollable-tab-using-scrollto-22939z)
+[center-the-scrollable-tab-using-scrollTo | codesandbox](https://codesandbox.io/s/center-the-scrollable-tab-using-scrollto-22939z)
+
+![](https://raw.githubusercontent.com/lijunlin2022/draw.io/main/2023-08-04-scroll-to-center.drawio.svg)
