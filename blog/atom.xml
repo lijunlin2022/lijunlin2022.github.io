@@ -13,7 +13,7 @@
         <link href="https://your-docusaurus-test-site.com/blog/2023/07/30/scroll-into-view"/>
         <updated>2023-07-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[使用 scrollIntoView 实现的典型居中例子：]]></summary>
-        <content type="html"><![CDATA[<p>使用 scrollIntoView 实现的典型居中例子：</p><p><a href="https://codesandbox.io/s/center-the-scrollable-tab-using-scrollintoview-gngg97" target="_blank" rel="noopener noreferrer">center-the-scrollable-tab-using-scrollIntoView | codesandbox</a></p><p>使用 scrollTo 实现典型居中的例子：</p><p><a href="https://codesandbox.io/s/center-the-scrollable-tab-using-scrollto-22939z" target="_blank" rel="noopener noreferrer">center-the-scrollable-tab-using-scrollTo | codesanbox</a></p>]]></content>
+        <content type="html"><![CDATA[<p>使用 scrollIntoView 实现的典型居中例子：</p><p><a href="https://codesandbox.io/s/center-the-scrollable-tab-using-scrollintoview-gngg97" target="_blank" rel="noopener noreferrer">center-the-scrollable-tab-using-scrollIntoView | codesandbox</a></p><p>使用 scrollTo 实现典型居中的例子：</p><p><a href="https://codesandbox.io/s/center-the-scrollable-tab-using-scrollto-22939z" target="_blank" rel="noopener noreferrer">center-the-scrollable-tab-using-scrollTo | codesandbox</a></p><p><img loading="lazy" src="https://raw.githubusercontent.com/lijunlin2022/draw.io/main/2023-08-04-scroll-to-center.drawio.svg" class="img_ev3q"></p>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[《斗破苍穹》和《武动乾坤》]]></title>
