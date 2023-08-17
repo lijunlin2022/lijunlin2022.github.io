@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[2535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Tab \u6eda\u52a8\u5c45\u4e2d","permalink":"/blog/2023/07/30/tab-scroll-to-center"}]}')}}]);
