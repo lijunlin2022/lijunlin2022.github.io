@@ -25,15 +25,15 @@
 
 不难看出：
 
-$$
+```
 target.offsetWidth / 2 + offsetLeft = window.innerWidth / 2 + scrollLeft
-$$
+```
 
 简单变化式子后，就可以得出计算滚动距离的等式：
 
-$$
+```
 scrollLeft = offsetLeft + target.offsetWidth / 2 - window.innerWidth / 2
-$$
+```
 
 ## React 版 Tab 滚动居中
 
