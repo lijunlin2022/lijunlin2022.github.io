@@ -64,7 +64,9 @@ Page({
     })
   },
   updateSwiperHeight(current) {
-    const content = this.createSelectorQuery().select(`#swiper-item-content-${current}`)
+    const content =
+      this.createSelectorQuery()
+      .select(`#swiper-item-content-${current}`)
     content.boundingClientRect(rect => {
       this.setData({
         swiperHeight: rect && rect.height
