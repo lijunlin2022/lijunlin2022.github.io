@@ -1,3 +1,7 @@
+---
+tags: ['react', 'miniprogram']
+---
+
 # Tab 滚动居中
 
 大家好，我俊霖。
