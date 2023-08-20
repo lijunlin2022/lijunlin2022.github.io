@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3883],{5491:e=>{e.exports=JSON.parse('{"label":"miniprogram","permalink":"/blog/tags/miniprogram","allTagsPath":"/blog/tags","count":1}')}}]);
