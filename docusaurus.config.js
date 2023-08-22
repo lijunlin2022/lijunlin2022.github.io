@@ -25,7 +25,13 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    image: "img/docusaurus-social-card.jpg",
+    // Google 网站验证
+    metadata: [
+      {
+        name: "google-site-verification",
+        content: "z1w9iBabIBZmBrBiQPn3K-e8msiNRO_hR9O3oWhdcok",
+      },
+    ],
     navbar: {
       title: "李俊霖的网络日志",
       logo: {
