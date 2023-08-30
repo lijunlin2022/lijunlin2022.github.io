@@ -2,15 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lijunlin2022.github.io/blog</id>
     <title>李俊霖的网络日志 Blog</title>
-    <updated>2023-08-20T00:00:00.000Z</updated>
+    <updated>2023-08-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lijunlin2022.github.io/blog"/>
     <subtitle>李俊霖的网络日志 Blog</subtitle>
     <icon>https://lijunlin2022.github.io/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[IntersectionObserver 实现上拉加载]]></title>
-        <id>https://lijunlin2022.github.io/blog/2023/08/20/intersection-observer-pullup</id>
-        <link href="https://lijunlin2022.github.io/blog/2023/08/20/intersection-observer-pullup"/>
+        <title type="html"><![CDATA[H5 预渲染]]></title>
+        <id>https://lijunlin2022.github.io/blog/2023/08/26/h5-prerender</id>
+        <link href="https://lijunlin2022.github.io/blog/2023/08/26/h5-prerender"/>
+        <updated>2023-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[大家好，我俊霖。]]></summary>
+        <content type="html"><![CDATA[<p>大家好，我俊霖。</p><p>最近我一直在研究 H5 的预渲染，有些心得，准备和大家分享一下。</p><p>需要注意的是，我这里讨论的预渲染，是指 App 创建一个 Webview 的预渲染（预加载），而不是指 H5 内部通过 <code>&lt;link ref="prefetch" src="xxx" /&gt;</code> 的预加载。</p>]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[IntersectionObserver 无限滚动]]></title>
+        <id>https://lijunlin2022.github.io/blog/2023/08/20/intersection-observer-infinite-scroll</id>
+        <link href="https://lijunlin2022.github.io/blog/2023/08/20/intersection-observer-infinite-scroll"/>
         <updated>2023-08-20T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[大家好，我俊霖。]]></summary>
         <content type="html"><![CDATA[<p>大家好，我俊霖。</p><p><img loading="lazy" src="/assets/images/01-intersection-observer-pullup-64fe80b2b5864f262f18b52e5cd55798.gif" width="402" height="464" class="img_ev3q"></p>]]></content>
@@ -25,7 +33,7 @@
         <category label="css" term="css"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[IntersectionObserver 实现吸顶]]></title>
+        <title type="html"><![CDATA[IntersectionObserver 吸顶]]></title>
         <id>https://lijunlin2022.github.io/blog/2023/08/10/intersection-observer-sticky</id>
         <link href="https://lijunlin2022.github.io/blog/2023/08/10/intersection-observer-sticky"/>
         <updated>2023-08-10T00:00:00.000Z</updated>
