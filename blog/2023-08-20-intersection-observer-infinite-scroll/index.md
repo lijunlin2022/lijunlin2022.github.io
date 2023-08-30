@@ -1,4 +1,4 @@
-# IntersectionObserver 实现上拉加载
+# IntersectionObserver 无限滚动
 
 大家好，我俊霖。
 

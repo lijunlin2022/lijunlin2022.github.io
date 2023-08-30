@@ -2,7 +2,7 @@
 tags: ['IntersectionObserver']
 ---
 
-# IntersectionObserver 实现吸顶
+# IntersectionObserver 吸顶
 
 大家好，我俊霖。
 

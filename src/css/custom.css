@@ -1,32 +1,138 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #7986cb;
+  --ifm-color-primary-dark: #6271c2;
+  --ifm-color-primary-darker: #5666bd;
+  --ifm-color-primary-darkest: #3f4fa3;
+  --ifm-color-primary-light: #909bd4;
+  --ifm-color-primary-lighter: #9ca6d9;
+  --ifm-color-primary-lightest: #bfc5e6;
+  --ifm-footer-background-color: var(--ifm-background-color);
+  --ifm-border-color: #202225;
+
+  --ifm-font-color-secondary: #607d8b;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --content-bg: rgb(255, 255, 255);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-  --content-bg: rgb(36, 37, 38);
+html[data-theme='dark'] {
+  --ifm-background-color: #202225;
+  --ifm-footer-background-color: var(--ifm-background-color);
+
+  --ifm-color-primary: #ff9800;
+  --ifm-color-primary-dark: #e68900;
+  --ifm-color-primary-darker: #d98100;
+  --ifm-color-primary-darkest: #b36a00;
+  --ifm-color-primary-light: #ffa21a;
+  --ifm-color-primary-lighter: #ffa726;
+  --ifm-color-primary-lightest: #ffb74d;
+
+  --ifm-border-color: #ffffff;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.svg-inline--fa.fa-w-16 {
+  width: 1.5em;
+}
+
+.svg-inline--fa.fa-w-14 {
+  width: 1.3125em;
+}
+
+.footer__links {
+  margin: 0;
+}
+
+.footer__item {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+.footer__items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__col {
+  margin-bottom: 0;
+}
+
+hr {
+  margin: 30px 0;
+  border: none;
+  font-size: 28px;
+  text-align: center;
+  font-weight: 300;
+  font-family: medium-content-slab-serif-font, Georgia, Cambria,
+      'Times New Roman', Times, serif;
+}
+
+hr::before {
+  line-height: 2.4;
+  text-indent: 0.6em;
+  letter-spacing: 0.6em;
+  content: ' ';
+  display: block;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltipText {
+  visibility: hidden;
+  width: 60px;
+  background-color: rgb(126, 124, 124);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  /* For bottom tooltip */
+  top: 100%;
+  left: 50%;
+  margin-left: -30px; /* Use half of the width (60/2 = 30), to center the tooltip */
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltipText {
+  visibility: visible;
+}
+
+.tooltip .tooltipText::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 65%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgb(126, 124, 124) transparent;
+}
+
+.footnote-backref {
+  display: none;
 }
