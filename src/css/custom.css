@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --ifm-color-primary: #7986cb;
   --ifm-color-primary-dark: #6271c2;
