@@ -142,3 +142,23 @@
 .font-tw {
   font-family: Titillium Web, sans-serif;
 }
+
+.custom-bg-black {
+  background-color: rgb(46, 52, 64);
+}
+
+.custom-text-blue {
+  color: rgb(136, 192, 208);
+}
+
+.custom-text-yellow {
+  color: rgb(235, 203, 139);
+}
+
+.custom-text-green {
+  color: rgb(163, 190, 140);
+}
+
+.custom-text-red {
+  color: rgb(191, 97, 106);
+}
