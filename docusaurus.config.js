@@ -35,8 +35,8 @@ module.exports = {
     navbar: {
       title: "李俊霖的网络日志",
       logo: {
-        alt: "",
-        src: "img/logo.png",
+        src: "img/logo.svg",
+        srcDark: "img/dark-logo.svg",
       },
       items: [
         {
@@ -51,10 +51,15 @@ module.exports = {
           position: "left",
         },
         {
-          to: '/life/idea',
-          label: '生活',
-          position: 'left',
+          to: "/life/idea",
+          label: "生活",
+          position: "left",
           activeBaseRegex: `/life/`,
+        },
+        {
+          to: "/resume",
+          label: "简历",
+          position: "left",
         },
         {
           href: "https://github.com/lijunlin2022",
@@ -71,13 +76,13 @@ module.exports = {
   themes: ["@docusaurus/theme-live-codeblock"],
   plugins: [
     [
-      'content-docs',
+      "content-docs",
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
-        id: 'life',
-        path: 'life',
-        routeBasePath: 'life',
-        sidebarPath: require.resolve('./sidebars-of-life.js'),
+        id: "life",
+        path: "life",
+        routeBasePath: "life",
+        sidebarPath: require.resolve("./sidebars-of-life.js"),
       }),
     ],
     async function tailwindCSSPlugin(context, options) {
@@ -91,5 +96,5 @@ module.exports = {
         },
       };
     },
-  ]
+  ],
 };
