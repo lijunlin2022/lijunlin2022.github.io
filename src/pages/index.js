@@ -12,12 +12,12 @@ export default function Home() {
       to: "/blog",
     },
     {
-      name: "Life",
-      to: "/life/idea",
-    },
-    {
       name: "Resume",
       to: "/resume",
+    },
+    {
+      name: "Life",
+      to: "/life/idea",
     },
     {
       name: "GitHub",
@@ -31,7 +31,7 @@ export default function Home() {
       color: "text-white",
     },
     {
-      content: "Li Junlin (李俊霖), ",
+      content: "Li Junlin, ",
       color: "custom-text-yellow",
     },
     {
@@ -39,7 +39,7 @@ export default function Home() {
       color: "text-white",
     },
     {
-      content: "Meituan (美团), ",
+      content: "Meituan, ",
       color: "custom-text-red",
     },
     {
@@ -47,23 +47,23 @@ export default function Home() {
       color: "text-white",
     },
     {
-      content: "FrontEnd Programmer (前端工程师).",
+      content: "FrontEnd Programmer.",
       color: "custom-text-green",
     },
   ];
 
   const btns = [
     {
-      name: "Resume",
-      to: "/resume",
-    },
-    {
-      name: "Documentation",
+      name: "Docs",
       to: "/docs/category/js",
     },
     {
       name: "Blog",
       to: "/blog",
+    },
+    {
+      name: "Resume",
+      to: "/resume",
     },
   ];
 
@@ -76,12 +76,12 @@ export default function Home() {
             LiJunlin's Website
           </div>
         </div>
-        <div className="flex">
+        <div className="flex flex-wrap">
           {navs.map(({ name, to }) => (
             <Link
               key={to}
               to={to}
-              className="w-24 py-2 text-white font-bold text-xl text-center font-tw hover:no-underline"
+              className="py-2 pr-12 text-white font-bold text-xl text-left font-tw hover:no-underline"
             >
               {name}
             </Link>
@@ -93,14 +93,14 @@ export default function Home() {
           {texts.map(({ content, color }) => (
             <span
               key={content}
-              className={`text-4xl leading-normal font-tw font-semibold ${color} lg:text-4xl lg:leading-relaxed`}
+              className={`text-3xl leading-normal font-tw font-semibold ${color} lg:text-4xl lg:leading-relaxed`}
             >
               {content}
             </span>
           ))}
         </div>
         <img
-          src="/img/lijunlin.png"
+          src="https://cdn.pixabay.com/photo/2014/06/13/00/16/figure-367946_1280.png"
           className="hidden max-w-2xl rounded-2xl lg:block"
         />
       </div>
