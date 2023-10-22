@@ -1,5 +1,25 @@
 import React from "react";
 import Link from "@docusaurus/Link";
+import Code from "../components/Code/index";
+
+const code = `
+function package (bagWeight, value, weight) {
+  let result = [];
+  for (let j = 0; j <= bagWeight; j++) {
+    result[j] = j >= weight[0] ? value[0] : 0;
+  }
+  for (let i = 1; i < value.length; i++) {
+    const next = [];
+    for (let j = 0; j <= bagWeight; j++) {
+      next[j] = j < weight[i] ? result[j] : Math.max(value[i] + result[j - weight[i]], result[j]);
+    }
+    result = next;
+  }
+  return result[bagWeight];
+}
+
+package(6, [5, 10, 3, 6, 3], [2, 5, 1, 4, 3]) // expect: 13
+`.trim();
 
 export default function Home() {
   const navs = [
@@ -11,14 +31,14 @@ export default function Home() {
       name: "Blog",
       to: "/blog",
     },
-    {
-      name: "Resume",
-      to: "/resume",
-    },
-    {
-      name: "Life",
-      to: "/life/idea",
-    },
+    // {
+    //   name: "Resume",
+    //   to: "/resume",
+    // },
+    // {
+    //   name: "Life",
+    //   to: "/life/idea",
+    // },
     {
       name: "GitHub",
       to: "https://github.com/lijunlin2022",
@@ -62,9 +82,13 @@ export default function Home() {
       to: "/blog",
     },
     {
-      name: "Resume",
-      to: "/resume",
+      name: "GitHub",
+      to: "https://github.com/lijunlin2022",
     },
+    // {
+    //   name: "Resume",
+    //   to: "/resume",
+    // },
   ];
 
   return (
@@ -89,7 +113,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col lg:flex-row lg:justify-between">
-        <div className="mt-20 max-w-2xl">
+        <div className="my-20 max-w-xl">
           {texts.map(({ content, color }) => (
             <span
               key={content}
@@ -99,12 +123,11 @@ export default function Home() {
             </span>
           ))}
         </div>
-        <img
-          src="https://cdn.pixabay.com/photo/2014/06/13/00/16/figure-367946_1280.png"
-          className="hidden max-w-2xl rounded-2xl lg:block"
-        />
+        <div className="hidden lg:block">
+          <Code code={code} />
+        </div>
       </div>
-      <div className="my-24 flex flex-col justify-center lg:flex-row lg:my-16">
+      <div className="flex flex-col justify-center lg:flex-row lg:my-16">
         {btns.map(({ name, to }) => (
           <div
             key={name}

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  overscroll-behavior: none;
+}
+
 :root {
   --ifm-color-primary: #5e81ac;
   --ifm-color-primary-dark: #55749b;
@@ -14,6 +19,7 @@
 
   --ifm-navbar-background-color: #eceff4;
   --ifm-code-background: #e5e9f0;
+  --docusaurus-highlighted-code-line-bg: rgba(72, 77, 91, 0.2);
 }
 
 [data-theme="dark"] {
@@ -29,6 +35,7 @@
   --ifm-background-surface-color: #2e3440;
   --ifm-background-color: #2e3440 !important;
   --ifm-code-background: #4c566a;
+  --docusaurus-highlighted-code-line-bg: rgba(72, 77, 91, 1);
 }
 
 .docusaurus-highlight-code-line {

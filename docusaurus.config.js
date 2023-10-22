@@ -50,17 +50,17 @@ module.exports = {
           label: "博客",
           position: "left",
         },
-        {
-          to: "/life/idea",
-          label: "生活",
-          position: "left",
-          activeBaseRegex: `/life/`,
-        },
-        {
-          to: "/resume",
-          label: "简历",
-          position: "left",
-        },
+        // {
+        //   to: "/life/idea",
+        //   label: "生活",
+        //   position: "left",
+        //   activeBaseRegex: `/life/`,
+        // },
+        // {
+        //   to: "/resume",
+        //   label: "简历",
+        //   position: "left",
+        // },
         {
           href: "https://github.com/lijunlin2022",
           label: "GitHub",
@@ -75,16 +75,16 @@ module.exports = {
   },
   themes: ["@docusaurus/theme-live-codeblock"],
   plugins: [
-    [
-      "content-docs",
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
-      ({
-        id: "life",
-        path: "life",
-        routeBasePath: "life",
-        sidebarPath: require.resolve("./sidebars-of-life.js"),
-      }),
-    ],
+    // [
+    //   "content-docs",
+    //   /** @type {import('@docusaurus/plugin-content-docs').Options} */
+    //   ({
+    //     id: "life",
+    //     path: "life",
+    //     routeBasePath: "life",
+    //     sidebarPath: require.resolve("./sidebars-of-life.js"),
+    //   }),
+    // ],
     async function tailwindCSSPlugin(context, options) {
       return {
         name: "docusaurus-tailwindcss",
