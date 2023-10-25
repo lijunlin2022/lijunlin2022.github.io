@@ -35,10 +35,10 @@ export default function Home() {
     //   name: "Resume",
     //   to: "/resume",
     // },
-    // {
-    //   name: "Life",
-    //   to: "/life/idea",
-    // },
+    {
+      name: "Life",
+      to: "/life/orthodontic",
+    },
     {
       name: "GitHub",
       to: "https://github.com/lijunlin2022",
