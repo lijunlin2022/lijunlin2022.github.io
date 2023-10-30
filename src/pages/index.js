@@ -135,7 +135,7 @@ export default function Home() {
           >
             <Link
               to={to}
-              className="text-white text-3xl text-center font-tw font-black hover:text-white hover:no-underline"
+              className="text-white text-2xl text-center font-tw font-black hover:text-white hover:no-underline"
             >
               {name}
             </Link>
