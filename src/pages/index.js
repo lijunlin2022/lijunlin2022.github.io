@@ -11,14 +11,18 @@ function package (bagWeight, value, weight) {
   for (let i = 1; i < value.length; i++) {
     const next = [];
     for (let j = 0; j <= bagWeight; j++) {
-      next[j] = j < weight[i] ? result[j] : Math.max(value[i] + result[j - weight[i]], result[j]);
+      if (j < weight[i]) {
+        next[j] = result[j];
+      } else {
+        next[j] = Math.max(value[i] + result[j - weight[i]], result[j]);
+      }
     }
     result = next;
   }
   return result[bagWeight];
 }
 
-package(6, [5, 10, 3, 6, 3], [2, 5, 1, 4, 3]) // expect: 13
+package(6, [5, 10, 3, 6, 3], [2, 5, 1, 4, 3]); // expect: 13
 `.trim();
 
 export default function Home() {
@@ -93,27 +97,27 @@ export default function Home() {
 
   return (
     <main className="w-full min-h-screen custom-bg-black px-10 py-16 lg:px-52 lg:pt-32 lg:pb-0">
-      <div className="flex flex-col lg:flex-row justify-between">
-        <div className="flex items-center mb-10">
+      <div className="flex flex-col lg:flex-row justify-between items-center">
+        <div className="flex items-center">
           <div className="w-20 h-20 bg-[url('/img/dark-logo.svg')] bg-contain mr-4 bg-no-repeat"></div>
           <div className="text-4xl font-black custom-text-blue font-tw lg:text-6xl">
             LiJunlin's Website
           </div>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex justify-between mt-10 w-full lg:mt-0 lg:max-w-sm">
           {navs.map(({ name, to }) => (
             <Link
               key={to}
               to={to}
-              className="py-2 pr-12 text-white font-bold text-xl text-left font-tw hover:no-underline"
+              className="text-white font-bold text-xl text-left font-tw hover:no-underline"
             >
               {name}
             </Link>
           ))}
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row lg:justify-between">
-        <div className="my-20 max-w-xl">
+      <div className="flex flex-col justify-between items-center my-10 lg:flex-row">
+        <div className="max-w-xl">
           {texts.map(({ content, color }) => (
             <span
               key={content}
@@ -123,11 +127,11 @@ export default function Home() {
             </span>
           ))}
         </div>
-        <div className="hidden lg:block">
-          <Code code={code} />
+        <div className="hidden custom-bg-black lg:block">
+          <Code code={code} className="custom-bg-black px-0" />
         </div>
       </div>
-      <div className="flex flex-col justify-center lg:flex-row lg:my-16">
+      <div className="flex flex-col justify-center lg:flex-row">
         {btns.map(({ name, to }) => (
           <div
             key={name}
