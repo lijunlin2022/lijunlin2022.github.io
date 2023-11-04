@@ -55,10 +55,7 @@ const tabClick = (index) => {
   const tabRect = tab.getBoundingClientRect()
   const scrollLeft =
     tab.offsetLeft + tabRect.width / 2 - window.innerWidth / 2
-  tabList.scrollTo({
-    left: scrollLeft,
-    behavior: "smooth"
-  })
+  tabList.scrollLeft = scrollLeft;
 }
 ```
 
