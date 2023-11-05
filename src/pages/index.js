@@ -171,10 +171,6 @@ export default function Home() {
           entry.target.classList.remove('opacity-0');
           entry.target.classList.remove('-translate-x-full');
           entry.target.classList.add('opacity-1');
-        } else {
-          entry.target.classList.remove('opacity-1');
-          entry.target.classList.add('opacity-0');
-          entry.target.classList.add('-translate-x-full')
         }
       })
     })
@@ -231,7 +227,7 @@ export default function Home() {
         ))}
       </div>
       <div className="flex flex-col justify-between items-center my-10 lg:flex-row lg:my-40 lg:justify-end">
-        <div className="max-w-xl ease-out">
+        <div className="fragment max-w-xl ease-out duration-1000 opacity-0">
           {texts2.map(({ content, color }) => (
             <span
               key={content}
@@ -254,7 +250,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="hidden bg-[#272b33] max-w-4xl lg:block lg:max-w-4xl lg:my-40">
+      <div className="fragment opacity-0 duration-1000 hidden bg-[#272b33] max-w-4xl lg:block lg:max-w-4xl lg:my-40">
         <Code code={code} className="p-10 text-base bg-[#272b33]" />
       </div>
     </main>
