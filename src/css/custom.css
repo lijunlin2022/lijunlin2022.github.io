@@ -4,7 +4,9 @@
 
 html,
 body {
+  width: 100%;
   overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
 :root {

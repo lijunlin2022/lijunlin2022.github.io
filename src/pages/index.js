@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "@docusaurus/Link";
 import Code from "../components/Code/index";
 
@@ -164,6 +164,24 @@ export default function Home() {
     // },
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0');
+          entry.target.classList.remove('-translate-x-full');
+          entry.target.classList.add('opacity-1');
+        } else {
+          entry.target.classList.remove('opacity-1');
+          entry.target.classList.add('opacity-0');
+          entry.target.classList.add('-translate-x-full')
+        }
+      })
+    })
+    const fragments = document.getElementsByClassName('fragment');
+    Array.from(fragments).forEach((el) => observer.observe(el));
+  }, []);
+
   return (
     <main className="w-full min-h-screen custom-bg-black px-10 py-16 lg:px-52 lg:pt-32 lg:pb-0">
       <div className="flex flex-col lg:flex-row justify-between items-center">
@@ -186,7 +204,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col justify-between items-center my-10 lg:flex-row lg:my-40 lg:justify-start">
-        <div className="max-w-xl">
+        <div className="fragment max-w-xl opacity-0 duration-1000 ease-out -translate-x-full">
           {texts.map(({ content, color }) => (
             <span
               key={content}
@@ -213,7 +231,7 @@ export default function Home() {
         ))}
       </div>
       <div className="flex flex-col justify-between items-center my-10 lg:flex-row lg:my-40 lg:justify-end">
-        <div className="max-w-xl">
+        <div className="max-w-xl ease-out">
           {texts2.map(({ content, color }) => (
             <span
               key={content}
@@ -225,7 +243,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col justify-between items-center my-10 lg:flex-row lg:my-40 lg:justify-start">
-        <div className="max-w-4xl">
+        <div className="fragment max-w-4xl opacity-0 duration-1000 ease-out -translate-x-full">
           {texts3.map(({ content, color }) => (
             <span
               key={content}
@@ -236,7 +254,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="hidden bg-[#272b33] lg:block lg:max-w-4xl lg:my-40">
+      <div className="hidden bg-[#272b33] max-w-4xl lg:block lg:max-w-4xl lg:my-40">
         <Code code={code} className="p-10 text-base bg-[#272b33]" />
       </div>
     </main>
