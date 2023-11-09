@@ -19,6 +19,7 @@ const targetPosition = element.offsetTop;
 window.scrollTo(0, targetPosition);
 ```
 
+## requestAnimationFrame
 
 下面这段代码的作用是：将页面平滑滚动到某个位置。它首先会获取当前滚动条的位置，然后计算目标位置和当前位置的距离，之后将这个距离分为若干个部分，每隔一段时间就滚动一部分，直到滚动到目标位置。
 
