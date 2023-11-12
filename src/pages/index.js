@@ -250,8 +250,16 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="fragment opacity-0 duration-1000 hidden bg-[#272b33] max-w-4xl lg:block lg:max-w-4xl lg:my-40">
+      <div className="fragment opacity-0 duration-1000 hidden bg-[#272b33] max-w-4xl my-10 lg:block lg:max-w-4xl lg:my-40">
         <Code code={code} className="p-10 text-base bg-[#272b33]" />
+      </div>
+      <div className="fragment my-10 lg:my-40">
+        <ul>
+          <li className="text-green-300">React Mobile Components Libaray</li>
+          <li className="text-gray-300">Android</li>
+          <li className="text-gray-300">Hybrid App</li>
+          <li className="text-gray-300">Wechat Miniparogram</li>
+        </ul>
       </div>
     </main>
   );
