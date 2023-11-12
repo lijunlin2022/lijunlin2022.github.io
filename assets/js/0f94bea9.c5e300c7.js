@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7556],{6504:e=>{e.exports=JSON.parse('{"title":"bit-life","slug":"/category/bit-life","permalink":"/docs/category/bit-life","navigation":{"previous":{"title":"prettier","permalink":"/docs/tool/prettier/"},"next":{"title":"snake","permalink":"/docs/category/snake"}}}')}}]);

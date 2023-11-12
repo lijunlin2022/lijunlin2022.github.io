@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3733],{6919:e=>{e.exports=JSON.parse('{"title":"nestjs","slug":"/category/nestjs","permalink":"/docs/category/nestjs","navigation":{"previous":{"title":"\u8bfb\u53d6\u76ee\u5f55","permalink":"/docs/nodejs/readdir"},"next":{"title":"graphql","permalink":"/docs/nestjs/graphql"}}}')}}]);
