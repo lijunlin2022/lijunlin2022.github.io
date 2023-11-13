@@ -85,6 +85,16 @@ module.exports = {
         sidebarPath: require.resolve("./sidebars-of-life.js"),
       }),
     ],
+    [
+      "content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      ({
+        id: "novel",
+        path: "novel",
+        routeBasePath: "novel",
+        sidebarPath: require.resolve("./sidebars-of-novel.js"),
+      }),
+    ],
     async function tailwindCSSPlugin(context, options) {
       return {
         name: "docusaurus-tailwindcss",
