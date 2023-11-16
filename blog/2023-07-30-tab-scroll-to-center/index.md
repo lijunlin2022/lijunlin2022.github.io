@@ -97,3 +97,8 @@ tabClick(e) {
 - Tab 自身的宽度，需要使用 `wx.createSelectorQuery()` 选取到目标元素后，从 `exec()` 的执行结果中获取。
 
 不过殊途同归，微信小程序 Tab 的滚动居中，和 React Tab 的滚动居中，最终都可以用同样的原理实现。
+
+## Vue2 版 Tab 滚动居中
+
+[Tab 滚动居中 | Vue2](https://codesandbox.io/s/vue-tab-scroll-to-center-qxw4vc)
+
