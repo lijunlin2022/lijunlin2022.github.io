@@ -1,173 +1,69 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 html,
 body {
   width: 100%;
   overscroll-behavior: none;
   overflow-x: hidden;
+  font-size: 14px;
 }
 
 :root {
-  --ifm-color-primary: #5e81ac;
-  --ifm-color-primary-dark: #55749b;
-  --ifm-color-primary-darker: #4b678a;
-  --ifm-color-primary-darkest: #425a78;
-  --ifm-color-primary-light: #6e8eb4;
-  --ifm-color-primary-lighter: #7e9abd;
-  --ifm-color-primary-lightest: #8ea7c5;
+  --ifm-color-primary-lightest: #ffd8bf;
+  --ifm-color-primary-lighter: #ffbb96;
+  --ifm-color-primary-light: #ff9c6e;
+  --ifm-color-primary: #ff7a45;
+  --ifm-color-primary-dark:#fa541c;
+  --ifm-color-primary-darker: #d4380d;
+  --ifm-color-primary-darkest: #ad2102;
   --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 216, 191, 0.3);
 
-  --ifm-navbar-background-color: #eceff4;
-  --ifm-code-background: #e5e9f0;
-  --docusaurus-highlighted-code-line-bg: rgba(72, 77, 91, 0.2);
+  --ifm-h1-font-size: 2rem !important;
+  --ifm-h2-font-size: 1.5rem !important;
+  --ifm-h3-font-size: 1.25rem !important;
+  --ifm-h4-font-size: 1rem !important;
+  --ifm-h5-font-size: 0.875rem !important;
+  --ifm-h6-font-size: 0.85rem !important;
 }
 
-[data-theme="dark"] {
-  --ifm-color-primary: #88c0d0;
-  --ifm-color-primary-dark: #7aadbb;
-  --ifm-color-primary-darker: #6d9aa6;
-  --ifm-color-primary-darkest: #5f8692;
-  --ifm-color-primary-light: #94c6d5;
-  --ifm-color-primary-lighter: #a0cdd9;
-  --ifm-color-primary-lightest: #acd3de;
+[data-theme='dark'] {
+  --ifm-color-primary-lightest: #ffd8bf;
+  --ifm-color-primary-lighter: #ffbb96;
+  --ifm-color-primary-light: #ff9c6e;
+  --ifm-color-primary: #ff7a45;
+  --ifm-color-primary-dark:#fa541c;
+  --ifm-color-primary-darker: #d4380d;
+  --ifm-color-primary-darkest: #ad2102;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
-  --ifm-navbar-background-color: #4c566a;
-  --ifm-background-surface-color: #2e3440;
-  --ifm-background-color: #2e3440 !important;
-  --ifm-code-background: #4c566a;
-  --docusaurus-highlighted-code-line-bg: rgba(72, 77, 91, 1);
+  --ifm-h1-font-size: 2rem !important;
+  --ifm-h2-font-size: 1.5rem !important;
+  --ifm-h3-font-size: 1.25rem !important;
+  --ifm-h4-font-size: 1rem !important;
+  --ifm-h5-font-size: 0.875rem !important;
+  --ifm-h6-font-size: 0.85rem !important;
 }
 
-.docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.1);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2rem !important;
 }
 
-[data-theme="dark"] .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
+.title_node_modules-\@docusaurus-theme-classic-lib-theme-DocCategoryGeneratedIndexPage-styles-module {
+  --ifm-h1-font-size: 2rem !important;
 }
 
-.footnote-backref {
+.hero__title, .title_f1Hy {
+  font-size: var(--ifm-h1-font-size) !important;
+}
+
+.markdown > h2 {
+  --ifm-h2-font-size: 1.5rem !important;
+}
+
+.title_node_modules-\@docusaurus-theme-classic-lib-theme-BlogPostItem-Header-Title-styles-module {
+  font-size: var(--ifm-h1-font-size) !important;
+}
+
+/* 隐藏脚注箭头 */
+.data-footnote-backref {
   display: none;
-}
-
-/* latin-ext */
-@font-face {
-  font-family: "Titillium Web";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffGjEGIVzY4SY.woff2)
-    format("woff2");
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
-    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: "Titillium Web";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffGjEGItzYw.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
-    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: "Titillium Web";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPecZTIAOhVxoMyOr9n_E7fdM3mDbRS.woff2)
-    format("woff2");
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
-    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: "Titillium Web";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPecZTIAOhVxoMyOr9n_E7fdMPmDQ.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
-    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: "Titillium Web";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGIVzY4SY.woff2)
-    format("woff2");
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
-    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: "Titillium Web";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGItzYw.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
-    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: "Titillium Web";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffEDBGIVzY4SY.woff2)
-    format("woff2");
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
-    U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: "Titillium Web";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffEDBGItzYw.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
-    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-.font-tw {
-  font-family: Titillium Web, sans-serif;
-}
-
-.custom-bg-black {
-  background-color: rgb(46, 52, 64);
-}
-
-.custom-text-blue {
-  color: rgb(136, 192, 208);
-}
-
-.custom-text-yellow {
-  color: rgb(235, 203, 139);
-}
-
-.custom-text-green {
-  color: rgb(163, 190, 140);
-}
-
-.custom-text-red {
-  color: rgb(191, 97, 106);
 }

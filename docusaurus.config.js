@@ -1,9 +1,7 @@
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+import { themes as prismThemes } from 'prism-react-renderer';
 
-module.exports = {
+export default {
   title: "李俊霖的网络日志",
-  favicon: "img/favicon.ico",
   url: "https://lijunlin2022.github.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -34,10 +32,6 @@ module.exports = {
     ],
     navbar: {
       title: "李俊霖的网络日志",
-      logo: {
-        src: "img/logo.svg",
-        srcDark: "img/dark-logo.svg",
-      },
       items: [
         {
           type: "docSidebar",
@@ -69,8 +63,8 @@ module.exports = {
       ],
     },
     prism: {
-      theme: lightCodeTheme,
-      darkTheme: darkCodeTheme,
+      theme: prismThemes.oneLight,
+      darkTheme: prismThemes.oneDark,
     },
   },
   themes: ["@docusaurus/theme-live-codeblock"],
@@ -95,16 +89,5 @@ module.exports = {
         sidebarPath: require.resolve("./sidebars-of-novel.js"),
       }),
     ],
-    async function tailwindCSSPlugin(context, options) {
-      return {
-        name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require("tailwindcss"));
-          postcssOptions.plugins.push(require("autoprefixer"));
-          return postcssOptions;
-        },
-      };
-    },
   ],
 };

@@ -1,32 +1,5 @@
 import React, { useEffect } from "react";
 import Link from "@docusaurus/Link";
-import Code from "../components/Code/index";
-
-const code = `
-function package (bagWeight, value, weight) {
-  let result = [];
-
-  for (let j = 0; j <= bagWeight; j++) {
-    result[j] = j >= weight[0] ? value[0] : 0;
-  }
-
-  for (let i = 1; i < value.length; i++) {
-    const next = [];
-    for (let j = 0; j <= bagWeight; j++) {
-      if (j < weight[i]) {
-        next[j] = result[j];
-      } else {
-        next[j] = Math.max(value[i] + result[j - weight[i]], result[j]);
-      }
-    }
-    result = next;
-  }
-
-  return result[bagWeight];
-}
-
-package(6, [5, 10, 3, 6, 3], [2, 5, 1, 4, 3]); // expect: 13
-`.trim();
 
 export default function Home() {
   const navs = [
@@ -184,7 +157,7 @@ export default function Home() {
         <div className="flex items-center">
           <div className="w-20 h-20 bg-[url('/img/dark-logo.svg')] bg-contain mr-4 bg-no-repeat"></div>
           <div className="text-4xl font-black custom-text-blue font-tw lg:text-6xl">
-            LiJunlin's Website
+            李俊霖的网络日志
           </div>
         </div>
         <div className="flex justify-between mt-10 w-full lg:mt-0 lg:max-w-sm">
@@ -251,7 +224,7 @@ export default function Home() {
         </div>
       </div>
       <div className="fragment opacity-0 duration-1000 hidden bg-[#272b33] max-w-4xl my-10 lg:block lg:max-w-4xl lg:my-40">
-        <Code code={code} className="p-10 text-base bg-[#272b33]" />
+        {/* <Code code={code} className="p-10 text-base bg-[#272b33]" /> */}
       </div>
       <div className="fragment my-10 lg:my-40">
         <ul>
