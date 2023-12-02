@@ -6,6 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lijunlin2022.github.io/blog"/>
     <subtitle>李俊霖的网络日志 Blog</subtitle>
+    <icon>https://lijunlin2022.github.io/img/logo.png</icon>
     <entry>
         <title type="html"><![CDATA[移动端适配 lib-flexible 和 postcss-pxtorem]]></title>
         <id>https://lijunlin2022.github.io/blog/2023/11/14/px-to-rem</id>
