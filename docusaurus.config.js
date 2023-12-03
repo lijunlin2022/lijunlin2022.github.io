@@ -52,7 +52,11 @@ export default {
           to: "/life/orthodontic",
           label: "生活",
           position: "left",
-          activeBaseRegex: `/life/`,
+        },
+        {
+          to: "/impression/kiseijuu",
+          label: "观后感",
+          position: "left",
         },
         // {
         //   to: "/resume",
@@ -75,7 +79,6 @@ export default {
   plugins: [
     [
       "content-docs",
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
         id: "life",
         path: "life",
@@ -85,7 +88,6 @@ export default {
     ],
     [
       "content-docs",
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
         id: "novel",
         path: "novel",
@@ -93,5 +95,14 @@ export default {
         sidebarPath: require.resolve("./sidebars-of-novel.js"),
       }),
     ],
+    [
+      "content-docs",
+      ({
+        id: "impression",
+        path: "impression",
+        routeBasePath: "impression",
+        sidebarPath: require.resolve("./sidebars-of-impression.js"),
+      }),
+    ]
   ],
 };
