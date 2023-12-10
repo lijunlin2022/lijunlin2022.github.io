@@ -38,26 +38,26 @@ export default {
       },
       items: [
         {
+          to: "/blog",
+          label: "技术博客",
+          position: "left",
+        },
+        {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "文档",
+          label: "技术笔记",
         },
         {
-          to: "/blog",
-          label: "博客",
-          position: "left",
-        },
-        {
-          to: "/life/orthodontic",
+          to: "/life",
           label: "生活",
           position: "left",
         },
-        {
-          to: "/impression/kiseijuu",
-          label: "观后感",
-          position: "left",
-        },
+        // {
+        //   to: "/impression",
+        //   label: "观后感",
+        //   position: "left",
+        // },
         // {
         //   to: "/resume",
         //   label: "简历",
@@ -78,13 +78,40 @@ export default {
   themes: ["@docusaurus/theme-live-codeblock"],
   plugins: [
     [
-      "content-docs",
-      ({
-        id: "life",
-        path: "life",
-        routeBasePath: "life",
-        sidebarPath: require.resolve("./sidebars-of-life.js"),
-      }),
+      '@docusaurus/plugin-content-blog',
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: 'impression',
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: 'impression',
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: './impression',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: 'life',
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: 'life',
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: './life',
+      },
     ],
     [
       "content-docs",
@@ -95,14 +122,5 @@ export default {
         sidebarPath: require.resolve("./sidebars-of-novel.js"),
       }),
     ],
-    [
-      "content-docs",
-      ({
-        id: "impression",
-        path: "impression",
-        routeBasePath: "impression",
-        sidebarPath: require.resolve("./sidebars-of-impression.js"),
-      }),
-    ]
   ],
 };
