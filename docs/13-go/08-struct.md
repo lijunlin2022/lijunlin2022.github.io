@@ -235,3 +235,99 @@ func main() {
 
 - 如果变量、函数、类型等名称首字母大写，那么它就是公有的，也就是说，它可以被其他包访问。
 - 如果名称首字母小写，那么它就是私有的，只能在当前包内部访问，不能被其他包访问。
+
+## 匿名字段和内嵌结构体
+
+### 匿名字段
+
+结构体内部可以包含一个或多个匿名字段，这些字段可以**没有名字，只有类型**，此时类型就是字段的名字。
+
+```go
+type Person struct {
+  string
+  int
+}
+
+func main() {
+  p := Person{"李俊霖", 23}
+  fmt.Printf("name: %s, age: %d\n", p.string, p.int) // name: 李俊霖, age: 23
+}
+```
+
+### 内嵌结构体
+
+匿名字段本身可以是一个结构体类型，也就是说**结构体可以内嵌结构体**。
+
+```go
+type Education struct {
+  school string
+  major  string
+}
+
+type Person struct {
+  string
+  int
+  *Education
+}
+
+func main() {
+  p := &Person{
+    "李俊霖",
+    23,
+    &Education{"北京理工大学", "计算机科学与技术"},
+  }
+  fmt.Printf(
+    "name: %s, age: %d, school: %s, major: %s\n",
+    p.string,
+    p.int,
+    p.school,
+    p.major,
+  )
+}
+```
+
+## 重载
+
+当内层结构体和外层结构体拥有相同的名字时，外层名字会覆盖内层名字（但是二者的内存空间均存在），这提供了一种重载字段、方法的方式。
+
+```go
+type Dog struct {
+  name string
+}
+
+type Husky struct {
+  *Dog
+  name string
+}
+
+func main() {
+  h := &Husky{
+    Dog: &Dog{
+      name: "狗",
+    },
+    name: "哈士奇",
+  }
+  fmt.Println(h.name) // 哈士奇
+}
+```
+
+### 自建 String() 方法
+
+如果类型定义了 String() 方法，它就会在 fmt.Println() 和 fmt.Printf() 时自动使用 String() 方法。
+
+```go
+type Dog struct {
+  name  string
+  color string
+}
+
+func (d *Dog) String() string {
+  return fmt.Sprintf("名字->%s; 颜色->%s", d.name, d.color)
+}
+
+func main() {
+  d := &Dog{name: "旺财", color: "白色"}
+  fmt.Printf("%v\n", d) // 名字->旺财; 颜色->白色
+  fmt.Println(d)        // 名字->旺财; 颜色->白色
+}
+```
