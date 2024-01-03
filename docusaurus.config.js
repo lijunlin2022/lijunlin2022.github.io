@@ -80,47 +80,26 @@ export default {
     [
       '@docusaurus/plugin-content-blog',
       {
-        /**
-         * Required for any multi-instance plugin
-         */
         id: 'impression',
-        /**
-         * URL route for the blog section of your site.
-         * *DO NOT* include a trailing slash.
-         */
         routeBasePath: 'impression',
-        /**
-         * Path to data on filesystem relative to site dir.
-         */
         path: './impression',
       },
     ],
     [
       '@docusaurus/plugin-content-blog',
       {
-        /**
-         * Required for any multi-instance plugin
-         */
         id: 'life',
-        /**
-         * URL route for the blog section of your site.
-         * *DO NOT* include a trailing slash.
-         */
         routeBasePath: 'life',
-        /**
-         * Path to data on filesystem relative to site dir.
-         */
         path: './life',
       },
     ],
     [
-      "content-docs",
-      ({
-        id: "novel",
-        path: "novel",
-        routeBasePath: "novel",
-        sidebarPath: require.resolve("./sidebars-of-novel.js"),
-      }),
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'novel',
+        routeBasePath: 'novel',
+        path: './novel',
+      },
     ],
   ],
 };
