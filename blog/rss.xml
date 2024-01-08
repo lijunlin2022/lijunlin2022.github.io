@@ -133,17 +133,15 @@
             <category>css</category>
         </item>
         <item>
-            <title><![CDATA[Tab 滚动居中]]></title>
+            <title><![CDATA[移动端 H5 Tab 滚动居中如何实现]]></title>
             <link>https://lijunlin2022.github.io/blog/2023/07/30/tab-scroll-to-center</link>
             <guid>https://lijunlin2022.github.io/blog/2023/07/30/tab-scroll-to-center</guid>
             <pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[大家好，我俊霖。]]></description>
-            <content:encoded><![CDATA[<p>大家好，我俊霖。</p>
-<p>日常开发中，我们常常要开发这样的选项卡（Tabs）：当某个选项卡（Tab）被点击之后，如果这个 Tab 能够滚动，就会滚动到屏幕中央。以网页版的拼多多为例：</p>
+            <description><![CDATA[Tab 是用户界面的一部分，外观是一行或者一列整齐的选项按钮。当用户点击某个按钮时，按钮的下方或者右侧会展示新的内容。]]></description>
+            <content:encoded><![CDATA[<p>Tab 是用户界面的一部分，外观是一行或者一列整齐的选项按钮。当用户点击某个按钮时，按钮的下方或者右侧会展示新的内容。</p>
+<p>Tab 在 PC 端和移动端设备上都很常见，不过移动端的 Tab 会比 PC 端更复杂。为什么呢？因为移动端设备屏幕较窄，往往只能展示 4 ~ 7 个 Tab 按钮。考虑到用户体验，UI 往往要求程序员额外实现一个效果——点击按钮后，按钮需要滚动到屏幕中央，具体请看下方的拼多多录屏。</p>
 <p><img loading="lazy" src="https://lijunlin2022.github.io/assets/images/01-tab-scroll-to-center-bbe07676c502413e147ffb0b5a48f9e0.gif" width="402" height="281" class="img_ev3q"></p>
-<p>为了实现滚动居中，一些朋友首先会逐个相加 Tab 的宽度，得到居中时需要滚动的距离，然后利用 <code>scrollTo()</code> 实现居中；另一些朋友则使用锚点，利用 <code>scrollIntoView()</code> 实现居中。</p>
-<p>第一种办法，如果每一个 Tab 的宽度是固定的，计算还比较简单。一旦每个 Tab 的宽度是不固定的，计算将会变得非常复杂。</p>
-<p>第二种办法，相比第一种方法要简单，能够处理 Tab 宽度不固定的情况。但由于 <code>scrollIntoView()</code> 的配置项（options）中没有居中的相关配置，因此只能保证选中的 Tab 处于视口（Viewport）内，无法实现严格的居中。</p>
+<p>如果你恰好被这个效果困扰，那么不必担心。在本文中，我将会解释 Tab 滚动居中的原理，并给出 React、Vue 和微信小程序的示例代码，相信读完本篇文章，你一定能收获满满。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="计算滚动距离的等式">计算滚动距离的等式<a href="https://lijunlin2022.github.io/blog/2023/07/30/tab-scroll-to-center#%E8%AE%A1%E7%AE%97%E6%BB%9A%E5%8A%A8%E8%B7%9D%E7%A6%BB%E7%9A%84%E7%AD%89%E5%BC%8F" class="hash-link" aria-label="Direct link to 计算滚动距离的等式" title="Direct link to 计算滚动距离的等式">​</a></h2>
 <p>现在我们介绍一种同样新方法，它同样使用 <code>scrollTo()</code>，但是它计算滚动距离（scrollLeft）的等式更简单。且这个等式，在 Tab 宽度不固定时，依然能够成立。请看这种方法的示意图：</p>
 <p><img loading="lazy" src="https://raw.githubusercontent.com/lijunlin2022/draw.io/main/2023-08-04-scroll-to-center.drawio.svg" alt="" class="img_ev3q"></p>
