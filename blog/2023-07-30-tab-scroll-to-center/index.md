@@ -2,40 +2,54 @@
 tags: ['react', 'miniprogram']
 ---
 
-# 移动端 H5 Tab 滚动居中如何实现
+# 移动端 H5 Tab 如何滚动居中
 
-Tab 是用户界面的一部分，外观是一行或者一列整齐的选项按钮。当用户点击某个按钮时，按钮的下方或者右侧会展示新的内容。
+Tab 是用户界面的一部分，外观是一行或者一列整齐的选项（Tab Item）。当用户点击某个 Item 时，Item 的下方或者右侧会展示新的内容。
 
-Tab 在 PC 端和移动端设备上都很常见，不过移动端的 Tab 会比 PC 端更复杂。为什么呢？因为移动端设备屏幕较窄，往往只能展示 4 ~ 7 个 Tab 按钮。考虑到用户体验，UI 往往要求程序员额外实现一个效果——点击按钮后，按钮需要滚动到屏幕中央，具体请看下方的拼多多录屏。
+Tab 在 PC 端和移动端设备上都很常见，不过移动端的 Tab 会比 PC 端更复杂。为什么呢？因为移动端设备屏幕较窄，往往只能展示 4 ~ 7 个 Item。考虑到用户体验，UI 往往要求程序员额外实现一个效果——点击 Item 后，Item 需要滚动到屏幕中央，具体请看下方的拼多多录屏。
 
-![](./img/01-tab-scroll-to-center.gif)
+![](./img/pdd.gif)
 
-如果你恰好被这个效果困扰，那么不必担心。在本文中，我将会解释 Tab 滚动居中的原理，并给出 React、Vue 和微信小程序的示例代码，相信读完本篇文章，你一定能收获满满。
+如果你想实现移动端 Tab 滚动居中，本文或许会对你有所帮助。不过阅读本文前，本文还对读者还有两个小要求。
 
-## 计算滚动距离的等式
+1. 读者需要明白 Tab 点击高亮如何实现。因为本文只会解释 Tab 滚动原理，不会关注 UI 样式。
+2. 读者需要熟悉 Vue，React 或者微信小程序。因为本文示例代码不是原生 JS，而是 Vue、React 和微信小程序。
 
-现在我们介绍一种同样新方法，它同样使用 `scrollTo()`，但是它计算滚动距离（scrollLeft）的等式更简单。且这个等式，在 Tab 宽度不固定时，依然能够成立。请看这种方法的示意图：
+## Tab 滚动的本质
 
-![](https://raw.githubusercontent.com/lijunlin2022/draw.io/main/2023-08-04-scroll-to-center.drawio.svg)
+Tab 滚动，看似是 Item 在滚动，实质是包裹着 Item 的容器在滚动。
 
-当一个 Tab 居中时：
+下图是 Item 4 从手机屏幕右侧滚动到屏幕左侧的示意图。开始时，包裹 Tab 的容器紧贴手机屏幕左侧，此时 Item 4 位于屏幕右侧。接着容器逐渐往左滚动，Item 4 也往左移动，当 Item 4 恰好位于手机屏幕的中央，手机屏幕左侧到容器左侧的距离就是 distance。
 
-- `offsetWidth / 2` 是 Tab 一半的宽度。
-- `offsetLeft` 是 Tab 距离父容器的距离。
-- `window.innerWidth / 2` 是屏幕一半的宽度。
-- `scrollLeft` 是 Tab 父容器应该滚动的距离。
+![](./img/scroll-left.png)
 
-不难看出：
+在 HTML 中，我们可以使用 [Element.scrollLeft](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollLeft) 来读取和设置元素滚动条到元素左边的位置。因此，只要我们能计算出某个 Item 居中时 distance，就可以让该 Item 居中。那么我们应该如何计算呢？
+
+## Tab 居中时容器应该滚动的距离
+
+下图是 Item 4 在手机屏幕居中时的示意图，屏幕中央有一条线，它把 Item 4 分为左右等宽的两部分，同时也把手机屏幕分为左右等宽的两部分。Item 4 一半的宽度就是 `halfItemWidth`，而手机屏幕一半的宽度就是 `halfScreenWidth`。
+
+我们把 Item 4 左侧到容器左侧的距离称为 `itemOffsetLeft`，手机屏幕到容器左侧的距离称为 `distance`。
+
+![](./img/calculate-scroll-left.png)
+
+观察示意图的几何关系，不难看出这四个值满足如下等式：
 
 ```
-target.offsetWidth / 2 + offsetLeft = window.innerWidth / 2 + scrollLeft
+distance + halfScreenWidth = itemOffsetLeft + halfItemWidth
 ```
 
-简单变化式子后，就可以得出计算滚动距离的等式：
+稍加推导，就可以得到计算 distance 的方法。
 
 ```
-scrollLeft = offsetLeft + target.offsetWidth / 2 - window.innerWidth / 2
+distance = itemOffsetLeft + halfItemWidth - halfScreenWidth
 ```
+
+下面我们来看在实际代码中，`itemOffsetLeft`，`halfItemWidth` 和 `halfScreenWidth` 应该如何获取。
+
+- `itemOffsetLeft`，你可以将 [HTMLElement.offsetLeft](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/offsetLeft) 作它的值。
+- `halfItemWidth`，你可以把 [HTMLElement.offsetWidth](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/offsetWidth) 除以 2 后作它的值。也可以调用 [Element.getBoundingClientRect()](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect) 获取一个对象 `eleRect`，`eleRect.width / 2` 也可以作它的值。
+- `halfScreenWidth`，你可以先调用 [window.innerWidth](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/innerWidth) 获取手机屏幕的完整宽度，再把宽度除以 2 作它的值。
 
 ## React 版 Tab 滚动居中
 
