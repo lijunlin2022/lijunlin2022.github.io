@@ -9,13 +9,16 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[无复制元素的循环轮播]]></title>
+            <title><![CDATA[移动端 H5 如何实现循环轮播（无需复制元素）]]></title>
             <link>https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper</link>
             <guid>https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper</guid>
             <pubDate>Thu, 14 Dec 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[大家好，我俊霖。]]></description>
-            <content:encoded><![CDATA[<p>大家好，我俊霖。</p>
-<p>循环轮播大家都很熟悉。一般的实现方法，需要复制首尾的元素。比如需要轮播的元素是 1234，那么就需要复制 1 和 4，让轮播元素变为 412341。</p>
+            <description><![CDATA[循环轮播在 PC 端、移动端应用上很常见，不过循环轮播在移动端比 PC 端更复杂。因为 PC 端可以点击切换轮播图，移动端轮播图通常需要手指滑动切换，手指移动时，轮播图也要跟着移动。苹果的循环轮播就实现了这个功能。]]></description>
+            <content:encoded><![CDATA[<p>循环轮播在 PC 端、移动端应用上很常见，不过循环轮播在移动端比 PC 端更复杂。因为 PC 端可以点击切换轮播图，移动端轮播图通常需要手指滑动切换，手指移动时，轮播图也要跟着移动。苹果的循环轮播就实现了这个功能。</p>
+<p><img loading="lazy" src="https://lijunlin2022.github.io/assets/images/apple-960adbdd007dd33cf4e60caa4ae887bb.gif" width="375" height="495" class="img_ev3q"></p>
+<p>更让我惊讶的是，苹果的循环轮播并没有通过复制元素来实现。一般要实现循环轮播，都会在轮播头部复制最后一个元素，在轮播尾部复制第一个元素。也就是说，如果实现 9 个元素的循环轮播，需要 11 个元素，但我苹果网页的控制台，发现它只用了 9 个元素。它是如何做到的呢？</p>
+<p><img loading="lazy" src="https://lijunlin2022.github.io/assets/images/apple-a0aceaf6d7cc99443fcc150750363688.png" width="800" height="650" class="img_ev3q"></p>
+<p>如果你也想实现</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="ant-design-mobile-swiper">Ant Design Mobile Swiper<a href="https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper#ant-design-mobile-swiper" class="hash-link" aria-label="Direct link to Ant Design Mobile Swiper" title="Direct link to Ant Design Mobile Swiper">​</a></h2>
 <p><a href="https://mobile.ant.design/components/swiper" target="_blank" rel="noopener noreferrer">Ant Design Mobile Swiper</a> 的循环轮播，就是一种无复制元素的循环轮播。如下图，可以在控制台看到元素个数始终是 4 个，没有多余的元素。</p>
 <p><img loading="lazy" src="https://lijunlin2022.github.io/assets/images/antd-mobile-fb968342e95cda93f287f9fd3c7b9933.gif" width="1150" height="180" class="img_ev3q"></p>
