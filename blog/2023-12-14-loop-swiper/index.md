@@ -1,65 +1,111 @@
-# H5 不复制元素的循环轮播图如何实现——模运算
+# H5 不复制元素的循环轮播图如何实现——求模
 
-过去我一直以为，循环轮播图必须拷贝元素，欺骗用户视觉才能实现。比如实现 Item 0 ~ Item 4 循环播放，我必须用 7 个元素。
+循环轮播图，你肯定并不陌生。不过让你手写它，你可能感觉有些麻烦。因为大部分方案都得考虑好几种边界情况。
 
-如下图所示，Item 的原品是绿色，复制品是浅蓝色，复制品被我放在队尾或队头。视口是深蓝色框，当视口右侧或左侧没有元素的时候，我会调整滑动距离，让视口内的复制品变成原品。
+比如最常见的实现方案——复制头部和尾部元素，就需要考虑 3 种边界情况。具体可以看下图：绿色的 Item 是原始元素，浅蓝色的是复制元素。
 
-![](./img/old-method-0.png)
+![](./img/old-method.png)
 
-![](./img/old-method-1.png)
+1. 初始化轮播图。你需要注意初始下标不是 0，而是 1，因为轮播列表头部多了一个复制元素 Item 4。
+2. 轮播图向右滑到达右边界。你需要设置滚动条的 scrollLeft，让视口内的复制元素 Item 0 变为原始元素 Item 0。
+3. 轮播图向左滑到达左边界。你需要设置滚动条的 scrollLeft，让视口内的复制元素 Item 4 变为原始元素 Item 4。
 
-确实，复制元素简单直观，我过去认为复制元素才是最优做法。直到我看到了 [Ant Design Mobile Swiper](https://mobile.ant.design/components/swiper)。
-
-如图所示，在循环轮播时，**[Ant Design Mobile Swiper](https://mobile.ant.design/components/swiper) 的元素始终保持四个**。而且它的 Dom 结构没有变化，这说明它采用的不是删除头部元素，塞到尾部元素的做法。
+有没有一种实现轮播图的方案，边界情况非常少，一旦理解后就能快速手写呢？有的，[Ant Design Mobile Swiper](https://mobile.ant.design/components/swiper) 使用的是一种求模的方案，效果如下：
 
 ![](./img/antd-mobile.gif)
 
-那么它是如何做到的呢？如果你也想知道答案，看了这篇文章，你一定有所收获。我会先解释原理，然后给出计算轮播元素位置的公式，最后再给出原生的 JS 代码。
+可以看到，[Ant Design Mobile Swiper](https://mobile.ant.design/components/swiper) 不需要复制元素，也不需要添加和移除元素，只需要控制 css 的 translate3d，就可以实现循环轮播。如果你也想知道 [Ant Design Mobile Swiper](https://mobile.ant.design/components/swiper) 是如何做到的，看了这篇文章，你一定有所收获。
 
-## 轮播原理
+我会先补充必须的数学知识——求余和求模，之后再阐述轮播的原理，接着给出计算轮播元素位置的代码，最后再给出完整的示例代码。
 
+## 轮播的原理
 
-取余运算和取模运算的区别。
+你先设想一下 5 个元素轮播时，初始顺序应该是什么样的呢？
 
-10 除以 3 等于 3 余 1，其中 1 就是取余运算的结果。取模运算的结果也是 1。
+首先，Item 0 肯定不能位于边缘，因为你肯定希望往左滑或者往右滑，都能够看到元素。
 
--10 除以 3 等于 -3 余 -1。其中 -1 是取余运算的结果。取模运算的结果是 2。
+既然 Item 0 不能位于边缘，你干脆让 Item 0 位于中央，它两边的 Item 数量也保持一致，也就是左右两边都有 2 个元素。
 
-取余运算和取模运算的区别，在处理负数的时候有区别。
-
-取余运算的结果，与被除数的符号相同；取模运算的结果，与除数的符号相同。
-
-```js
-function modulus (num1, num2) {
-  const result = num1 % num2
-  return result >= 0 ? result : result + Math.abs(num2)
-}
-```
-
-首先，你观察一下开始时各个轮播元素的位置。Item 0 位于正中，占据了视口，它的左侧是 Item 3 和 Item 4，右侧是 Item 1 和 Item 2。不管你向左滑动，还是向右滑动，都可以看到元素。
-
-![](./img/item0-center.png)
-
-这个初始位置，是怎么从 Item 0 ~ Item 4 的顺序转换来的呢？它实际上是 Item 0、Item 1 和 Item 2 位置保持不变，而 Item 3 和 Item 4 往左移动了 5 个自身距离。
+你可以这样做，按照 01234 的顺序往 Item 0 的右侧放置元素，放完 Item 1 和 Item 2 后，右侧已经有 2 个元素了。接下来你把 Item 3 和 Item 4 放置在 Item 0 左边。
 
 ![](./img/item0-mod.png)
 
-接着你向右滑动轮播图，Item 1 位于正中，占据了视口。
+于是你就得到了初始化时，轮播图的元素顺序：
 
-![](./img/item1-center.png)
+![](./img/item0-center.png)
 
-这个位置，其实也是从 Item 0 ~ Item 4 的顺序转换来的。它实际上是 Item 1、Item 2 和 Item 3 位置保持不变，而 Item 4 和 Item 0 往左移动了 5 个自身距离。
+现在你可以往右滑动的情况。往右滑动时，位于中央的元素便从 Item 0 变成了 Item 1。依旧延续之前先往 Item 1 右侧摆放元素，再往左侧摆放元素的思路。Item 1 右侧应该放置 Item 2 和 Item 3，左侧应该放置 Item 4 和 Item 0。于是得到
 
 ![](./img/item1-mod.png)
 
-你再向右滑动轮播图，Item 2 位于正中，占据了视口。轮播图的表现是 Item 0、Item 1、Item 2 和 Item 3 又往左移动了一段自身宽度，而 Item 4 从队头移动到了队尾。
+![](./img/item1-center.png)
 
-![](./img/item2-center.png)
-
-![](./img/item2-mod.png)
-
-如何循环往复，你可以看到**不复制元素的循环轮播，实质是维护了一个循环队列。**
+我们分别考虑 Item 0 到 Item 4 位于中央时，元素应该如何摆放，就得到了下面的图：
 
 ![](./img/loop.png)
 
 ## 计算轮播位置的公式
+
+看了上面的描述，你可能只是大概理解了思路，还不知道该如何写代码，我们先讲下元素的布局吧。
+
+我们先给所以元素设置布局，所有 Item 再轮播容器中排成一行，且定位均为相对定位。此时 Item 0 到 Item 4 都重叠在中央位置。此时 100% 就代表元素 Item 的宽度。
+
+```html
+<ul>
+  <li style="left: 0%;">0</li>
+  <li style="left: -100%">1</li>
+  <li style="left: -200%">2</li>
+  <li style="left: -300%">3</li>
+  <li style="left: -400%">4</li>
+</ul>
+```
+
+```js
+const onBtnClick = () => {
+  position = (index - currentIndex) * 100
+  finalPosition = mod(position + halfTotalWidth, totalWidth) - halfTotalWidth
+  item.style.transform = `translateX(${finalPosition}%)`
+}
+```
+
+现在我们考虑给 Item 添加 translateX。我们遵循着之前说到的思路，来理解上述代码：
+
+首先是 position = (index - currentIndex) * 100, position 就是 Item 往右放的尝试，
+
+- Item 0 位于中央，那么它的 translateX 应该为 0。
+- Item 1 和 Item 2 位于 Item 0 的右侧，它们的 translateX 可以设置为 100% 和 200%。
+- Item 3 和 Item 4 位于 Item 0 的左侧，你可能无法一眼看出它们的 translateX 应该是多少。
+
+  不过你可以这样考虑，先继续把 Item 3 和 Item 4 往右侧放置，此时 translateX 应该为 300% 和 400%。
+  
+  然后你再将 Item3 和 Item 4 往左移动一整个轮播图的位置，也就是 -500%，就得到了它们的 translateX，分别是 -200%（300% - 500%）和 -100%（400% - 500%）。
+
+```html
+<ul>
+  <li style="left: 0%; transform: translateX(0%);">0</li>
+  <li style="left: -100%; transform: translateX(100%);">1</li>
+  <li style="left: -200%; transform: translateX(200%);">2</li>
+  <li style="left: -300%; transform: translateX(-200%);">3</li>
+  <li style="left: -400%; transform: translateX(-100%);">4</li>
+</ul>
+```
+
+再考虑一下往右移动的情况，此时 Item 的 translateX 应该如何取值呢？
+
+- Item 1 位于中央，那么它的 translateX 应该为 0%。
+- Item 2 和 Item 3 位于 Item 1 的右侧，它们的 translateX 可以设置为 100% 和 200%
+- Item 4 和 Item 0 位于 Item 1 的左侧。你可以先把它们往 Item 1 右侧放置，此时 translateX 为 300% 和 400%。
+
+  然后你再将 Item 4 和 Item 0 往左移动一整个轮播图的位置，也就是 -500%，就得到了它们的 translateX，分别是 -200%（300% - 500%）和 -100%（400% - 500%）
+
+```html
+<ul>
+  <li style="left: 0%; transform: translateX(-100%);">0</li>
+  <li style="left: -100%; transform: translateX(0%);">1</li>
+  <li style="left: -200%; transform: translateX(100%);">2</li>
+  <li style="left: -300%; transform: translateX(200%);">3</li>
+  <li style="left: -400%; transform: translateX(-200%);">4</li>
+</ul>
+```
+
+这个 translateX 可以怎么计算呢？我们先给出计算的代码，然后再解释。
