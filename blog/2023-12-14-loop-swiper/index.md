@@ -1,64 +1,65 @@
-# H5 不复制元素的循环轮播图如何实现
+# H5 不复制元素的循环轮播图如何实现——模运算
 
-过去我一直以为，循环轮播图必须拷贝元素，欺骗用户才能实现。
+过去我一直以为，循环轮播图必须拷贝元素，欺骗用户视觉才能实现。比如实现 Item 0 ~ Item 4 循环播放，我必须用 7 个元素。
 
-举例来说，如果实现 Item0 ~ Item4 循环播放，我必须用 7 个元素。多出的 2 个元素，一个是 Item0 的复制品，另一个是 Item4 的复制品，分别被我放在队尾和队头。当轮播图滚动到队头（队尾）的时候，我会调整滚动距离把用户看到的复制品替换为原品。
+如下图所示，Item 的原品是绿色，复制品是浅蓝色，复制品被我放在队尾或队头。视口是深蓝色框，当视口右侧或左侧没有元素的时候，我会调整滑动距离，让视口内的复制品变成原品。
 
-![](./img/old-method.png)
+![](./img/old-method-0.png)
 
-确实，这种做法简单易懂。但不复制元素，真的不能实现循环轮播吗？各个大厂的轮播图，给了我答案——**不复制元素，也可以实现循环轮播。**
+![](./img/old-method-1.png)
 
-比如，苹果官网的循环轮播图没有复制元素。
+确实，复制元素简单直观，我过去认为复制元素才是最优做法。直到我看到了 [Ant Design Mobile Swiper](https://mobile.ant.design/components/swiper)。
 
-![](./img/apple.png)
-
-阿里的 [Ant Design Mobile Swiper](https://mobile.ant.design/components/swiper) 也没有复制元素。
+如图所示，在循环轮播时，**[Ant Design Mobile Swiper](https://mobile.ant.design/components/swiper) 的元素始终保持四个**。而且它的 Dom 结构没有变化，这说明它采用的不是删除头部元素，塞到尾部元素的做法。
 
 ![](./img/antd-mobile.gif)
 
-如果你也想知道，大厂是如何做到不复制元素也能循环轮播的。看了这篇文章，你一定有所收获。我会先解释原理，然后给出计算轮播元素位置的公式，最后再给出原生的 JS 代码。
-
-## 约定
-
-为方便读者理解下文，我需要和读者们做一些约定。
-
-- 轮播组件是整屏的轮播，轮播时只会向左切换一个元素，或者向右切换一个元素。
-- 轮播容器称为 List，轮播元素称为 Item。
-- List 有 5 个 Item，分别是 Item0 到 Item4。之所以选择 5 个 Item，是因为奇数个 Item 更容易找到 List 的中心。
-- currentIndex 代表 List 中心 Item 的下标。轮播到 Item0 时，currentIndex 是 0。轮播到 Item5 时，currentIndex 是 5。
+那么它是如何做到的呢？如果你也想知道答案，看了这篇文章，你一定有所收获。我会先解释原理，然后给出计算轮播元素位置的公式，最后再给出原生的 JS 代码。
 
 ## 轮播原理
 
-**初始化**
 
-下图是初始化时，List 中 Item 的排列。它是怎么得到的呢？
+取余运算和取模运算的区别。
+
+10 除以 3 等于 3 余 1，其中 1 就是取余运算的结果。取模运算的结果也是 1。
+
+-10 除以 3 等于 -3 余 -1。其中 -1 是取余运算的结果。取模运算的结果是 2。
+
+取余运算和取模运算的区别，在处理负数的时候有区别。
+
+取余运算的结果，与被除数的符号相同；取模运算的结果，与除数的符号相同。
+
+```js
+function modulus (num1, num2) {
+  const result = num1 % num2
+  return result >= 0 ? result : result + Math.abs(num2)
+}
+```
+
+首先，你观察一下开始时各个轮播元素的位置。Item 0 位于正中，占据了视口，它的左侧是 Item 3 和 Item 4，右侧是 Item 1 和 Item 2。不管你向左滑动，还是向右滑动，都可以看到元素。
 
 ![](./img/item0-center.png)
 
-可以这样理解，初始化时，我们希望 Item0 处于 List 中心时，两边的元素尽可能相等。
+这个初始位置，是怎么从 Item 0 ~ Item 4 的顺序转换来的呢？它实际上是 Item 0、Item 1 和 Item 2 位置保持不变，而 Item 3 和 Item 4 往左移动了 5 个自身距离。
 
-我们的做法是，Item0，Item1 和 Item2 位置保持不变。将 Item3 和 Item4 往前挪动 5 个位置。
+![](./img/item0-mod.png)
 
-![](./img/item0-over-half.png)
-
-**Item1 为中心**
-
-下图是 List 从 Item0 轮播到 Item1 时的排列，此时 Item1 处于 List 的中心。
+接着你向右滑动轮播图，Item 1 位于正中，占据了视口。
 
 ![](./img/item1-center.png)
 
-和初始化时理解方式一致，我们希望 Item1 处于 List 中心时，两边元素尽可能相等。
+这个位置，其实也是从 Item 0 ~ Item 4 的顺序转换来的。它实际上是 Item 1、Item 2 和 Item 3 位置保持不变，而 Item 4 和 Item 0 往左移动了 5 个自身距离。
 
-我们的做法是：Item1，Item2 和 Item3 位置保持不变。将 item4 和 Item1 往前挪动 5 个位置。
+![](./img/item1-mod.png)
 
-![](./img/item1-over-half.png)
+你再向右滑动轮播图，Item 2 位于正中，占据了视口。轮播图的表现是 Item 0、Item 1、Item 2 和 Item 3 又往左移动了一段自身宽度，而 Item 4 从队头移动到了队尾。
 
-**循环**
+![](./img/item2-center.png)
 
-按照上述步骤，分别列出 List 中心是 Item0 到 Item4 的情况，可以得到下图：
+![](./img/item2-mod.png)
+
+如何循环往复，你可以看到**不复制元素的循环轮播，实质是维护了一个循环队列。**
 
 ![](./img/loop.png)
 
-一个循环轮播就实现了。
-
-## 代码实现
+## 计算轮播位置的公式

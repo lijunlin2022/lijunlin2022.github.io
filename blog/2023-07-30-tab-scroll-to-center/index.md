@@ -22,11 +22,11 @@ Tab 滚动，本质是包裹着 Item 的容器在滚动。
 
 不难看出，Item 4 滚动居中，其实就是容器向左移动 distance。此时容器滚动条到容器左边缘的距离也是 distance。
 
-换句话说，**让容器向左移动 distance，Item 4 就能居中。** 因此只要我们能找出计算 distance 的公式，就能控制某个 Item 居中。
+换句话说，**让容器向左移动 distance，Item 4 就能居中。** 因此只要你能找出计算 distance 的公式，就能控制某个 Item 居中。
 
 ## 计算 distance 的公式
 
-该如何计算 distance 呢？我们看下方这张更细致的示意图。
+该如何计算 distance 呢？你看下方这张更细致的示意图。
 
 屏幕中央有一条线，它把 Item 4 分成了左右等宽的两部分，也把手机屏幕分成了左右等宽的两部分。你可以把 Item 4 一半的宽度记为 `halfItemWidth`，把手机屏幕一半的宽度记为 `halfScreenWidth`。再把 Item 4 左侧到容器左侧的距离记为 `itemOffsetLeft`。
 
@@ -58,7 +58,7 @@ distance = itemOffsetLeft + halfItemWidth - halfScreenWidth
 
 再看下如何把 distance 设置到容器上。
 
-在 HTML 中，我们可以使用 [Element.scrollLeft](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollLeft) 来读取和设置元素滚动条到元素左边的位置。因此，你只需要容器的 `scrollLeft` 赋值为 distance，就可以实现 Item 元素滚动居中。
+在 HTML 中，你可以使用 [Element.scrollLeft](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollLeft) 来读取和设置元素滚动条到元素左边的位置。因此，你只需要容器的 `scrollLeft` 赋值为 distance，就可以实现 Item 元素滚动居中。
 
 现在给出点击 tab 的函数的伪代码：
 
