@@ -22,7 +22,7 @@ const nextIndex = currentIndex + 1 > len - 1 ? 0 : currentIndex + 1
 如果你只理解取余，不理解取模，你会写出好一些的代码：
 
 ```js
-const prevIndex = currentIndex - 1 < 0 ? len - 1 : currentIndex - 1
+const prevIndex = (currentIndex - 1) % len < 0 ? (currentIndex - 1) + len : currentIndex - 1
 const nextIndex = (currentIndex + 1) % len
 ```
 
@@ -57,7 +57,11 @@ const nextIndex = mod(currentIndex + 1, len)
 
 **例子 3，取 5 除以 -2 的余数和模**
 
+![](./img/5rem-2.png)
+
 **例子 4，取 -5 除以 -2 的余数和模**
+
+![](./img/-5rem-2.png)
 
 ## JavaScript 实现取模函数
 
@@ -68,15 +72,12 @@ function mod(a, b) {
   const res = a % b
   return res >= 0 ? res : res + b
 }
+
+function mod(n, m) {
+  return ((n % m) + m) % m;
+}
 ```
 
-## 模的应用
+## 参考资料
 
-从第二个例子中，我们也可以得出一个结论，**x 为负数，y 为正数时，x mod y 可以得到一个正数。** 这个性质我们经常用到。
-
-比如一个 5 元素的循环轮播图：
-
-- 播放到 Item 0 时，再往左滑动，我们希望可以看到 Item 4，我们可以用 `(0 - 1) mod 5 = 4`，算出应该播放 Item 4。
-- 播放到 Item 4 时，再往右滑动，我们希望可以看到 Item 0，我们可以用 `(4 + 1) mod 5 = 0`，算出应该播放 Item 0。
-
-![](./img/loop-swiper.png)
+https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers/17323608#17323608
