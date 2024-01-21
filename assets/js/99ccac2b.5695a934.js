@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[9640],{2257:e=>{e.exports=JSON.parse('{"title":"html","slug":"/category/html","permalink":"/docs/category/html","navigation":{"next":{"title":"\u5e03\u5c40\u89c6\u53e3\u3001\u89c6\u89c9\u89c6\u53e3\u548c\u7406\u60f3\u89c6\u53e3","permalink":"/docs/html/layout-visual-and-ideal-viewport"}}}')}}]);

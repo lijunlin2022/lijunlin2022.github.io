@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[7337],{9169:e=>{e.exports=JSON.parse('{"title":"snake","slug":"/category/snake","permalink":"/docs/category/snake","navigation":{"previous":{"title":"bit-life","permalink":"/docs/category/bit-life"},"next":{"title":"cmp-and-jmp","permalink":"/docs/bit-life/snake/cmp-and-jmp"}}}')}}]);
