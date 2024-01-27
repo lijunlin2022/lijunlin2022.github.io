@@ -1,4 +1,4 @@
-# 不复制元素的循环轮播图如何实现——求模
+# 不复制元素的循环轮播图如何实现——取模
 
 循环轮播图，你肯定并不陌生，实现方案非常多。大多数实现方案需要复制元素，比如实现 5 个元素的轮播需要用 7 个元素。多出的 2 个元素一个是头部元素，另一个是尾部元素。
 
@@ -189,7 +189,7 @@ function onBtnClick (activeIndex) {
 
 什么方法可以限定取值范围呢？答案是取模，不过当除数是正数时，求出的模也必定是正数[^2]。如果直接用 `mod(position, totalWidth)` 限定取值范围，会把 translateX 限定在 0% ~ 500% 之间。
 
-我们可以这样做，先把 `position + halfTotalWidth` 除以 totalWidth 求模，`mod(position + halfTotalWidth, totalWidth)` 取值范围为 0% ~ 500%，然后把 `mod(position + halfTotalWidth, totalWidth)` 整体减去 halfTotalWidth，取值范围就是 -250% 到 250% 了。
+我们可以这样做，先把 `position + halfTotalWidth` 除以 totalWidth 取模，`mod(position + halfTotalWidth, totalWidth)` 取值范围为 0% ~ 500%，然后把 `mod(position + halfTotalWidth, totalWidth)` 整体减去 halfTotalWidth，取值范围就是 -250% 到 250% 了。
 
 ## 代码示例
 
@@ -203,7 +203,7 @@ function onBtnClick (activeIndex) {
 
 首先，我们通过 01234 转变为 34012 的例子，解释循环轮播的初始顺序如何设置。然后，我们用 HTML 代码，实现了 34012 顺序的轮播。
 
-接着，我们用两种思路解释 JavaScript 代码：第一种思路是先找到中央元素，然后往中央元素的右边放剩余元素，放完一半的剩余元素后，再把另外一半放到中央元素左边。第二种思路是，先找到 translateX 为 0% 的元素，它就是中央元素。然后用求模的方式，把其他元素的 translateX 限定在 -halfTotalWidth 和 halfTotalWidth 之间。
+接着，我们用两种思路解释 JavaScript 代码：第一种思路是先找到中央元素，然后往中央元素的右边放剩余元素，放完一半的剩余元素后，再把另外一半放到中央元素左边。第二种思路是，先找到 translateX 为 0% 的元素，它就是中央元素。然后用取模的方式，把其他元素的 translateX 限定在 -halfTotalWidth 和 halfTotalWidth 之间。
 
 最后，我们给出了 JavaScript 不复制元素实现循环轮播的代码。
 
