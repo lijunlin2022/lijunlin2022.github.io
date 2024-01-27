@@ -1,5 +1,5 @@
 ---
-tags: ['tab', 'vue', 'react', '小程序']
+tags: ['tab', 'vue', 'react', '小程序', '移动端 H5']
 ---
 
 # 移动端 H5 Tab 如何滚动居中
