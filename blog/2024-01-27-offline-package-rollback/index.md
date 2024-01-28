@@ -17,7 +17,19 @@ tags: ['移动端 H5']
 
 ## 我设计的降级方案
 
-![](./img/flowchart.png)
+```mermaid
+flowchart TD
+  A(开始) --> B[获取 localStorage 中的 needRollback]
+  B --> C{{needRollback === 1}}
+  C --> |No| D[获取 H5 版本号 H5_VERSION, 获取降级离线包的配置 rollbackVersion]
+  C --> |YES| E[跳转 index-online.html]
+  E --> I(结束)
+  D --> F{{H5_VERSION <= rollbackVersion}}
+  F --> |YES| G[在 localStorage 中设置 needRollback]
+  F --> |No| H[删除 localStorage 中的 needRollback]
+  G --> I
+  H --> I
+```
 
 ## 总结
 

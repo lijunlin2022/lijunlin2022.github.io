@@ -75,7 +75,10 @@ export default {
       darkTheme: prismThemes.oneDark,
     },
   },
-  themes: ["@docusaurus/theme-live-codeblock"],
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-live-codeblock", "@docusaurus/theme-mermaid"],
   plugins: [
     [
       '@docusaurus/plugin-content-blog',
