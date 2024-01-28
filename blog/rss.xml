@@ -4,10 +4,28 @@
         <title>李俊霖的网络日志 Blog</title>
         <link>https://lijunlin2022.github.io/blog</link>
         <description>李俊霖的网络日志 Blog</description>
-        <lastBuildDate>Thu, 18 Jan 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 27 Jan 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[移动端 H5 离线包降级方案如何设计]]></title>
+            <link>https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback</link>
+            <guid>https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback</guid>
+            <pubDate>Sat, 27 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[离线包是移动端 H5 常见的性能优化方案。打包压缩包时，开发者通常有两种选择：]]></description>
+            <content:encoded><![CDATA[<p>离线包是移动端 H5 常见的性能优化方案。打包压缩包时，开发者通常有两种选择：</p>
+<ul>
+<li>把主入口 HTML 打包到压缩包内，这样性能会更好，但是 H5 不能及时更新。</li>
+<li>不把主入口 HTML 打包到压缩包内，这样更新速度会更快，但性能会更差。</li>
+</ul>
+<p>我选择了第一种做法，这会导致如果 H5 出现线上 Bug 时，没有办法及时修复，因此，我必须额外设计一套离线包的降级方案，目标是发生线上问题时能够快速止损。</p>
+<p>如果你恰好为离线包的降级而烦恼，看了这篇文章，你一定有所收获。我会先简单分析离线包的生效机制，再介绍自己设计的降级方案，最后总结这种方案的优劣。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="离线包的生效机制">离线包的生效机制<a href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback#%E7%A6%BB%E7%BA%BF%E5%8C%85%E7%9A%84%E7%94%9F%E6%95%88%E6%9C%BA%E5%88%B6" class="hash-link" aria-label="Direct link to 离线包的生效机制" title="Direct link to 离线包的生效机制">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="我设计的降级方案">我设计的降级方案<a href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback#%E6%88%91%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%99%8D%E7%BA%A7%E6%96%B9%E6%A1%88" class="hash-link" aria-label="Direct link to 我设计的降级方案" title="Direct link to 我设计的降级方案">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>]]></content:encoded>
+            <category>移动端 H5</category>
+        </item>
         <item>
             <title><![CDATA[取余和取模如何区分与应用]]></title>
             <link>https://lijunlin2022.github.io/blog/2024/01/18/remainder-and-modulo</link>
@@ -110,7 +128,7 @@
 </section>]]></content:encoded>
         </item>
         <item>
-            <title><![CDATA[不复制元素的循环轮播图如何实现——求模]]></title>
+            <title><![CDATA[不复制元素的循环轮播图如何实现——取模]]></title>
             <link>https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper</link>
             <guid>https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper</guid>
             <pubDate>Thu, 14 Dec 2023 00:00:00 GMT</pubDate>
@@ -197,14 +215,14 @@
 <p>不难想到，把元素的 translateX 设置为正数，元素就会在中央元素右侧；把元素的 translateX 设置为负数，元素就会在中央元素左侧。</p>
 <p>一个合理的想法就是，把 Item 的 translateX 范围限定在 -X 到 X 之间，这样就能保证中央元素左右的元素数量尽量相等。5 元素的轮播图，X 可以取值 halfTotalWidth（也就是 250%）。</p>
 <p>什么方法可以限定取值范围呢？答案是取模，不过当除数是正数时，求出的模也必定是正数<sup><a href="https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper#user-content-fn-2-9eb31c" id="user-content-fnref-2-9eb31c" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>。如果直接用 <code>mod(position, totalWidth)</code> 限定取值范围，会把 translateX 限定在 0% ~ 500% 之间。</p>
-<p>我们可以这样做，先把 <code>position + halfTotalWidth</code> 除以 totalWidth 求模，<code>mod(position + halfTotalWidth, totalWidth)</code> 取值范围为 0% ~ 500%，然后把 <code>mod(position + halfTotalWidth, totalWidth)</code> 整体减去 halfTotalWidth，取值范围就是 -250% 到 250% 了。</p>
+<p>我们可以这样做，先把 <code>position + halfTotalWidth</code> 除以 totalWidth 取模，<code>mod(position + halfTotalWidth, totalWidth)</code> 取值范围为 0% ~ 500%，然后把 <code>mod(position + halfTotalWidth, totalWidth)</code> 整体减去 halfTotalWidth，取值范围就是 -250% 到 250% 了。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="代码示例">代码示例<a href="https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B" class="hash-link" aria-label="Direct link to 代码示例" title="Direct link to 代码示例">​</a></h2>
 <p>下面给出代码示例：</p>
 <p><a href="https://codepen.io/lijunlin2022/pen/ZEaXKMM" target="_blank" rel="noopener noreferrer">无复制元素的循环轮播图 | codepen</a></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>
 <p>本文说明了不复制元素的循环轮播如何实现。</p>
 <p>首先，我们通过 01234 转变为 34012 的例子，解释循环轮播的初始顺序如何设置。然后，我们用 HTML 代码，实现了 34012 顺序的轮播。</p>
-<p>接着，我们用两种思路解释 JavaScript 代码：第一种思路是先找到中央元素，然后往中央元素的右边放剩余元素，放完一半的剩余元素后，再把另外一半放到中央元素左边。第二种思路是，先找到 translateX 为 0% 的元素，它就是中央元素。然后用求模的方式，把其他元素的 translateX 限定在 -halfTotalWidth 和 halfTotalWidth 之间。</p>
+<p>接着，我们用两种思路解释 JavaScript 代码：第一种思路是先找到中央元素，然后往中央元素的右边放剩余元素，放完一半的剩余元素后，再把另外一半放到中央元素左边。第二种思路是，先找到 translateX 为 0% 的元素，它就是中央元素。然后用取模的方式，把其他元素的 translateX 限定在 -halfTotalWidth 和 halfTotalWidth 之间。</p>
 <p>最后，我们给出了 JavaScript 不复制元素实现循环轮播的代码。</p>
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
@@ -275,6 +293,7 @@
             <category>vue</category>
             <category>react</category>
             <category>小程序</category>
+            <category>移动端 H5</category>
         </item>
     </channel>
 </rss>
