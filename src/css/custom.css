@@ -15,7 +15,7 @@ body {
   --ifm-color-primary-darker: #c41d7f;
   --ifm-color-primary-darkest: #9e1068;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(255, 216, 191, 0.3);
+  --docusaurus-highlighted-code-line-bg: #ffd6e7;
 
   --ifm-h1-font-size: 2rem !important;
   --ifm-h2-font-size: 1.5rem !important;
@@ -33,7 +33,7 @@ body {
   --ifm-color-primary-dark:#f759ab;
   --ifm-color-primary-darker: #eb2f96;
   --ifm-color-primary-darkest: #c41d7f;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --docusaurus-highlighted-code-line-bg: #9e1068;
 
   --ifm-h1-font-size: 2rem !important;
   --ifm-h2-font-size: 1.5rem !important;
