@@ -36,7 +36,17 @@ flowchart LR
 
 上一节我们已经知道，只要 HTML 文件名没有变化，那么离线包就不会失效。在此机制上，我们可以利用文件名的改变，设计离线包的降级方案。怎么做呢？
 
-首先，我们需要准备两个内容基本一致的 HTML，一个是 index.html，另一个则是 index-online.html。index.html 会被放入离线包，而 index-online.html 则不会。
+### 概要设计
+
+首先，我们需要准备两个内容基本一致的 HTML，一个是 index.html，另一个是 index-online.html。index.html 会被放入离线包，而 index-online.html 则不会。
+
+其次，我们会设计一个开关，利用跳转间接改变文件名。开关开启时，index.html 会直接跳转到 index-online.html；开关关闭时，index.html 继续走原始逻辑。
+
+跳转时间也有讲究，不能一拿到开关配置就立即跳转，这会中断用户正常的操作。我们可以延后开关的作用时间，拿到开关配置后，在 localStorage 中存储一下开关标识，等到用户下次进入页面时，发现有开关标识就跳转到 index-online.html。
+
+发生线上出现故障时，我们先回滚线上的 H5 页面，此时 index-online.html 回滚成正常功能的页面，而缓存在用户 App 本地的 index.html 还有问题。我们再开启开关，本地的 index.html 直接跳转到 index-online.html。这样无论用户是否命中离线包，都不会出现问题。
+
+### 详细设计
 
 ```mermaid
 flowchart TD
