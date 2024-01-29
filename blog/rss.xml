@@ -29,7 +29,12 @@
 <p>离线包不放入 HTML，情形又会如何呢？线上无更新时，H5 的 HTML 资源用线上资源、CSS 和 JS 资源用缓存资源；线上有更新时，H5 的 HTML、CSS 和 JS 资源都用线上资源。这是因为 CSS 和 JS 文件名一般都有哈希值，一旦线上有更新，HTML 引入的 CSS 和 JS 资源文件名都会改变，App 缓存文件名和请求文件名就不再一致。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="我设计的降级方案">我设计的降级方案<a href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback#%E6%88%91%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%99%8D%E7%BA%A7%E6%96%B9%E6%A1%88" class="hash-link" aria-label="Direct link to 我设计的降级方案" title="Direct link to 我设计的降级方案">​</a></h2>
 <p>上一节我们已经知道，只要 HTML 文件名没有变化，那么离线包就不会失效。在此机制上，我们可以利用文件名的改变，设计离线包的降级方案。怎么做呢？</p>
-<p>首先，我们需要准备两个内容基本一致的 HTML，一个是 index.html，另一个则是 index-online.html。index.html 会被放入离线包，而 index-online.html 则不会。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="概要设计">概要设计<a href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback#%E6%A6%82%E8%A6%81%E8%AE%BE%E8%AE%A1" class="hash-link" aria-label="Direct link to 概要设计" title="Direct link to 概要设计">​</a></h3>
+<p>首先，我们需要准备两个内容基本一致的 HTML，一个是 index.html，另一个是 index-online.html。index.html 会被放入离线包，而 index-online.html 则不会。</p>
+<p>其次，我们会设计一个开关，利用跳转间接改变文件名。开关开启时，index.html 会直接跳转到 index-online.html；开关关闭时，index.html 继续走原始逻辑。</p>
+<p>跳转时间也有讲究，不能一拿到开关配置就立即跳转，这会中断用户正常的操作。我们可以延后开关的作用时间，拿到开关配置后，在 localStorage 中存储一下开关标识，等到用户下次进入页面时，发现有开关标识就跳转到 index-online.html。</p>
+<p>发生线上出现故障时，我们先回滚线上的 H5 页面，此时 index-online.html 回滚成正常功能的页面，而缓存在用户 App 本地的 index.html 还有问题。我们再开启开关，本地的 index.html 直接跳转到 index-online.html。这样无论用户是否命中离线包，都不会出现问题。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="详细设计">详细设计<a href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback#%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1" class="hash-link" aria-label="Direct link to 详细设计" title="Direct link to 详细设计">​</a></h3>
 <!-- -->
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
