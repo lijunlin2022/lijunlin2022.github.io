@@ -51,14 +51,14 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-A[1.0.0 ✔] --> B[1.0.1 ❌] --> C[1.0.2 ❌]
+A[1.0.0 正确] --> B[1.0.1 错误] --> C[1.0.2 错误]
 ```
 
 另外还需要考虑到，我们会发布修复的离线包。比如我们会在 1.0.3 修复问题。
 
 ```mermaid
 flowchart LR
-A[1.0.0 ✔] --> B[1.0.1 ❌] --> C[1.0.2 ❌] --> D[1.0.3 ✔]
+A[1.0.0 正确] --> B[1.0.1 错误] --> C[1.0.2 错误] --> D[1.0.3 正确]
 ```
 
 我们采取最简单粗暴的思路，小于等于 1.0.2 的版本全部降级。
@@ -67,7 +67,7 @@ A[1.0.0 ✔] --> B[1.0.1 ❌] --> C[1.0.2 ❌] --> D[1.0.3 ✔]
 
 ```mermaid
 flowchart LR
-A[1.0.0 ✔] --> B[1.0.1 ❌] --> C[1.0.2 ❌] --> D[1.0.3 ✔] --> E[1.0.4 ❌] --> F[1.0.5 ✔]
+A[1.0.0 正确] --> B[1.0.1 错误] --> C[1.0.2 错误] --> D[1.0.3 正确] --> E[1.0.4 错误] --> F[1.0.5 正确]
 ```
 
 ### 利用 localStorage 延迟开关生效时间
@@ -83,11 +83,11 @@ A[1.0.0 ✔] --> B[1.0.1 ❌] --> C[1.0.2 ❌] --> D[1.0.3 ✔] --> E[1.0.4 ❌]
 ```mermaid
 flowchart TD
   A(开始) --> B[获取 localStorage 中的 needRollback]
-  B --> C{{needRollback === 1}}
+  B --> C{{needRollback 等于 1}}
   C --> |No| D[获取 H5 版本号 H5_VERSION, 获取降级离线包的配置 rollbackVersion]
   C --> |Yes| E[跳转 index-online.html]
   E --> I(结束)
-  D --> F{{H5_VERSION <= rollbackVersion}}
+  D --> F{{H5_VERSION 小于等于 rollbackVersion}}
   F --> |Yes| G[在 localStorage 中设置 needRollback]
   F --> |No| H[删除 localStorage 中的 needRollback]
   G --> I
