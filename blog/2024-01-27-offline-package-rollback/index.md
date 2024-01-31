@@ -9,7 +9,7 @@ tags: ['移动端 H5']
 - 放入 HTML（缓存优先）：更好的性能，但更新不及时。
 - 不放入 HTML（网络优先）：实时更新，但性能较差，可能会加载失败。
 
-我选择把离线包放入 HTML，这意味着 H5 出现线上故障时，没有办法及时修复。因此，我必须额外设计一套降级方案，保证离线包发生故障时能够快速降级。
+我选择把 HTML 放入离线包，这意味着 H5 出现线上故障时，没有办法及时修复。因此，我必须额外设计一套降级方案，保证离线包发生故障时能够快速降级。
 
 如果你也为离线包的降级而烦恼，看了这篇文章，你一定有所收获。我会从离线包的机制说起，解释离线包放入 HTML 后为什么更新不及时，然后我会介绍自己设计的降级方案，最后我会对这个方案做一个总结。
 
@@ -127,15 +127,15 @@ flowchart TD
 1. 用户一进入页面，会先获取 localStorage 中的 needRollback 开关标识。
 2. 如果 needRollback 标识打开，则跳转 index-online.html 实现降级。（注：**index-online.html 中不能继续判断 needRollback，否则会无限跳转**）
 3. 如果 needRollback 标识没有打开，则继续获取 H5 本身的版本号，以及接口下发的 rollbackVersion。
-4. 如果 H5_VERSION 小于等于 rollbackVersion，则再 localStorage 把 needRollback 设置为 1。
-5. 如果 H5_VERSION 大于 rollbackVersion，则删除 localStorage 中的 needRollback 标识。
+4. 如果 `H5_VERSION <= rollbackVersion`，则在 localStorage 把 needRollback 设置为 1。
+5. 如果 `H5_VERSION > rollbackVersion`，则删除 localStorage 中的 needRollback 标识。
 
 ## 总结
 
 本文介绍了一种离线包放入 HTML 的降级方案，它主要有三个特点：
 
 1. 利用从离线化的 index.html 跳转到线上的 index-online.html 实现降级。
-2. 利用离线包版本小于等于 rollbackVersion 做开关，判断是否需要降级。
+2. 利用离线包版本 `H5_VERSION <= rollbackVersion` 做开关，判断是否需要降级。
 3. 利用 localStorage 中设置 needRollback 标识，延迟开关作用时间。
 
 这种方案是离线包放入 HTML 后，一种成本较低的降级方案。它会在降级时误伤低版本的离线包，以损耗性能为代价，保障质量。
