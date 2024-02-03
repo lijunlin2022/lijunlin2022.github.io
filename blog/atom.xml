@@ -8,7 +8,7 @@
     <subtitle>李俊霖的网络日志 Blog</subtitle>
     <icon>https://lijunlin2022.github.io/img/logo.png</icon>
     <entry>
-        <title type="html"><![CDATA[移动端 H5 如何实现高度自适应的轮播图]]></title>
+        <title type="html"><![CDATA[H5 如何实现高度自适应的轮播图]]></title>
         <id>https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper</id>
         <link href="https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper"/>
         <updated>2024-01-31T00:00:00.000Z</updated>
@@ -16,9 +16,10 @@
         <content type="html"><![CDATA[<p><img loading="lazy" src="https://lijunlin2022.github.io/assets/images/adaptive-height-swiper-c213f8b844b1cef0ef87b8ccc6f6e567.gif" width="575" height="290" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="代码示例">代码示例<a href="https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B" class="hash-link" aria-label="Direct link to 代码示例" title="Direct link to 代码示例">​</a></h2>
 <p><a href="https://codepen.io/lijunlin2022/pen/qBLxNzQ" target="_blank" rel="noopener noreferrer">高度自适应的轮播图 | codepen</a></p>]]></content>
+        <category label="H5" term="H5"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[移动端 H5 离线包放入 HTML 后降级方案如何设计]]></title>
+        <title type="html"><![CDATA[H5 离线包放入 HTML 后降级方案如何设计]]></title>
         <id>https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback</id>
         <link href="https://lijunlin2022.github.io/blog/2024/01/27/offline-package-rollback"/>
         <updated>2024-01-27T00:00:00.000Z</updated>
@@ -105,7 +106,7 @@
 </li>
 </ol>
 </section>]]></content>
-        <category label="移动端 H5" term="移动端 H5"/>
+        <category label="H5" term="H5"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[取余和取模如何区分与应用]]></title>
@@ -209,7 +210,7 @@
 </section>]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[不复制元素的循环轮播图如何实现——取模]]></title>
+        <title type="html"><![CDATA[H5 不复制元素的循环轮播图如何实现——取模]]></title>
         <id>https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper</id>
         <link href="https://lijunlin2022.github.io/blog/2023/12/14/loop-swiper"/>
         <updated>2023-12-14T00:00:00.000Z</updated>
@@ -317,7 +318,7 @@
 </section>]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[移动端 H5 Tab 如何滚动居中]]></title>
+        <title type="html"><![CDATA[H5、小程序 Tab 如何滚动居中]]></title>
         <id>https://lijunlin2022.github.io/blog/2023/07/30/tab-scroll-to-center</id>
         <link href="https://lijunlin2022.github.io/blog/2023/07/30/tab-scroll-to-center"/>
         <updated>2023-07-30T00:00:00.000Z</updated>
@@ -370,10 +371,7 @@
 <li><code>halfItemWidth</code>，你需要先用 <code>wx.createSelectorQuery()</code> 选取到 Item 后，从 <code>exec()</code> 的执行结果中获取到 Item 整体宽度，然后再除以 2。</li>
 <li><code>halfScreenWidth</code>，你需要先用 <code>wx.getSystemInfoSync()</code> 获取屏幕整体宽度，然后再除以 2。</li>
 </ul><p>至于把 <code>distance</code> 设置到容器上，微信小程序 <code>scroll-view</code> 组件中，有 <code>scroll-left</code> 这个属性，你可以把 <code>distance</code> 赋值给 <code>scroll-left</code>。</p></div></div>]]></content>
-        <category label="tab" term="tab"/>
-        <category label="vue" term="vue"/>
-        <category label="react" term="react"/>
+        <category label="H5" term="H5"/>
         <category label="小程序" term="小程序"/>
-        <category label="移动端 H5" term="移动端 H5"/>
     </entry>
 </feed>
