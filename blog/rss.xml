@@ -15,11 +15,11 @@
             <pubDate>Wed, 31 Jan 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[高度固定的轮播图，你肯定经常看到、并知道怎么实现，但高度变化的轮播图呢？]]></description>
             <content:encoded><![CDATA[<p>高度固定的轮播图，你肯定经常看到、并知道怎么实现，但高度变化的轮播图呢？</p>
-<p>其实高度变化的轮播图也很常见，只是你可能没有注意。拼多多、淘宝、京东的商品轮播高度都能够变化。它们的每一项轮播都是列表，且列表与列表之间高度各不相同，随着用户上拉屏幕，列表加载的数据还会变多。</p>
+<p>其实高度变化的轮播图也很常见，只是你可能没有注意。拼多多、淘宝、京东的商品轮播高度都能够变化。它们的每一项轮播都是列表，且列表与列表之间高度不尽相同，随着用户上拉屏幕，列表加载的数据还会变多。</p>
 <p><img loading="lazy" src="https://lijunlin2022.github.io/assets/images/pdd-332fa0c169a8ad77979376b8c3b0bf63.gif" width="360" height="432" class="img_ev3q"></p>
-<p>如果你也想实现自适应高度的轮播，看完这篇文章，你一定有所收获。我会先解释自适应高度的原理，然后说明关键实现，最后再给出原生 H5 和小程序的示例代码。代码效果如下：</p>
+<p>如果你也想实现高度变化的轮播，看完这篇文章，你一定有所收获。我会先解释高度变化的原理，然后说明关键实现，最后再给出原生 H5 和小程序的示例代码。代码效果如下：</p>
 <p><img loading="lazy" src="https://lijunlin2022.github.io/assets/images/adaptive-height-swiper-d110888405eca1dbdd1809df9fa6f425.gif" width="498" height="238" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="自适应高度的原理">自适应高度的原理<a href="https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper#%E8%87%AA%E9%80%82%E5%BA%94%E9%AB%98%E5%BA%A6%E7%9A%84%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 自适应高度的原理" title="Direct link to 自适应高度的原理">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="高度变化的原理">高度变化的原理<a href="https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper#%E9%AB%98%E5%BA%A6%E5%8F%98%E5%8C%96%E7%9A%84%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 高度变化的原理" title="Direct link to 高度变化的原理">​</a></h2>
 <p>如果我们使用 flex 布局实现轮播图 Swiper，那么轮播图的整体高度，将会是最高一项的高度。</p>
 <p>如下图，虚线框代表 Swiper，Swiper 的每项都是 List。如果播放到某个 List，这个 List 就是红色。可以看到，只要轮播图播放到较矮项，就会在较矮项底部留下大量空白。</p>
 <p><img loading="lazy" src="https://lijunlin2022.github.io/assets/images/principle-1-fb3ced1de74b5899b23fdf8904e77dd1.png" width="1192" height="399" class="img_ev3q"></p>
@@ -33,13 +33,15 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="代码示例">代码示例<a href="https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B" class="hash-link" aria-label="Direct link to 代码示例" title="Direct link to 代码示例">​</a></h2>
 <p>现在来看 H5 和小程序的代码示例：</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5">H5<a href="https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper#h5" class="hash-link" aria-label="Direct link to H5" title="Direct link to H5">​</a></h3>
-<p><a href="https://codepen.io/lijunlin2022/pen/qBLxNzQ" target="_blank" rel="noopener noreferrer">高度自适应的轮播图 | codepen</a></p>
+<p><a href="https://codepen.io/lijunlin2022/pen/qBLxNzQ" target="_blank" rel="noopener noreferrer">高度变化的轮播图 | codepen</a></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="小程序">小程序<a href="https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper#%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="hash-link" aria-label="Direct link to 小程序" title="Direct link to 小程序">​</a></h3>
-<p><a href="https://developers.weixin.qq.com/s/ct5irIm37eOg" target="_blank" rel="noopener noreferrer">高度自适应的轮播图 | 小程序</a></p>
+<p><a href="https://developers.weixin.qq.com/s/ct5irIm37eOg" target="_blank" rel="noopener noreferrer">高度变化的轮播图 | 小程序</a></p>
 <div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><ul>
 <li>小程序有原生的 swiper 组件，我们可以给 swiper 直接增加一个 style，在 style 中改变 swiper 的高度。</li>
 <li>小程序没有 <code>querySelector()</code>，可以用 <code>createSelectorQuery()</code> 替代。</li>
-</ul></div></div>]]></content:encoded>
+</ul></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://lijunlin2022.github.io/blog/2024/01/31/adaptive-height-swiper#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>
+<p>本文我们介绍了高度变化的轮播图实现原理——先获取对应轮播项的高度，再改变轮播图的整体高度，并给出了 H5 和小程序的代码示例。</p>]]></content:encoded>
             <category>H5</category>
             <category>小程序</category>
         </item>
