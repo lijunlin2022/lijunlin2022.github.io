@@ -2,27 +2,37 @@
 tags: ['H5', '小程序']
 ---
 
-# H5、小程序自适应高度的轮播图如何实现
+# H5、小程序高度变化的轮播图如何实现
 
-前端同学经常看到固定高度的轮播，偶尔也能看到自适应高度的轮播，比如拼多多的商品轮播：当第 1 个列表加载多页商品，第 2 个列表加载 1 页商品的时候，两个列表高度就不等。
+高度固定的轮播图，你肯定经常看到、并知道怎么实现，但高度变化的轮播图呢？
+
+其实高度变化的轮播图也很常见，只是你可能没有注意。拼多多、淘宝、京东的商品轮播高度都能够变化。它们的每一项轮播都是列表，且列表与列表之间高度各不相同，随着用户上拉屏幕，列表加载的数据还会变多。
 
 ![](./img/pdd.gif)
 
-如果你也想实现自适应高度的轮播，看完这篇文章，你一定有所收获。我会先解释自适应高度的原理，然后解释关键实现，最后再给出原生 H5 和小程序的示例代码。效果如下：
+如果你也想实现自适应高度的轮播，看完这篇文章，你一定有所收获。我会先解释自适应高度的原理，然后说明关键实现，最后再给出原生 H5 和小程序的示例代码。代码效果如下：
 
 ![](./img/adaptive-height-swiper.gif)
 
 ## 自适应高度的原理
 
-正常来说，如果我们使用 flex 布局实现轮播图 Swiper，那么轮播图的整体高度，将会是最高的 List 的高度。当轮播播放到较矮的 List 时，会在 List 的下方留下大量空白。如下图，红色代表正处于屏幕视口的 List，虚线框代表整体的 Swiper。
+如果我们使用 flex 布局实现轮播图 Swiper，那么轮播图的整体高度，将会是最高一项的高度。
+
+如下图，虚线框代表 Swiper，Swiper 的每项都是 List。如果播放到某个 List，这个 List 就是红色。可以看到，只要轮播图播放到较矮项，就会在较矮项底部留下大量空白。
 
 ![](./img/principle-1.png)
 
-要想实现自适应高度的轮播，就必须在轮播切换时，先获取处于屏幕视口高度的 List 的高度，再把它的高度强行设置给整体的 Swiper。溢出 Swiper 盒子的则需要隐藏。
+要想实现高度变化、且不留下空白的轮播图，原理很简单。我们只需要在轮播切换时，先获取即将播放的 List 高度，再把它的高度设置给 Swiper。
+
+如下图，播放到某个 List，Swiper 的高度就变为这个 List 的高度。我们还可以给 Swiper 设置 `overflow: hidden;`，把找出 Swiper 范围的元素都给隐藏掉。
 
 ![](./img/principle-2.png)
 
 ## 关键代码实现
+
+聊完原理，我们来看代码，代码非常简单粗暴。
+
+我们为每个 List 都设置了一个 id，利用 id 获取 List 的高度再设置到 Swiper 元素的 style 上。
 
 ```js
 function updateSwiperHeight (currentIndex) {
@@ -34,14 +44,17 @@ function updateSwiperHeight (currentIndex) {
 
 ## 代码示例
 
+现在来看 H5 和小程序的代码示例：
+
 ### H5
 
 [高度自适应的轮播图 | codepen](https://codepen.io/lijunlin2022/pen/qBLxNzQ)
 
-### 微信小程序
+### 小程序
 
-[高度自适应的轮播图 | 微信小程序](https://developers.weixin.qq.com/s/sHNk6HmY79Ob)
+[高度自适应的轮播图 | 小程序](https://developers.weixin.qq.com/s/ct5irIm37eOg)
 
 :::info
-小程序有原生的 swiper 组件，但是 swiper 组件是不支持自适应轮播。因此需要手动改变 swiper 的 height 属性。
+- 小程序有原生的 swiper 组件，我们可以给 swiper 直接增加一个 style，在 style 中改变 swiper 的高度。
+- 小程序没有 `querySelector()`，可以用 `createSelectorQuery()` 替代。
 :::
