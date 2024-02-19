@@ -19,7 +19,7 @@
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/keep-b7e0b29a6e81ced1d2390b3204705ca6.gif" width="360" height="630" class="img_ev3q"></p>
 <p>如果你也想实现高度变化的轮播，看完这篇文章，你一定有所收获。我会先解释高度变化的原理，然后说明关键实现，最后再给出原生 H5 和小程序的示例代码。代码效果如下：</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/variable-height-swiper-90e1390ffefc0e6be0044976ba1a3cbd.gif" width="500" height="250" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="高度变化的原理">高度变化的原理<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#%E9%AB%98%E5%BA%A6%E5%8F%98%E5%8C%96%E7%9A%84%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 高度变化的原理" title="Direct link to 高度变化的原理">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="高度变化的原理">高度变化的原理<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#%E9%AB%98%E5%BA%A6%EF%BF%BD%E5%8F%98%E5%8C%96%E7%9A%84%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 高度变化的原理" title="Direct link to 高度变化的原理">​</a></h2>
 <p>如果我们使用 flex 布局实现轮播图 Swiper，那么轮播图的整体高度，将会是最高一项的高度。</p>
 <p>如下图，虚线框代表 Swiper，Swiper 的每项都是 List。如果播放到某个 List，这个 List 就是红色。可以看到，只要轮播图播放到较矮项，就会在较矮项底部留下大量空白。</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/principle-1-fb3ced1de74b5899b23fdf8904e77dd1.png" width="1192" height="399" class="img_ev3q"></p>
@@ -109,7 +109,7 @@
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/pdd-87884268e9d8412b53701c640e13a0f0.gif" width="360" height="356" class="img_ev3q"></p>
 <p>如果你也想实现这个效果，看完这篇文章，你一定有所收获。我会先说明抽奖转盘的实现原理，然后解释它的关键代码，最后给出完整的代码示例。代码示例效果如下：</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="抽奖转盘的实现原理">抽奖转盘的实现原理<a href="https://lijunlin2022.github.io/blog/2024/02/04/lottery-turntable#%E6%8A%BD%E5%A5%96%E8%BD%AC%E7%9B%98%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 抽奖转盘的实现原理" title="Direct link to 抽奖转盘的实现原理">​</a></h2>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关键代码实现">关键代码实现<a href="https://lijunlin2022.github.io/blog/2024/02/04/lottery-turntable#%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0" class="hash-link" aria-label="Direct link to 关键代码实现" title="Direct link to 关键代码实现">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="��关键代码实现">关键代码实现<a href="https://lijunlin2022.github.io/blog/2024/02/04/lottery-turntable#%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0" class="hash-link" aria-label="Direct link to 关键代码实现" title="Direct link to 关键代码实现">​</a></h2>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="代码示例">代码示例<a href="https://lijunlin2022.github.io/blog/2024/02/04/lottery-turntable#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B" class="hash-link" aria-label="Direct link to 代码示例" title="Direct link to 代码示例">​</a></h2>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://lijunlin2022.github.io/blog/2024/02/04/lottery-turntable#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>]]></content:encoded>
             <category>H5</category>
@@ -125,7 +125,7 @@
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/mcdonald's-5dcfebd6a789333baa3a92525104909b.gif" width="360" height="322" class="img_ev3q"></p>
 <p>这种动画该怎么做呢？如果你也想实现它，看完这篇文章，你一定有所收获。我会先说明抛物线动画的原理，再解释实现它的关键代码，最后给出完整的代码示例。代码效果如下：</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/parabola-ffdb0153f578a3f8179d299102c98cf0.gif" width="300" height="300" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="抛物线动画的原理">抛物线动画的原理<a href="https://lijunlin2022.github.io/blog/2024/02/03/parabolic-animation#%E6%8A%9B%E7%89%A9%E7%BA%BF%E5%8A%A8%E7%94%BB%E7%9A%84%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 抛物线动画的原理" title="Direct link to 抛物线动画的原理">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="抛物线动画的原理">抛物线动画的原理<a href="https://lijunlin2022.github.io/blog/2024/02/03/parabolic-animation#%E6%8A%9B%E7%89%A9%E7%BA%BF%E5%8A%A8%E7%94%BB%E7%9A%84%EF%BF%BD%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 抛物线动画的原理" title="Direct link to 抛物线动画的原理">​</a></h2>
 <p>高中物理告诉我们，平抛运动、斜抛运动可以分解为水平方向的匀速直线运动、竖直方向自由落体运动（匀加速直线运动）。</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/principle-2c15f4011484c80f4eb9ba952266e216.png" width="437" height="284" class="img_ev3q"></p>
 <p>同理，我们可以把抛物线动画分解为水平的匀速动画、竖直的匀加速动画。</p>
@@ -315,7 +315,7 @@
 <p>例如我在文章开头举的例子，prevIndex 可能是一个负数，你可以直接求 prevIndex 除以轮播长度的模。</p>
 </li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="实现取模函数">实现取模函数<a href="https://lijunlin2022.github.io/blog/2024/01/18/remainder-and-modulo#%E5%AE%9E%EF%BF%BD%E7%8E%B0%E5%8F%96%E6%A8%A1%E5%87%BD%E6%95%B0" class="hash-link" aria-label="Direct link to 实现取模函数" title="Direct link to 实现取模函数">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="实现取模函数">实现取模函数<a href="https://lijunlin2022.github.io/blog/2024/01/18/remainder-and-modulo#%E5%AE%9E%E7%8E%B0%E5%8F%96%E6%A8%A1%E5%87%BD%E6%95%B0" class="hash-link" aria-label="Direct link to 实现取模函数" title="Direct link to 实现取模函数">​</a></h2>
 <p>取模函数，我知道的有两种实现方法，一种是偏重工程，另一种偏重学术。两者有什么区别呢？</p>
 <p>之前提到过，实际应用中，x mod y 时，y 一般是正数。</p>
 <ul>
