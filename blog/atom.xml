@@ -2,11 +2,55 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lijunlin2022.github.io/blog</id>
     <title>李俊霖的网络日志 Blog</title>
-    <updated>2024-02-09T00:00:00.000Z</updated>
+    <updated>2024-02-16T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lijunlin2022.github.io/blog"/>
     <subtitle>李俊霖的网络日志 Blog</subtitle>
     <icon>https://lijunlin2022.github.io/img/logo.png</icon>
+    <entry>
+        <title type="html"><![CDATA[H5、小程序高度变化的轮播图如何实现]]></title>
+        <id>https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper</id>
+        <link href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper"/>
+        <updated>2024-02-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[高度固定的轮播图，你肯定经常看到、并知道怎么实现，但高度变化的轮播图呢？]]></summary>
+        <content type="html"><![CDATA[<p>高度固定的轮播图，你肯定经常看到、并知道怎么实现，但高度变化的轮播图呢？</p>
+<p>下面是 Keep 的课程轮播，可以看到 9 号的视频数量是少于 10 号和 11 号的，所以 9 号的视频列表的高度比 10、11 号低。当播放到 9 号课程时，下方的主题课程模块会往上移动，填充 9 号视频列表下方的空白。</p>
+<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/keep-b7e0b29a6e81ced1d2390b3204705ca6.gif" width="360" height="630" class="img_ev3q"></p>
+<p>如果你也想实现高度变化的轮播，看完这篇文章，你一定有所收获。我会先解释高度变化的原理，然后说明关键实现，最后再给出原生 H5 和小程序的示例代码。代码效果如下：</p>
+<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/variable-height-swiper-90e1390ffefc0e6be0044976ba1a3cbd.gif" width="500" height="250" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="高度变化的原理">高度变化的原理<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#%E9%AB%98%E5%BA%A6%E5%8F%98%E5%8C%96%E7%9A%84%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 高度变化的原理" title="Direct link to 高度变化的原理">​</a></h2>
+<p>如果我们使用 flex 布局实现轮播图 Swiper，那么轮播图的整体高度，将会是最高一项的高度。</p>
+<p>如下图，虚线框代表 Swiper，Swiper 的每项都是 List。如果播放到某个 List，这个 List 就是红色。可以看到，只要轮播图播放到较矮项，就会在较矮项底部留下大量空白。</p>
+<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/principle-1-fb3ced1de74b5899b23fdf8904e77dd1.png" width="1192" height="399" class="img_ev3q"></p>
+<p>要想实现高度变化、且不留下空白的轮播图，原理很简单。我们只需要在轮播切换时，先获取即将播放的 List 高度，再把它的高度设置给 Swiper。</p>
+<p>如下图，播放到某个 List，Swiper 的高度就变为这个 List 的高度。我们还可以给 Swiper 设置 <code>overflow: hidden;</code>，把找出 Swiper 范围的元素都给隐藏掉。</p>
+<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/principle-2-9a8e1652449cf610aa006a5a177887da.png" width="1192" height="381" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关键代码实现">关键代码实现<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0" class="hash-link" aria-label="Direct link to 关键代码实现" title="Direct link to 关键代码实现">​</a></h2>
+<p>聊完原理，我们来看代码，代码非常简单粗暴。</p>
+<p>我们为每个 List 都设置了一个 id，利用 id 获取 List 的高度再设置到 Swiper 元素的 style 上。</p>
+<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token keyword" style="color:hsl(301, 63%, 40%)">function</span><span class="token plain"> </span><span class="token function" style="color:hsl(221, 87%, 60%)">updateSwiperHeight</span><span class="token plain"> </span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">(</span><span class="token parameter">currentIndex</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">)</span><span class="token plain"> </span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token keyword" style="color:hsl(301, 63%, 40%)">const</span><span class="token plain"> height </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token dom variable" style="color:hsl(221, 87%, 60%)">document</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token method function property-access" style="color:hsl(221, 87%, 60%)">querySelector</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">(</span><span class="token template-string template-punctuation string" style="color:hsl(119, 34%, 47%)">`</span><span class="token template-string string" style="color:hsl(119, 34%, 47%)">#item-box-</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:hsl(119, 34%, 47%)">${</span><span class="token template-string interpolation">currentIndex</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:hsl(119, 34%, 47%)">}</span><span class="token template-string template-punctuation string" style="color:hsl(119, 34%, 47%)">`</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">)</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">offsetHeight</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  swiper</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">style</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">height</span><span class="token plain"> </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> height </span><span class="token operator" style="color:hsl(221, 87%, 60%)">+</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">'px'</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  swiper</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">style</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">overflow</span><span class="token plain"> </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">'hidden'</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="代码示例">代码示例<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B" class="hash-link" aria-label="Direct link to 代码示例" title="Direct link to 代码示例">​</a></h2>
+<p>现在来看 H5 和小程序的代码示例，为了突出重点，我并没有实现左右滑动，而是用点击切换近似替代：</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5">H5<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#h5" class="hash-link" aria-label="Direct link to H5" title="Direct link to H5">​</a></h3>
+<p><a href="https://codepen.io/lijunlin2022/pen/qBLxNzQ" target="_blank" rel="noopener noreferrer">高度变化的轮播图 | codepen</a></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="小程序">小程序<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="hash-link" aria-label="Direct link to 小程序" title="Direct link to 小程序">​</a></h3>
+<p><a href="https://developers.weixin.qq.com/s/ct5irIm37eOg" target="_blank" rel="noopener noreferrer">高度变化的轮播图 | 小程序</a></p>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><ul>
+<li>小程序有原生的 swiper 组件，我们可以给 swiper 直接增加一个 style，在 style 中改变 swiper 的高度。</li>
+<li>小程序没有 <code>querySelector()</code>，可以用 <code>createSelectorQuery()</code> 替代。</li>
+</ul></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="额外提醒">额外提醒<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#%E9%A2%9D%E5%A4%96%E6%8F%90%E9%86%92" class="hash-link" aria-label="Direct link to 额外提醒" title="Direct link to 额外提醒">​</a></h2>
+<p>高度变化的轮播图非常少见，你需要仔细斟酌什么时候用它。</p>
+<p>如果你不需要左右滑动，那么选择 Tab + 卡片更适合。比如 12306 的选项卡，高度就是不等的：</p>
+<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/12306-df8f855fabba3e55a1da2b06c3094e38.gif" width="360" height="206" class="img_ev3q"></p>
+<p>如果轮播每一项轮播都是长列表，且随着用户上拉屏幕，列表加载的数据还会变多。<strong>这种轮播通常还是固定高度（100vh）的轮播</strong>。</p>
+<p>它在拼多多、淘宝、京东上很常见。你需要注意，<strong>这种轮播每一项需要自带滚动条，否则处理列表滚动条会变得非常麻烦</strong>。因为这种轮播往往要求记住用户在每个列表滚动的位置，如果轮播共用滚动条，左右切换会有一个很明显的闪烁。</p>
+<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/pdd-332fa0c169a8ad77979376b8c3b0bf63.gif" width="360" height="432" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://lijunlin2022.github.io/blog/2024/02/16/variable-height-swiper#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>
+<p>本文我们介绍了高度变化的轮播图实现原理——先获取对应轮播项的高度，再改变轮播图的整体高度。之后我们给出了 H5 和小程序的代码示例。</p>]]></content>
+        <category label="H5" term="H5"/>
+        <category label="小程序" term="小程序"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[H5 蛟龙闹海动画如何实现（不引用图片）]]></title>
         <id>https://lijunlin2022.github.io/blog/2024/02/09/dragon-troubles-the-sea</id>
@@ -52,6 +96,7 @@
 <li>龙，可以使用 clip-path 裁剪多边形，再拼接多边形实现。</li>
 <li>云朵，不需要创建多个元素，可以使用 box-shadow 并设置多组值实现。</li>
 </ol>]]></content>
+        <category label="H5" term="H5"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[H5、小程序抽奖转盘如何实现]]></title>
@@ -106,50 +151,6 @@
 </li>
 </ol>
 </section>]]></content>
-        <category label="H5" term="H5"/>
-        <category label="小程序" term="小程序"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[H5、小程序高度变化的轮播图如何实现]]></title>
-        <id>https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper</id>
-        <link href="https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper"/>
-        <updated>2024-01-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[高度固定的轮播图，你肯定经常看到、并知道怎么实现，但高度变化的轮播图呢？]]></summary>
-        <content type="html"><![CDATA[<p>高度固定的轮播图，你肯定经常看到、并知道怎么实现，但高度变化的轮播图呢？</p>
-<p>下面是 Keep 的课程轮播，可以看到 9 号的视频数量是少于 10 号和 11 号的，所以 9 号的视频列表的高度比 10、11 号低。当播放到 9 号课程时，下方的主题课程模块会往上移动，填充 9 号视频列表下方的空白。</p>
-<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/keep-b7e0b29a6e81ced1d2390b3204705ca6.gif" width="360" height="630" class="img_ev3q"></p>
-<p>如果你也想实现高度变化的轮播，看完这篇文章，你一定有所收获。我会先解释高度变化的原理，然后说明关键实现，最后再给出原生 H5 和小程序的示例代码。代码效果如下：</p>
-<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/variable-height-swiper-90e1390ffefc0e6be0044976ba1a3cbd.gif" width="500" height="250" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="高度变化的原理">高度变化的原理<a href="https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper#%E9%AB%98%E5%BA%A6%E5%8F%98%E5%8C%96%E7%9A%84%E5%8E%9F%E7%90%86" class="hash-link" aria-label="Direct link to 高度变化的原理" title="Direct link to 高度变化的原理">​</a></h2>
-<p>如果我们使用 flex 布局实现轮播图 Swiper，那么轮播图的整体高度，将会是最高一项的高度。</p>
-<p>如下图，虚线框代表 Swiper，Swiper 的每项都是 List。如果播放到某个 List，这个 List 就是红色。可以看到，只要轮播图播放到较矮项，就会在较矮项底部留下大量空白。</p>
-<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/principle-1-fb3ced1de74b5899b23fdf8904e77dd1.png" width="1192" height="399" class="img_ev3q"></p>
-<p>要想实现高度变化、且不留下空白的轮播图，原理很简单。我们只需要在轮播切换时，先获取即将播放的 List 高度，再把它的高度设置给 Swiper。</p>
-<p>如下图，播放到某个 List，Swiper 的高度就变为这个 List 的高度。我们还可以给 Swiper 设置 <code>overflow: hidden;</code>，把找出 Swiper 范围的元素都给隐藏掉。</p>
-<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/principle-2-9a8e1652449cf610aa006a5a177887da.png" width="1192" height="381" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关键代码实现">关键代码实现<a href="https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper#%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0" class="hash-link" aria-label="Direct link to 关键代码实现" title="Direct link to 关键代码实现">​</a></h2>
-<p>聊完原理，我们来看代码，代码非常简单粗暴。</p>
-<p>我们为每个 List 都设置了一个 id，利用 id 获取 List 的高度再设置到 Swiper 元素的 style 上。</p>
-<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token keyword" style="color:hsl(301, 63%, 40%)">function</span><span class="token plain"> </span><span class="token function" style="color:hsl(221, 87%, 60%)">updateSwiperHeight</span><span class="token plain"> </span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">(</span><span class="token parameter">currentIndex</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">)</span><span class="token plain"> </span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token keyword" style="color:hsl(301, 63%, 40%)">const</span><span class="token plain"> height </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token dom variable" style="color:hsl(221, 87%, 60%)">document</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token method function property-access" style="color:hsl(221, 87%, 60%)">querySelector</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">(</span><span class="token template-string template-punctuation string" style="color:hsl(119, 34%, 47%)">`</span><span class="token template-string string" style="color:hsl(119, 34%, 47%)">#item-box-</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:hsl(119, 34%, 47%)">${</span><span class="token template-string interpolation">currentIndex</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:hsl(119, 34%, 47%)">}</span><span class="token template-string template-punctuation string" style="color:hsl(119, 34%, 47%)">`</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">)</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">offsetHeight</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  swiper</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">style</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">height</span><span class="token plain"> </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> height </span><span class="token operator" style="color:hsl(221, 87%, 60%)">+</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">'px'</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  swiper</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">style</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">.</span><span class="token property-access">overflow</span><span class="token plain"> </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">'hidden'</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="代码示例">代码示例<a href="https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B" class="hash-link" aria-label="Direct link to 代码示例" title="Direct link to 代码示例">​</a></h2>
-<p>现在来看 H5 和小程序的代码示例：</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5">H5<a href="https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper#h5" class="hash-link" aria-label="Direct link to H5" title="Direct link to H5">​</a></h3>
-<p><a href="https://codepen.io/lijunlin2022/pen/qBLxNzQ" target="_blank" rel="noopener noreferrer">高度变化的轮播图 | codepen</a></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="小程序">小程序<a href="https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper#%E5%B0%8F%E7%A8%8B%E5%BA%8F" class="hash-link" aria-label="Direct link to 小程序" title="Direct link to 小程序">​</a></h3>
-<p><a href="https://developers.weixin.qq.com/s/ct5irIm37eOg" target="_blank" rel="noopener noreferrer">高度变化的轮播图 | 小程序</a></p>
-<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><ul>
-<li>小程序有原生的 swiper 组件，我们可以给 swiper 直接增加一个 style，在 style 中改变 swiper 的高度。</li>
-<li>小程序没有 <code>querySelector()</code>，可以用 <code>createSelectorQuery()</code> 替代。</li>
-</ul></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="额外提醒">额外提醒<a href="https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper#%E9%A2%9D%E5%A4%96%E6%8F%90%E9%86%92" class="hash-link" aria-label="Direct link to 额外提醒" title="Direct link to 额外提醒">​</a></h2>
-<p>高度变化的轮播图非常少见，你需要仔细斟酌什么时候用到它。</p>
-<p>如果你不需要左右滑动，那么选择 Tab 下方包裹一个选项卡更适合。比如 12306 的选项卡，高度也是不等的：</p>
-<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/12306-df8f855fabba3e55a1da2b06c3094e38.gif" width="360" height="206" class="img_ev3q"></p>
-<p>如果轮播每一项轮播都是长列表，且随着用户上拉屏幕，列表加载的数据还会变多。<strong>这种轮播通常还是固定高度（100vh）的轮播</strong>，只是它们每一项都有自己单独的滚动条。</p>
-<p>它在拼多多、淘宝、京东上很常见。你需要注意，<strong>这种轮播每一项需要自带滚动条，否则处理列表滚动条会变得非常麻烦</strong>。这种情况下，往往要求记住用户之前滚动的位置。如果轮播共用滚动条，且你记录了每个 Tab 滚动的位置，左右切换轮播时，滚动条位置需要改变，轮播会有一个很明显的闪烁。</p>
-<p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/pdd-332fa0c169a8ad77979376b8c3b0bf63.gif" width="360" height="432" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://lijunlin2022.github.io/blog/2024/01/31/variable-height-swiper#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>
-<p>本文我们介绍了高度变化的轮播图实现原理——先获取对应轮播项的高度，再改变轮播图的整体高度，并给出了 H5 和小程序的代码示例。</p>]]></content>
         <category label="H5" term="H5"/>
         <category label="小程序" term="小程序"/>
     </entry>
