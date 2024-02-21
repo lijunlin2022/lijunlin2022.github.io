@@ -14,7 +14,7 @@ H5、小程序中正向圆角很常见，但偶尔也能看到新颖的反向圆
 
 ## 反向圆角的原理
 
-不难想到，反向圆角可以看作一个矩形被圆形遮挡了四个边角。
+不难想到，反向圆角可以看作一个长方形被圆形遮挡了四个边角。
 
 ![](./img/rectangle-and-circle.png)
 
@@ -24,7 +24,7 @@ H5、小程序中正向圆角很常见，但偶尔也能看到新颖的反向圆
 
 ## 关键代码实现
 
-按之前所说的原理，我们可以给 div 设置 50% 的 border-radius 得到圆形，再改变圆形的定位去遮挡矩形。但这种方法并不优雅，我们这里会介绍一种更巧妙的办法。
+知道圆遮挡长方形的原理后，我们最容易想到的办法是用 50% 的 border-radius 得到圆，再改变圆形的定位去遮挡矩形。不过这种方法需要多个元素，并不优雅，我将介绍另一种更巧妙的办法。
 
 我们需要先了解一个 CSS 函数 —— [radial-gradient](https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/radial-gradient)。radial-gradient 中文名称是径向渐变，它可以指定渐变的中心、形状、颜色和结束位置。
 
@@ -35,11 +35,11 @@ background-image: radial-gradient(circle at center, #fff 0, #fff 20px, #ddd 0);
 
 ### 长方形中央画一个圆
 
-光看语法有些抽象，我们举一个实际的例子。如图所示，这是一个长方形，中央有一个白色的圆。
+光看语法有些抽象，我们用代码写一个实际的例子。如图所示，这是一个长方形，中央有一个白色的圆。
 
 ![](./img/circle-at-center.png)
 
-它的关键代码如下：
+它可以利用 radial-gradient 实现：
 
 ```html
 <div class="circle-in-rect"></div>
@@ -68,9 +68,11 @@ background-image: radial-gradient(circle at center, #fff 0, #fff 20px, #ddd 0);
 - `#fff 20px` 指定了第二个渐变颜色也为白色，位置距离中心 20 像素。
 - `#ddd 20px` 指定了第三个渐变颜色为淡灰色，位置距离中心 20 像素，第三个渐变颜色之后的颜色都是淡灰色。
 
+通过 radial-gradient，我们成功在长方形中央设置了一个半径为 20px 的圆。
+
 ### 长方形左上角画一个圆
 
-只要我们想办法，把圆从长方形中央移动到左上角，就可以得到一个反向圆角。
+只要我们想办法，把圆从长方形中央移动到左上角。圆遮挡住长方形左上角，就得到一个反向圆角。
 
 ![](./img/single.png)
 
@@ -89,11 +91,9 @@ background-image: radial-gradient(circle at center, #fff 0, #fff 20px, #ddd 0);
 
 ### 长方形四个角画四个圆
 
-CSS 可以给 background 设置多个渐变（包括线性渐变和径向渐变），多个渐变之间可以用逗号分隔、且它们会按照声明的顺序依次堆叠。
+我们已经知道 radial-gradient 如何实现 1 个反向圆角，接下来再看如何实现 4 个反向圆角。
 
-不过如果你只是单纯堆叠了四个渐变，那么你看到的是一个矩形。
-
-![](./img/rect.png)
+CSS 可以给 background 设置多个渐变（包括线性渐变和径向渐变），多个渐变之间可以用逗号分隔、且它们会按照声明的顺序依次堆叠。因此一个正常的思路是，将左上角的渐变再复制三份并稍加改造：
 
 ```css
   background: 
@@ -103,11 +103,20 @@ CSS 可以给 background 设置多个渐变（包括线性渐变和径向渐变�
     radial-gradient(circle at right bottom, transparent 25px, #ddd 25px);
 ```
 
+奇怪的是，如果我们的代码是上述写法，那么我们无法得到四个反向圆角，而是直接看到一个矩形。
+
+![](./img/rect.png)
+
+
 这是因为四个矩形互相堆叠，反而把反向圆角给遮住了。
 
 ![](./img/four-rect.png)
 
-我们可以改造上述代码得到目标效果，这里为了方便讲解知识点，我给四个渐变反向圆角区域设置了不同颜色：
+要达到四个反向圆角的效果，还需要设置渐变的其他细节。为了方便区分四个不同的渐变，我给四个区域设置了红、绿、蓝、黄四种颜色：
+
+![](./img/four.png)
+
+它的代码如下：
 
 ```css
 background-repeat: no-repeat;
@@ -127,9 +136,6 @@ background:
 - `background-repeat: no-repeat;` 让背景不重复。
 - `background: ...;` 定义了背景，其中包含四个径向渐变，分别放置在容器的四个角落，分别是红、绿、蓝、黄四种颜色。
 
-![](./img/four.png)
-
-你只需要给红、绿、蓝、黄都换成灰色，就可以看到长方形四个角画了四个圆，也就是完成的反向圆角。
 
 ### 反向圆角的边框
 
