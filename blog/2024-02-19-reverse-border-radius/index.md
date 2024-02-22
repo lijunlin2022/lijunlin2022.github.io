@@ -2,7 +2,7 @@
 tags: ['H5', '小程序']
 ---
 
-# H5、小程序反向圆角、反向圆角的边框如何实现
+# H5、小程序反向圆角和反向圆角边框如何实现
 
 H5、小程序中正向圆角很常见，但偶尔也能看到新颖的反向圆角。
 
@@ -143,20 +143,47 @@ CSS 可以给 background 设置多个渐变（包括线性渐变和径向渐变�
 
 ![](./img/four-rect.png)
 
-我们还需要设置其他细节。这里为了区分四个径向渐变，我给四个区域设置了红、绿、蓝、黄四种颜色：
+遮挡怎么解决呢？我们可以分四步来解决
+
+#### 设置背景宽度和高度
+
+第一步是设置 `background-size: 50% 50%;`，它设置了背景图像的大小是容器宽度和高度的 50%。这是一个径向渐变设置 `background-size: 50% 50%;` 后的效果：
+
+![](./img/background-size.png)
+
+#### 设置不允许重复
+
+第二步是设置 `background-repeat: no-repeat;`。我们在第一步中看到，背景图片会重复，我们需要去除这种重复。这是设置 `background-repeat: no-repeat;` 后的效果：
+
+![](./img/no-repeat.png)
+
+#### 给每个径向渐变设置位置
+
+第二步中，我们看到设置 `background-repeat: no-repeat;` 后，只保留了左上角的背景图像。其实我们可以选择保留四个图像中的任何一个。比如我们保留右下角的背景图片，可以这样写：
+
+```css
+background: 
+  radial-gradient(circle at left top, transparent 25px, #ddd 25px) right bottom;
+background-size: 50% 50%;
+background-repeat: no-repeat;
+```
+
+效果如下：
+
+![](./img/no-repeat-right-bottom.png)
+
+#### 组合前三个步骤
+
+看完第三步后，一个很自然的想法，就是把四个径向渐变分别放在左上、右上、左下和右下四个角，组成包含四个反向圆角的长方形。
+
+它的效果和代码如下，为了区分四个径向渐变，我给四个区域设置了红、绿、蓝、黄四种颜色：
 
 ![](./img/four.png)
 
-我们需要添加的细节如下：
-
-- `background-size: 50% 50%;` 设置背景图像的大小为容器的宽度和高度的 50%，以确保每个渐变都覆盖了容器的一半区域。
-- `background-repeat: no-repeat;` 让背景不重复。
-- `background: ...;` 定义了背景，并在径向渐变函数后增加 `left top` 等指示位置的关键字。四个径向渐变，分别放置在容器的四个角落，是红、绿、蓝、黄四种颜色。
-
 ```css
-background-repeat: no-repeat;
 background-size: 50% 50%;
-background: 
+background-repeat: no-repeat;
+background:
   radial-gradient(circle at left top, transparent 25px, red 25px)
   left top,
   radial-gradient(circle at right top, transparent 25px, green 25px)
@@ -166,8 +193,6 @@ background:
   radial-gradient(circle at right bottom, transparent 25px, yellow 25px)
   right bottom;
 ```
-
-现在我们来逐个解释 3 个细节的作用。
 
 ### 反向圆角的边框
 
