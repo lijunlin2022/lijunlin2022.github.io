@@ -38,7 +38,7 @@ background-image:
     circle at center,
     transparent 0,
     transparent 20px,
-    #ddd 0
+    #ddd 20px
   );
 ```
 
@@ -48,25 +48,15 @@ background-image:
 
 ![](./img/rect0.png)
 
-下面是利用 radial-gradient 画圆的代码：
-
-```html
-<div class="rect"></div>
-```
+下面是利用 radial-gradient 画圆的关键代码：
 
 ```css
-.rect {
-  width: 200px;
-  height: 150px;
-  margin: 25px;
-  background: 
-    radial-gradient(
-      circle at center,
-      transparent 0,
-      transparent 20px,
-      #ddd 20px
-    );
-}
+background: radial-gradient(
+  circle at center,
+  transparent 0,
+  transparent 20px,
+  #ddd 20px
+);
 ```
 
 其中：
@@ -88,14 +78,12 @@ background-image:
 关键代码如下，我们可以把 `circle at center` 改写为 `circle at left top`，这样圆的中心可以移动到矩形左上角了：
 
 ```css
-.single {
-  background:
-    radial-gradient(
-      circle at left top,
-      transparent 25px,
-      #ddd 0
-    );
-}
+background: radial-gradient(
+  circle at left top,
+  transparent 0,
+  transparent 20px,
+  #ddd 20px
+);
 ```
 
 ### 矩形四个角画圆
@@ -104,30 +92,22 @@ background-image:
 
 CSS 可以给 background 设置多个渐变（包括线性渐变和径向渐变），多个渐变之间可以用逗号分隔、且它们会按照声明的顺序依次堆叠。
 
-自然而然地，我们会写出如下代码：
+自然而然地，我们会写出如下关键代码：
 
 ```css
-background: 
-  radial-gradient(
-    circle at left top,
-    transparent 25px,
-    #ddd 25px
-  ),
-  radial-gradient(
-    circle at right top,
-    transparent 25px,
-    #ddd 25px
-  ),
-  radial-gradient(
-    circle at left bottom,
-    transparent 25px,
-    #ddd 25px
-  ),
-  radial-gradient(
-    circle at right bottom,
-    transparent 25px,
-    #ddd 25px
-  );
+background: radial-gradient(
+  circle at left top,
+  transparent 0,
+  transparent 20px,
+  #ddd 20px
+),
+/* ... */
+radial-gradient(
+  circle at right bottom,
+  transparent 0,
+  transparent 20px,
+  #ddd 20px
+);
 ```
 
 遗憾的是，上述代码我们看不到四个反向圆角，而是看到一个矩形。
@@ -161,12 +141,11 @@ background:
 background: 
   radial-gradient(
     circle at left top,
-    transparent 25px,
-    #ddd 25px
+    transparent 0,
+    transparent 20px,
+    #ddd 20px
   )
   right bottom;
-background-size: 50% 50%;
-background-repeat: no-repeat;
 ```
 
 效果如下：
@@ -182,33 +161,36 @@ background-repeat: no-repeat;
 ![](./img/rect2.png)
 
 ```css
-background-size: 50% 50%;
+background: radial-gradient(
+      circle at left top,
+      transparent 0,
+      transparent 20px,
+      red 20px
+    )
+    left top,
+  radial-gradient(
+      circle at right top,
+      transparent 0,
+      transparent 20px,
+      green 20px
+    )
+    right top,
+  radial-gradient(
+      circle at left bottom,
+      transparent 0,
+      transparent 20px,
+      blue 20px
+    )
+    left bottom,
+  radial-gradient(
+      circle at right bottom,
+      transparent 0,
+      transparent 20px,
+      yellow 20px
+    )
+    right bottom;
 background-repeat: no-repeat;
-background:
-  radial-gradient(
-    circle at left top,
-    transparent 25px,
-    red 25px
-  )
-  left top,
-  radial-gradient(
-    circle at right top,
-    transparent 25px,
-    green 25px
-  )
-  right top,
-  radial-gradient(
-    circle at left bottom,
-    transparent 25px,
-    blue 25px
-  )
-  left bottom,
-  radial-gradient(
-    circle at right bottom,
-    transparent 25px,
-    yellow 25px
-  )
-  right bottom;
+background-size: 50% 50%;
 ```
 
 ### 把背景改写为遮罩
@@ -222,34 +204,36 @@ background:
 这样就可以得到四个反向圆角的矩形遮罩。
 
 ```css
+mask: radial-gradient(
+      circle at left top,
+      transparent 0,
+      transparent 20px,
+      #ddd 20px
+    )
+    left top,
+  radial-gradient(
+      circle at right top,
+      transparent 0,
+      transparent 20px,
+      red 20px
+    )
+    right top,
+  radial-gradient(
+      circle at left bottom,
+      transparent 0,
+      transparent 20px,
+      red 20px
+    )
+    left bottom,
+  radial-gradient(
+      circle at right bottom,
+      transparent 0,
+      transparent 20px,
+      red 20px
+    )
+    right bottom;
 mask-size: 50% 50%;
 mask-repeat: no-repeat;
-mask:
-  radial-gradient(
-    circle at left top,
-    transparent 0,
-    transparent 25px,
-    #ddd 25px
-  )
-  left top,
-  radial-gradient(
-    circle at right top,
-    transparent 25px,
-    red 25px
-  )
-  right top,
-  radial-gradient(
-    circle at left bottom,
-    transparent 25px,
-    red 25px
-  )
-  left bottom,
-  radial-gradient(
-    circle at right bottom,
-    transparent 25px,
-    red 25px
-  )
-  right bottom;
 ```
 
 我们可以把四个反向圆角的矩形覆盖在一张背景图片上，就得到了和热风小程序一样的效果：
