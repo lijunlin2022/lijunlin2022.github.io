@@ -251,6 +251,8 @@ mask-repeat: no-repeat;
 
 ![](./img/rect3.png)
 
+需要注意的是，部分手机浏览器不支持 mask 语法，所以我们有必要再设置一份 `-webkit-mask`、`-webkit-mask-size` 和 `-webkit-mask-repeat`。
+
 ## 代码示例
 
 [四个反向圆角的图片 | codepen](https://codepen.io/lijunlin2022/pen/GReBjEO)
