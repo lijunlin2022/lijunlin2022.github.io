@@ -1,7 +1,7 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 
 export default {
-  title: "李俊霖的网络日志",
+  title: "小霖家的混江龙",
   favicon: "img/logo.png",
   url: "https://lijunlin2022.github.io",
   baseUrl: "/",
@@ -33,7 +33,7 @@ export default {
       },
     ],
     navbar: {
-      title: "李俊霖的网络日志",
+      title: "小霖家的混江龙",
       logo: {
         src: 'img/logo.png'
       },

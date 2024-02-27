@@ -142,7 +142,7 @@ lea eax, dword ptr ds:[szOutput]
 ```c
 void showMainMenu() {
 	const char* dividingLine = "-------------------------------------------------------------------\n";
-	const char* authorInfo = "作者: 李俊霖\n";
+	const char* authorInfo = "作者: 小霖家的混江龙\n";
 	const char* operationGuide = "按 1 开始游戏\n按 2 结束游戏\n按 W 向上移动\n按 S 向下移动\n按 A 向左移动\n按 D 向右移动\n";
 	__asm {
 		// 打印分割字符

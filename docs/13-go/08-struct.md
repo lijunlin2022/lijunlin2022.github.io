@@ -249,8 +249,8 @@ type Person struct {
 }
 
 func main() {
-  p := Person{"李俊霖", 23}
-  fmt.Printf("name: %s, age: %d\n", p.string, p.int) // name: 李俊霖, age: 23
+  p := Person{"小霖家的混江龙", 23}
+  fmt.Printf("name: %s, age: %d\n", p.string, p.int) // name: 小霖家的混江龙, age: 23
 }
 ```
 
@@ -272,7 +272,7 @@ type Person struct {
 
 func main() {
   p := &Person{
-    "李俊霖",
+    "小霖家的混江龙",
     23,
     &Education{"北京理工大学", "计算机科学与技术"},
   }
