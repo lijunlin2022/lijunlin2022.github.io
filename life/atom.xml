@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lijunlin2022.github.io/life</id>
-    <title>李俊霖的网络日志 Blog</title>
+    <title>小霖家的混江龙 Blog</title>
     <updated>2023-12-17T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lijunlin2022.github.io/life"/>
-    <subtitle>李俊霖的网络日志 Blog</subtitle>
+    <subtitle>小霖家的混江龙 Blog</subtitle>
     <icon>https://lijunlin2022.github.io/img/logo.png</icon>
     <entry>
         <title type="html"><![CDATA[我的牙齿矫正经历]]></title>
