@@ -13,9 +13,8 @@
         overscroll-behavior: none;
       }
 
-      body.overflow-y {
-        height: 100vh;
-        overflow-y: hidden;
+      body.overflowHidden {
+        overflow: hidden;
       }
 
       #box {
@@ -28,12 +27,10 @@
       .loader-box {
         position: relative;
         top: -80px;
+        height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100%;
-        height: 80px;
-        background-color: #fff;
       }
 
       #loader {
@@ -58,10 +55,8 @@
         }
       }
 
-      .tip {
+      h1 {
         text-align: center;
-        font-size: 40px;
-        font-weight: bold;
       }
     </style>
   </head>
@@ -70,61 +65,40 @@
       <div class="loader-box">
         <div id="loader"></div>
       </div>
-      <div class="tip">下拉刷新 ↓</div>
+      <h1>下拉刷新 ↓</h1>
     </div>
     <script>
-      const box = document.getElementById("box");
-      const loader = document.getElementById("loader");
-      const body = document.body;
+      const box = document.getElementById("box")
+      const body = document.body
+      const loader = document.getElementById("loader")
+      const DISTANCE_Y_MIN_LIMIT = 80
+      const DISTANCE_Y_MAX_LIMIT = 150
 
-      let startX = 0,
-        startY = 0,
-        endX = 0,
-        endY = 0,
-        distanceY = 0,
-        loadLock = false
-
-      const DISTANCE_Y_LIMIT = window.screen.height / 2;
-
-      if (body.scrollTop === 0) {
-        addTouchEvent()
-      }
-
-      window.onscroll = function () {
-        if (body.scrollTop <= 0) {
-          body.scrollTop = 0;
-          addTouchEvent();
-        }
-      };
+      let startY = 0, endY = 0, distanceY = 0, loadLock = false
 
       function start(e) {
-        const { clientX, clientY } = e.touches[0];
-        startX = clientX;
-        startY = clientY;
-      }
-
-      function move(e) {
         if (loadLock) {
           return
         }
-        const { clientX, clientY } = e.touches[0];
-        endX = clientX;
-        endY = clientY;
-        if (endY - startY < 0) {
-          removeTouchEvent();
-          if (body.scrollTop === 0) {
-            addTouchEvent();
-          }
+        startY = e.touches[0].clientY;
+      }
+
+      function move(e) {
+        endY =  e.touches[0].clientY;
+        if (loadLock) {
           return
         }
-        distanceY = endY - startY;
-        percent = (100 - distanceY * 0.5) / 100;
-        percent = Math.max(0.5, percent);
-        distanceY = distanceY * percent;
-        distanceY = Math.min(distanceY, DISTANCE_Y_LIMIT);
-        box.style = `transform: translateY(${distanceY}px); transition: all 0.3s;`;
-
-        e.preventDefault();
+        if (endY - startY < 0) {
+          return
+        }
+        distanceY = endY - startY
+        percent = (100 - distanceY * 0.5) / 100
+        percent = Math.max(0.5, percent)
+        distanceY = distanceY * percent
+        if (distanceY > DISTANCE_Y_MAX_LIMIT) {
+          distanceY = DISTANCE_Y_MAX_LIMIT
+        }
+        box.style = `transform: translateY(${distanceY}px); transition: all 0.3s linear;`;
       }
 
       function end() {
@@ -134,40 +108,31 @@
         if (endY - startY < 0) {
           return
         }
-        if (distanceY < 80) {
-          box.style = `transform: translateY(0); transition: all 0.3s;`;
-          body.className = "";
-          loader.className = "";
-          loadLock = false;
+        if (distanceY < DISTANCE_Y_MIN_LIMIT) {
+          box.style = `transform: translateY(0px); transition: all 0.3s linear;`
+          body.className = ""
           return
         }
-        loadLock = true;
-        box.style = `transform: translateY(${80}px); transition: all 0.3s;`;
-        body.className = "overflow-y";
-        loader.className = "loading";
-        loadData();
-      }
-
-      function loadData() {
+        loadLock = true
+        box.style = `transform: translateY(80px); transition: all 0.3s linear;`
+        loader.className = "loading"
+        body.className = "overflowHidden"
+        
         setTimeout(() => {
-          box.style = `transform: translateY(0); transition: all 0.3s;`;
-          body.className = "";
+          loadLock = false
+          box.style = `transform: translateY(0px); transition: all 0.3s linear;`;
           loader.className = "";
-          loadLock = false;
+          body.className = "";
         }, 1000)
       }
 
       function addTouchEvent() {
-        box.addEventListener("touchstart", start, { passive: false });
-        box.addEventListener("touchmove", move, { passive: false });
-        box.addEventListener("touchend", end, { passive: false });
+        box.addEventListener("touchstart", start, { passive: false })
+        box.addEventListener("touchmove", move, { passive: false })
+        box.addEventListener("touchend", end, { passive: false })
       }
 
-      function removeTouchEvent() {
-        box.addEventListener("touchstart", start);
-        box.addEventListener("touchmove", move);
-        box.addEventListener("touchend", end);
-      }
+      addTouchEvent()
     </script>
   </body>
 </html>
