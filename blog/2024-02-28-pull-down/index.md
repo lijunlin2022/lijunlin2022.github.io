@@ -23,19 +23,17 @@
 ```html
 <div id="box">
   <div class="loader-box">
+    <div id="loading"></div>
   </div>
   <h1>下拉刷新 ↓</h1>
 </div>
 ```
 
-```css
-#box {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: #eee;
-}
+布局中，box 对应容器，loader-box 是包裹加载动画的盒子，loading 是加载动画，h1 只是一个提示。
 
+loader-box 高度是 80px，且本就处于视口最顶部，我们再给它设置相对布局，把它的位置往上挪动 80px，于是加载动画的盒子就处于视口之外。
+
+```css
 .loader-box {
   position: relative;
   top: -80px;
@@ -43,9 +41,35 @@
 }
 ```
 
-布局中，box 对应容器，loader-box 是包裹加载动画的盒子，至于 h1 只是一个提示。
+loader 是一个纯 CSS 写的动画，它是一个利用 border 画出的一个圆环，且 `border-left`, `border-top` 和 `border-right` 是浅灰色，`border-bottom` 是深灰色。
 
-loader-box 高度是 80px，且本就处于视口最顶部，我们再给它设置相对布局，把它的位置往上挪动 80px，于是加载动画的盒子就处于视口之外。
+![](./img/loader.png)
+
+```css
+#loader {
+  width: 25px;
+  height: 25px;
+  border: 3px solid #ddd;
+  border-radius: 50%;
+  border-bottom: 3px solid #717171;
+  transform: rotate(0deg);
+}
+```
+
+当需要加载时，我们会给 loader 元素增加一个从 0 度到 360 度、无限旋转的动画。效果如下：
+
+![](./img/loading.gif)
+
+```css
+#loader.loading {
+  animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+```
 
 ### 逻辑代码
 
@@ -60,7 +84,8 @@ loader-box 高度是 80px，且本就处于视口最顶部，我们再给它设�
 我们可以设置手指移动向下移动多少距离，容器就向下移动多少距离，这样我们就得到了最基础的逻辑代码：
 
 ```js
-const box = document.getElementById("box")
+const box = document.getElementById('box')
+const loader = document.getElementById('loader')
 let startY = 0, endY = 0, distanceY = 0
 
 function start(e) {
@@ -70,18 +95,25 @@ function start(e) {
 function move(e) {
   endY =  e.touches[0].clientY
   distanceY = endY - startY
-  box.style = `transform: translateY(${distanceY}px); transition: all 0.3s linear;`
+  box.style = `
+    transform: translateY(${distanceY}px);
+    transition: all 0.3s linear;
+  `
 }
 
 function end() {
   setTimeout(() => {
-    box.style = `transform: translateY(0); transition: all 0.3s linear;`
+    box.style = `
+      transform: translateY(0);
+      transition: all 0.3s linear;
+    `
+    loader.className = 'loading'
   }, 1000)
 }
 
-box.addEventListener("touchstart", start)
-box.addEventListener("touchmove", move)
-box.addEventListener("touchend", end)
+box.addEventListener('touchstart', start)
+box.addEventListener('touchmove', move)
+box.addEventListener('touchend', end)
 ```
 
 它的效果如下：
@@ -94,7 +126,7 @@ box.addEventListener("touchend", end)
 
 ### 最大、最小距离限制
 
-1. 没有最大滑动距离的限制。通常来说，我们下拉屏幕时，应该下拉到一定位置，就无法往下滑动了。因此我们需要设定一个限制。这里我们假设最多能够向下滑动 150px
+没有最大滑动距离的限制。通常来说，我们下拉屏幕时，应该下拉到一定位置，就无法往下滑动了。因此我们需要设定一个限制。这里我们假设最多能够向下滑动 150px
 
 没有最小滑动距离的限制
 
@@ -108,12 +140,18 @@ function move(e) {
   if (distanceY > DISTANCE_Y_LIMIT) {
     distanceY = DISTANCE_Y_LIMIT
   }
-  box.style = `transform: translateY(${distanceY}px); transition: all 0.3s linear;`
+  box.style = `
+    transform: translateY(${distanceY}px);
+    transition: all 0.3s linear;
+  `
 }
 
 function end() {
   if (distanceY < DISTANCE_Y_MIN_LIMIT) {
-    box.style = `transform: translateY(0px); transition: all 0.3s linear;`
+    box.style = `
+      transform: translateY(0px);
+      transition: all 0.3s linear;
+    `
     return
   }
   ...
@@ -122,21 +160,29 @@ function end() {
 
 ### 动画盒子应该停留在视口顶部
 
-2. 当松开手、且数据正在加载中时，动画盒子应该停留在视口顶部，而不应该直接消失。我们可以把 end 函数加以改造：
+当松开手、且数据正在加载中时，动画盒子应该停留在视口顶部，而不应该直接消失。我们可以把 end 函数加以改造：
 
 ```js
 function end() {
   ...
-  box.style = `transform: translateY(80px); transition: all 0.3s linear;`
+  box.style = `
+    transform: translateY(80px);
+    transition: all 0.3s linear;
+  `
+  loader.className = 'loading'
   setTimeout(() => {
-    box.style = `transform: translateY(0px); transition: all 0.3s linear;`
+    box.style = `
+      transform: translateY(0px);
+      transition: all 0.3s linear;
+    `
+    loader.className = ''
   }, 1000)
 }
 ```
 
 ### 已下拉的容器不能继续下拉
 
-3. 当已经处于下拉时，不能继续下拉，为此我们需要添加一个加载的锁 loadLock。当加载锁开启时，start，move 和 end 事件应该都不会触发。
+当已经处于下拉时，不能继续下拉，为此我们需要添加一个加载的锁 loadLock。当加载锁开启时，start，move 和 end 事件应该都不会触发。
 
 ```js
 let loadLock = false
@@ -159,20 +205,17 @@ function end(e) {
 
 ### 只能够下拉，不能够上拉
 
-4. 我们应该只能够下拉，不能够上拉，所以如果判断 endY - startY 小于 0 时，我们也应该阻止相关逻辑。
+我们应该只能够下拉，不能够上拉，所以如果判断 endY - startY 小于 0 时，我们也应该阻止相关逻辑。
 
 ```js
 function move(e) {
-  endY =  e.touches[0].clientY;
-  if (loadLock) { return }
+  ...
   if (endY - startY < 0) { return }
   ...
 }
 
 function end() {
-  if (loadLock) { return }
   if (endY - startY < 0) { return }
-  loadLock = true
   ...
 }
 ```
@@ -181,7 +224,7 @@ function end() {
 
 ### 加载时阻止原生滚动
 
-5. 当下拉时，虽然我们已经拦截了触摸事件，但是 H5 原生滚动时间还能用，因此加载数据时页面还能够滚动。我们可以给 body 设置一个 `overflow-y: hidden;` 的属性。
+当下拉时，虽然我们已经拦截了触摸事件，但是 H5 原生滚动时间还能用，因此加载数据时页面还能够滚动。我们可以给 body 设置一个 `overflow-y: hidden;` 的属性。
 
 ```css
 body.overflowHidden {
@@ -193,12 +236,20 @@ body.overflowHidden {
 const body = document.body
 function end() {
   ...
-  box.style = `transform: translateY(80px); transition: all 0.3s linear;`
-  body.className = "overflowHidden"
+  box.style = `
+    transform: translateY(80px);
+    transition: all 0.3s linear;
+  `
+  loader.className = 'loading'
+  body.className = 'overflowHidden'
   setTimeout(() => {
-    loadLock = false
-    box.style = `transform: translateY(0px); transition: all 0.3s linear;`
-    body.className = ""
+    ...
+    box.style = `
+      transform: translateY(0px);
+      transition: all 0.3s linear;
+    `
+    loader.className = ''
+    body.className = ''
   }, 1000)
 }
 ```
@@ -209,31 +260,28 @@ function end() {
 
 ```js
 function addTouchEvent() {
-  box.addEventListener("touchstart", start, { passive: false })
-  box.addEventListener("touchmove", move, { passive: false })
-  box.addEventListener("touchend", end, { passive: false })
+  box.addEventListener('touchstart', start, { passive: false })
+  box.addEventListener('touchmove', move, { passive: false })
+  box.addEventListener('touchend', end, { passive: false })
 }
 
 addTouchEvent()
 ```
 
-解决完 5 个问题之后，我们其实已经得到一个基本无 Bug 的下拉加载功能。
+解决完 6 个问题之后，我们其实已经得到一个基本无 Bug 的下拉加载功能。
 
-![](./img/pull-down-mvp.gif)
-
-## 优化体验的两步
+## 优化体验
 
 接下来我们需要做两步来优化体验：
 
 ### 阻尼效果
 
-1. 增加阻尼效果。
+增加阻尼效果。
 
 我们在移动端下拉时，除了有一个限制之外，应该会有一种越来越难下拉的感觉。具体来说，我们可以设置一个百分比，随着用户下拉得越来越远，偏移的距离越来越短。
 
 ```js
 function move(e) {
-  endY =  e.touches[0].clientY;
   ...
   distanceY = endY - startY
   percent = (100 - distanceY * 0.5) / 100
@@ -248,55 +296,31 @@ function move(e) {
 
 ### 反三角函数判断用户真实意图
 
-2. 反三角函数判断用户真实下拉意图
+反三角函数判断用户真实下拉意图
 
 ![](./img/intension.png)
 
 很明显可以看出，右侧用户下拉时，用户的意图比较明显。因为 β 的角度比 α 角度更大。
 
-我们可以利用反三角函数求出角度。因为 js 的反三角函数 `Math.atan()` 单位是弧度，所以我们还需要对弧度做一个角度的转换。
+我们可以利用反三角函数求出角度，JavaScript 中，反正切函数是 `Math.atan()`，需要注意的是，反正切函数算出的是弧度，我们需要将它乘以 `180 / π` 才能获取角度。
 
 ```js
-
-```
-
-## 额外补充，加载动画的实现
-
-```css
-#loader {
-  width: 25px;
-  height: 25px;
-  border: 3px solid #ddd;
-  border-radius: 50%;
-  border-bottom: 3px solid #1e80ff;
-  transform: rotate(0deg);
-}
-```
-
-![](./img/loader.png)
-
-我们再添加一个旋转动画：
-
-```css
-#loader.loading {
-  animation: loading 1s linear infinite;
-}
-
-@keyframes loading {
-  from {
-    transform: rotate(0deg);
+function move(e) {
+  ...
+  distanceY = endY - startY
+  distanceX = endX - startX
+  const deg = Math.atan(Math.abs(distanceX) / distanceY)
+    * (180 / Math.PI)
+  if (deg > DEG_LIMIT) {
+    [startY, startX] = [endY, endX]
+    return
   }
-  to {
-    transform: rotate(360deg);
-  }
+  ...
 }
 ```
-
-效果如下：
-
-![](./img/loading.gif)
 
 ## 代码示例
+
 
 ## 总结
 

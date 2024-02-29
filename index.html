@@ -38,7 +38,7 @@
         height: 25px;
         border: 3px solid #ddd;
         border-radius: 50%;
-        border-bottom: 3px solid #1e80ff;
+        border-bottom: 3px solid #717171;
         transform: rotate(0deg);
       }
 
@@ -68,37 +68,50 @@
       <h1>下拉刷新 ↓</h1>
     </div>
     <script>
-      const box = document.getElementById("box")
+      const box = document.getElementById('box')
       const body = document.body
-      const loader = document.getElementById("loader")
+      const loader = document.getElementById('loader')
       const DISTANCE_Y_MIN_LIMIT = 80
       const DISTANCE_Y_MAX_LIMIT = 150
+      const DEG_LIMIT = 40
 
-      let startY = 0, endY = 0, distanceY = 0, loadLock = false
+      let startY = 0, startX = 0, endY = 0, endX = 0, distanceY = 0, distanceX = 0, loadLock = false
 
       function start(e) {
         if (loadLock) {
           return
         }
         startY = e.touches[0].clientY;
+        startX = e.touches[0].clientX;
       }
 
       function move(e) {
         endY =  e.touches[0].clientY;
+        endX = e.touches[0].clientX;
         if (loadLock) {
           return
         }
         if (endY - startY < 0) {
           return
         }
+
         distanceY = endY - startY
+        distanceX = endX - startX
+        const deg = Math.atan(Math.abs(distanceX) / distanceY) * (180 / Math.PI)
+        if (deg > DEG_LIMIT) {
+          [startY, startX] = [endY, endX]
+          return
+        }
         percent = (100 - distanceY * 0.5) / 100
         percent = Math.max(0.5, percent)
         distanceY = distanceY * percent
         if (distanceY > DISTANCE_Y_MAX_LIMIT) {
           distanceY = DISTANCE_Y_MAX_LIMIT
         }
-        box.style = `transform: translateY(${distanceY}px); transition: all 0.3s linear;`;
+        box.style = `
+          transform: translateY(${distanceY}px);
+          transition: all 0.3s linear;
+        `;
       }
 
       function end() {
@@ -109,27 +122,36 @@
           return
         }
         if (distanceY < DISTANCE_Y_MIN_LIMIT) {
-          box.style = `transform: translateY(0px); transition: all 0.3s linear;`
-          body.className = ""
+          box.style = `
+            transform: translateY(0px);
+            transition: all 0.3s linear;
+          `
+          body.className = ''
           return
         }
         loadLock = true
-        box.style = `transform: translateY(80px); transition: all 0.3s linear;`
-        loader.className = "loading"
-        body.className = "overflowHidden"
+        box.style = `
+          transform: translateY(80px);
+          transition: all 0.3s linear;
+        `
+        loader.className = 'loading'
+        body.className = 'overflowHidden'
         
         setTimeout(() => {
           loadLock = false
-          box.style = `transform: translateY(0px); transition: all 0.3s linear;`;
-          loader.className = "";
-          body.className = "";
-        }, 1000)
+          box.style = `
+            transform: translateY(0px);
+            transition: all 0.3s linear;
+          `
+          loader.className = ''
+          body.className = ''
+        }, 3000)
       }
 
       function addTouchEvent() {
-        box.addEventListener("touchstart", start, { passive: false })
-        box.addEventListener("touchmove", move, { passive: false })
-        box.addEventListener("touchend", end, { passive: false })
+        box.addEventListener('touchstart', start, { passive: false })
+        box.addEventListener('touchmove', move, { passive: false })
+        box.addEventListener('touchend', end, { passive: false })
       }
 
       addTouchEvent()
