@@ -102,9 +102,10 @@
           [startY, startX] = [endY, endX]
           return
         }
-        percent = (100 - distanceY * 0.5) / 100
+        let percent = (100 - distanceY * 0.5) / 100
         percent = Math.max(0.5, percent)
         distanceY = distanceY * percent
+
         if (distanceY > DISTANCE_Y_MAX_LIMIT) {
           distanceY = DISTANCE_Y_MAX_LIMIT
         }
