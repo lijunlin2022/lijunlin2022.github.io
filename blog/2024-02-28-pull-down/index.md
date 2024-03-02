@@ -353,7 +353,9 @@ function move(e) {
 
 ## 代码示例
 
-[pulldown | codepen](https://codepen.io/lijunlin2022/pen/xxBeZrr)
+你可以在 [codepen](https://codepen.io/lijunlin2022/pen/xxBeZrr) 中查看效果，web 端需要按 F12 用手机浏览器打开。
+
+![](./img/codepen.gif)
 
 ## 总结
 
