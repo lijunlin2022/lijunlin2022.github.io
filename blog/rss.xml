@@ -22,8 +22,8 @@
 <p>不只是拼多多，京东、淘宝的百亿补贴技术栈也是 H5。</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/pdd-jd-taobao-37ac80a21ebc73953a05d1df69596f68.png" width="727" height="518" class="img_ev3q"></p>
 <p>那么，为什么电商巨头会在「百亿补贴」这种重要活动上选择 H5 呢？用 H5 有什么好处呢？</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5-技术已经成熟稳定">H5 技术已经成熟稳定<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#h5-%E6%8A%80%E6%9C%AF%E5%B7%B2%E7%BB%8F%E6%88%90%E7%86%9F%E7%A8%B3%E5%AE%9A" class="hash-link" aria-label="Direct link to H5 技术已经成熟稳定" title="Direct link to H5 技术已经成熟稳定">​</a></h3>
-<p>第一个原因，也是最基础的原因，就是 H5 技术已经成熟稳定，能够完整地实现功能。具体来说：</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5-技术已经成熟">H5 技术已经成熟<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#h5-%E6%8A%80%E6%9C%AF%E5%B7%B2%E7%BB%8F%E6%88%90%E7%86%9F" class="hash-link" aria-label="Direct link to H5 技术已经成熟" title="Direct link to H5 技术已经成熟">​</a></h3>
+<p>第一个原因，也是最基础的原因，就是 H5 技术已经成熟，能够完整地实现功能。具体来说：</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="浏览器兼容性不断提高">浏览器兼容性不断提高<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7%E4%B8%8D%E6%96%AD%E6%8F%90%E9%AB%98" class="hash-link" aria-label="Direct link to 浏览器兼容性不断提高" title="Direct link to 浏览器兼容性不断提高">​</a></h4>
 <p>自 2008 年 HTML5 草案发布以来，至 2010 年乔布斯宣称 HTML5 将取代 Flash，再到 2022 年微软宣布 IE 浏览器正式退役，可以看到，主流浏览器对 HTML5、CSS3 和 JavaScript 的标准语法兼容性一直在持续改进。虽然 Safari（iOS 浏览器）的兼容性仍然备受诟病，但总体来说兼容成本已经变得可以接受。</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="主流框架已经成熟">主流框架已经成熟<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6%E5%B7%B2%E7%BB%8F%E6%88%90%E7%86%9F" class="hash-link" aria-label="Direct link to 主流框架已经成熟" title="Direct link to 主流框架已经成熟">​</a></h4>
@@ -44,7 +44,7 @@
 <p>前端开发者对基建工具抱怨，已经从「这工具能不能用」，转变为「这工具好不好用」。这种「甜蜜的烦恼」，只有基建工具成熟后才会出现。</p>
 <p>综上所述，浏览器的兼容性提升、主流框架的成熟、混合开发的发展和前端基建工具的完善，使 H5 完全有能力承载「百亿补贴」业务。</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5-开发成本低">H5 开发成本低<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#h5-%E5%BC%80%E5%8F%91%E6%88%90%E6%9C%AC%E4%BD%8E" class="hash-link" aria-label="Direct link to H5 开发成本低" title="Direct link to H5 开发成本低">​</a></h3>
-<p>前文我们已经提到「百亿补贴」选择 H5 技术栈的两个原因，现在我们来看第三个原因——H5 开发成本低。</p>
+<p>前文我们已经了解到，成熟的技术让 H5 可以实现「百亿补贴」的功能。现在我们介绍另一个原因——H5 开发成本低。</p>
 <p>「百亿补贴」的方式，是一个常住的 H5，搭配上多个流动的 H5。（「常住」和「流动」是我借鉴「常住人口」和「流动人口」造的词）</p>
 <ul>
 <li>
@@ -57,16 +57,16 @@
 </ul>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/pdd-activity-1ed1254be7ab141b7332d32dc0a334de.png" width="717" height="520" class="img_ev3q"></p>
 <p>不难想到，每到一个节日、每换一个品牌，就有可能需要为这些节日、品牌定制化一套流动 H5 代码。如果使用其他技术栈，排期跟进通常会比较困难，但是使用 H5 技术，能够快速迭代并上线。</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5-适合到处投放">H5 适合到处投放<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#h5-%E9%80%82%E5%90%88%E5%88%B0%E5%A4%84%E6%8A%95%E6%94%BE" class="hash-link" aria-label="Direct link to H5 适合到处投放" title="Direct link to H5 适合到处投放">​</a></h3>
-<p>在前文我们已经了解到，成熟的技术让 H5 完全可以实现「百亿补贴」功能。现在我们介绍另一个原因：H5 适合投放。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5-投放成本低">H5 投放成本低<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#h5-%E6%8A%95%E6%94%BE%E6%88%90%E6%9C%AC%E4%BD%8E" class="hash-link" aria-label="Direct link to H5 投放成本低" title="Direct link to H5 投放成本低">​</a></h3>
+<p>我们已经「百亿补贴」使用 H5 技术栈的两个原因，现在来看第三个原因——H5 适合投放。</p>
 <p>拼多多的崛起过程中，投放到其他 App 的链接功不可没。早期它通过微信等社交平台「砍一刀」的模式，低成本地吸引了大量用户。如今，它通过投放「百亿补贴」策略留住用户。</p>
-<p>H5 的独特之处，在于它能够灵活地在多个平台上进行投放，其他技术栈很难有这样的灵活性。拼多多更是将这种灵活性发挥到极致。即使是今天，抖音、Bilibili 和小红书等其他 App 中，「百亿补贴」的广告也随处可见。</p>
+<p>H5 的独特之处，在于它能够灵活地在多个平台上进行投放，其他技术栈很难有这样的灵活性。即使是今天，抖音、Bilibili 和小红书等其他 App 中，「百亿补贴」的 H5 链接也随处可见。</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/pdd-advertisement-74c8d804db4013db2788ea794a5713ca.png" width="739" height="517" class="img_ev3q"></p>
-<p>更厉害的是，只要你有「百亿补贴」的链接，你甚至可以在微信、飞书、支付宝等地方直接查看拼多多的 H5 页面。</p>
+<p>拼多多更是将 H5 这种灵活性发挥到极致，只要你有「百亿补贴」的链接，你甚至可以在微信、飞书、支付宝等地方直接查看拼多多的 H5 页面。</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/wechat-flybook-alipay-059f18ab40791acd041db426d5358594.png" width="723" height="519" class="img_ev3q"></p>
 <p>综上所述，能开发、能快速开发、且开发完成后能大量投放，是「百亿补贴」青睐 H5 的原因。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="h5-未来会如何发展">H5 未来会如何发展<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#h5-%E6%9C%AA%E6%9D%A5%E4%BC%9A%E5%A6%82%E4%BD%95%E5%8F%91%E5%B1%95" class="hash-link" aria-label="Direct link to H5 未来会如何发展" title="Direct link to H5 未来会如何发展">​</a></h2>
-<p>了解了「百亿补贴」选择 H5 的原因后，我们来看看电商巨头对 H5 未来发展的影响。我认为可能有三个影响：</p>
+<p>了解「百亿补贴」选择 H5 的原因后，我们来看看电商巨头对 H5 未来发展的影响。我认为可能有三个影响：</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5-数量膨胀定制化要求苛刻">H5 数量膨胀，定制化要求苛刻<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#h5-%E6%95%B0%E9%87%8F%E8%86%A8%E8%83%80%E5%AE%9A%E5%88%B6%E5%8C%96%E8%A6%81%E6%B1%82%E8%8B%9B%E5%88%BB" class="hash-link" aria-label="Direct link to H5 数量膨胀，定制化要求苛刻" title="Direct link to H5 数量膨胀，定制化要求苛刻">​</a></h3>
 <p>C 端用户黏性相对较低，换一个 App 的成本微不足道。再加上近年 C 端用户增长缓慢，企业已经难以容忍的用户丢失。因此当其他企业投放活动 H5 时，企业必须也要投放活动 H5，电商活动 H5 会变得越来越多。</p>
 <p>这个膨胀的趋势不仅仅存在于互联网巨头的 App 中，中小型应用也不例外，甚至像 12306、中国移动、招商银行这种工具性极强的应用也无法幸免。</p>
@@ -86,9 +86,9 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>
 <p>本文介绍了我认为「百亿补贴」会选用 H5 的三大原因：</p>
 <ul>
-<li>前端基建工具逐步成熟</li>
-<li>H5 适合到处投放</li>
+<li>H5 技术已经成熟</li>
 <li>H5 开发成本低</li>
+<li>H5 投放成本低</li>
 </ul>
 <p>以及电商巨头可能对 H5 发展产生的三个影响：</p>
 <ul>
@@ -96,7 +96,7 @@
 <li>SSR 比例增加，CSR 占据主流</li>
 <li>Monorepo 比例上上，类 Shadcn UI 组件库也许会兴起</li>
 </ul>
-<p>总而言之，H5 开发会越来越专业，对程序员要求会越来越高。至于这种情况是好是坏，仁者见仁智者见智，欢饮大家在评论区沟通交流。</p>
+<p>总而言之，H5 开发会越来越专业，对程序员要求会越来越高。至于这种情况是好是坏，仁者见仁智者见智，欢迎大家在评论区沟通交流。</p>
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://lijunlin2022.github.io/blog/2024/03/03/e-commerce-h5#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
 <li id="user-content-fn-1-783a3b">
