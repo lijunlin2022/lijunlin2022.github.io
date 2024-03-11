@@ -9,7 +9,7 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[H5 如何判断浏览器是否支持 webp]]></title>
+            <title><![CDATA[H5 如何用 JavaScript 判断浏览器是否支持 webp]]></title>
             <link>https://lijunlin2022.github.io/blog/2024/03/10/is-webp-supported</link>
             <guid>https://lijunlin2022.github.io/blog/2024/03/10/is-webp-supported</guid>
             <pubDate>Sun, 10 Mar 2024 00:00:00 GMT</pubDate>
@@ -17,7 +17,7 @@
             <content:encoded><![CDATA[<p><a href="https://www.cnblogs.com/cr330326/p/12809418.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/cr330326/p/12809418.html</a></p>
 <p><a href="https://blog.michealwayne.cn/2021/02/06/notes/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91webp%E9%9A%8F%E6%89%8B%E8%AE%B0/" target="_blank" rel="noopener noreferrer">https://blog.michealwayne.cn/2021/02/06/notes/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91webp%E9%9A%8F%E6%89%8B%E8%AE%B0/</a></p>
 <p><a href="https://blog.csdn.net/weixin_42213796/article/details/116697413" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/weixin_42213796/article/details/116697413</a></p>
-<p>判断浏览器是否支持 webp，已经是老生常谈的话题，但我翻看社区文章，讲解得并不是很详细，于是觉得有必要写一篇文章说道说道。</p>
+<p>如何判断浏览器是否支持 webp，已经是老生常谈。但我翻看社区文章，讲解得并不是很详细，于是觉得有必要写一篇文章说道说道。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="什么是-webp">什么是 webp<a href="https://lijunlin2022.github.io/blog/2024/03/10/is-webp-supported#%E4%BB%80%E4%B9%88%E6%98%AF-webp" class="hash-link" aria-label="Direct link to 什么是 webp" title="Direct link to 什么是 webp">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是有损">什么是有损<a href="https://lijunlin2022.github.io/blog/2024/03/10/is-webp-supported#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%89%E6%8D%9F" class="hash-link" aria-label="Direct link to 什么是有损" title="Direct link to 什么是有损">​</a></h3>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是无损">什么是无损<a href="https://lijunlin2022.github.io/blog/2024/03/10/is-webp-supported#%E4%BB%80%E4%B9%88%E6%98%AF%E6%97%A0%E6%8D%9F" class="hash-link" aria-label="Direct link to 什么是无损" title="Direct link to 什么是无损">​</a></h3>
@@ -47,9 +47,10 @@
             <link>https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy</link>
             <guid>https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy</guid>
             <pubDate>Sun, 03 Mar 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[23 年 11 月末，拼多多市值超过了阿里。我想蹭热度写一篇文章《百亿补贴为什么用 H5》，没有动笔；24 年新年，我想趁热度写一篇《新的一年，H5 会如何发展》，也没有动笔。]]></description>
-            <content:encoded><![CDATA[<p>23 年 11 月末，拼多多市值超过了阿里。我想蹭热度写一篇文章《百亿补贴为什么用 H5》，没有动笔；24 年新年，我想趁热度写一篇《新的一年，H5 会如何发展》，也没有动笔。</p>
+            <description><![CDATA[23 年 11 月末，拼多多市值超过了阿里。我想写一篇文章《百亿补贴为什么用 H5》，没有动笔；24 年新年，我想写一篇《新的一年，H5 会如何发展》，也没有动笔。]]></description>
+            <content:encoded><![CDATA[<p>23 年 11 月末，拼多多市值超过了阿里。我想写一篇文章《百亿补贴为什么用 H5》，没有动笔；24 年新年，我想写一篇《新的一年，H5 会如何发展》，也没有动笔。</p>
 <p>眼看着灵感就要烂在手里，我决定把两篇文章合为一篇，与大家分享。当然，这些分析预测只是个人观点，如果你有不同的意见，欢迎在评论区讨论交流。</p>
+<p>拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="百亿补贴为什么用-h5">百亿补贴为什么用 H5<a href="https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy#%E7%99%BE%E4%BA%BF%E8%A1%A5%E8%B4%B4%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8-h5" class="hash-link" aria-label="Direct link to 百亿补贴为什么用 H5" title="Direct link to 百亿补贴为什么用 H5">​</a></h2>
 <p>我们首先看一张控制台的图，可以确认，拼多多的「百亿补贴」技术栈是 H5，大概率是 React 写的 H5。</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/pdd-console-f7b7e5a2847eb1e1569f266187f6f684.png" width="900" height="725" class="img_ev3q"></p>
@@ -67,7 +68,7 @@
 <li>从语法的角度看，自 React16.8 发布 Hooks，以及 Vue3 发布 Composition API 以来，两大框架语法基本稳定，不再有大的变化。前端开发者可以更加专注于业务逻辑，无需过多担心框架语法的变动。</li>
 <li>从未来发展方向看，React 目前致力于推广 React Server Component <sup><a href="https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy#user-content-fn-1-8d2659" id="user-content-fnref-1-8d2659" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>；Vue 则在尝试着无 VDom 的 Vapor 方向，并计划利用 Rust 重写 Vite <sup><a href="https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy#user-content-fn-2-8d2659" id="user-content-fnref-2-8d2659" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>。这表明旧领域不再有大的颠覆，两大框架已经正寻求新的发展领域。</li>
 </ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="混合开发已经成熟">混合开发已经成熟<a href="https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy#%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%E5%B7%B2%E7%BB%8F%E6%88%90%E7%86%9F" class="hash-link" aria-label="Direct link to 混合开发已经成熟" title="Direct link to 混合开发��已经成熟">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="混合开发已经成熟">混合开发已经成熟<a href="https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy#%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%E5%B7%B2%E7%BB%8F%EF%BF%BD%E6%88%90%E7%86%9F" class="hash-link" aria-label="Direct link to 混合开发已经成熟" title="Direct link to 混合开发已经成熟">​</a></h4>
 <p>混合开发是指将原生开发（Android 和 iOS）和 Web 开发结合起来的一种技术。简而言之，它将 H5 嵌入到移动应用内部运行。近些年，业界对混合开发的优势和缺陷已经有清晰的认识，并针对其缺陷进行了相应的优化。具体来说：</p>
 <ul>
 <li>混合开发的优势包括开发速度快、一套代码适配 Android 和 iOS，以及实现代码的热更新。这意味着程序员能更快地编写跨平台应用，及时更新应用、修复缺陷；</li>
@@ -110,7 +111,7 @@
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/12306-yidong-zhaoshang-c8021ad5da3a4c3d9dc25a569d8e646f.png" width="722" height="517" class="img_ev3q"></p>
 <p>随着市场的竞争加剧，定制化要求也变得越来越苛刻，目的是让消费者区分各种活动。用互联网黑话来说，就是「建立用户心智」。在可预见的未来，尽管电商活动 H5 结构基本相同，但是它们的外观将变得千差万别、极具个性。</p>
 <p><img decoding="async" loading="lazy" src="https://lijunlin2022.github.io/assets/images/fluid-98332da26036496ea2748e01f698992b.png" width="735" height="516" class="img_ev3q"></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ssr-比例增加csr-占据主流">SSR 比例增加，CSR 占据主流<a href="https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy#ssr-%E6%AF%94%E4%BE%8B%E5%A2%9E%E5%8A%A0csr-%E5%8D%A0%E6%8D%AE%E4%B8%BB%E6%B5%81" class="hash-link" aria-label="Direct link to SSR 比例增加，CSR 占据主流" title="Direct link to SSR 比例增加，CSR 占据主流">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ssr-比��例增加csr-占据主流">SSR 比例增加，CSR 占据主流<a href="https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy#ssr-%E6%AF%94%E4%BE%8B%E5%A2%9E%E5%8A%A0csr-%E5%8D%A0%E6%8D%AE%E4%B8%BB%E6%B5%81" class="hash-link" aria-label="Direct link to SSR 比例增加，CSR 占据主流" title="Direct link to SSR 比例增加，CSR 占据主流">​</a></h3>
 <p>在各家 H5 数量膨胀、竞争激烈的情况下，一定会有企业为提升 H5 的秒开率接入 SSR，因此 SSR 的比例会增加。</p>
 <p>但我认为 CSR 依然会是主流，主要是因为两个原因：</p>
 <ol>
@@ -135,6 +136,7 @@
 <li>Monorepo 比例增加，类 Shadcn UI 组件库也许会兴起</li>
 </ul>
 <p>总而言之，H5 开发会越来越专业，对程序员要求会越来越高。至于这种情况是好是坏，仁者见仁智者见智，欢迎大家在评论区沟通交流。</p>
+<p>拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。</p>
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithStickyNavbar_LWe7 sr-only" id="footnote-label">Footnotes<a href="https://lijunlin2022.github.io/blog/2024/03/03/ten-billion-subsidy#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
 <li id="user-content-fn-1-8d2659">
