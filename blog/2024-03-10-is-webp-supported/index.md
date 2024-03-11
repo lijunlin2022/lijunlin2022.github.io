@@ -1,4 +1,5 @@
-# H5 如何判断浏览器是否支持 webp
+# H5 如何用 JavaScript 判断浏览器是否支持 webp
+
 
 https://www.cnblogs.com/cr330326/p/12809418.html
 
@@ -6,7 +7,7 @@ https://blog.michealwayne.cn/2021/02/06/notes/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%
 
 https://blog.csdn.net/weixin_42213796/article/details/116697413
 
-判断浏览器是否支持 webp，已经是老生常谈的话题，但我翻看社区文章，讲解得并不是很详细，于是觉得有必要写一篇文章说道说道。
+如何判断浏览器是否支持 webp，已经是老生常谈。但我翻看社区文章，讲解得并不是很详细，于是觉得有必要写一篇文章说道说道。
 
 ## 什么是 webp
 
