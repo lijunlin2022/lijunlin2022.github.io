@@ -1,66 +1,196 @@
-# H5 如何用 JavaScript 判断浏览器是否支持 webp
+# H5、小程序使用 webp 格式图片，如何判断环境是否支持
 
+最近我在做 H5、小程序的性能优化，其中一项优化，是把 H5、小程序的 jpg、png 图片转换为 webp 格式的图片，这是因为相比 jpg、png，webp 格式的图片体积更小、传输速度更快。
 
-https://www.cnblogs.com/cr330326/p/12809418.html
+转换方法很简单，现在各大云服务商基本都提供了方法，比如 [腾讯云](https://cloud.tencent.com/document/product/436/60453) 只需要在图片 CDN 链接后面拼接一些参数：
 
-https://blog.michealwayne.cn/2021/02/06/notes/%E3%80%90%E7%AC%94%E8%AE%B0%E3%80%91webp%E9%9A%8F%E6%89%8B%E8%AE%B0/
+- 转换前：https://example-1258125638.cos.ap-shanghai.myqcloud.com/sample.png
+- 转换后：http://example-1258125638.cos.ap-shanghai.myqcloud.com/sample.png?imageMogr2/format/webp
 
-https://blog.csdn.net/weixin_42213796/article/details/116697413
+不过我还是遇到了些小麻烦，从 [can I use](https://caniuse.com/?search=webp) 查询发现，目前还有少部分浏览器不支持 webp。H5 使用 webp 格式图片时，我需要做一些兼容。
 
-如何判断浏览器是否支持 webp，已经是老生常谈。但我翻看社区文章，讲解得并不是很详细，于是觉得有必要写一篇文章说道说道。
+![](./img/can-i-use-webp.png)
 
-## 什么是 webp
+至于微信小程序使用 webp 格式图片，也需要我再琢磨琢磨。[微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/component/image.html) 虽然说基础库 2.9.0 之上支持 webp，但微信的文档一向不太靠谱，我不能完全信任它。
 
-### 什么是有损
+一番研究后，我知道了判断环境支持 webp 的几种办法。对这些办法的优劣，我也有自己的观点，于是我便整理了这篇文章。
 
-### 什么是无损
+拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
 
-### 什么是透明度
+## toDataURL('image/webp')
 
-### 什么是动画
+**代码**
 
-webp 是谷歌 2010 年整出来的, 是 jpeg, png 经过 webp 压缩算法后得到的, 它的压缩算法有 1. 无损 2. 有损 两种，无损肯定是质量牛一点比较贴近 jpeg, png 原来的画质, 有损讲体积压缩得狠一点，关于具体压缩的体积比
+第一种 H5 的判断方法，其实是判断 H5 能不能利用 canvas 的 `toDataURL()` API 得到一张 webp 图片。
 
-https://www.zhihu.com/question/27201061/answer/260228870
+```js
+function isWebpSupported() {
+  try {
+    return document.createElement('canvas')
+      .toDataURL('image/webp')
+      .indexOf('data:image/webp') === 0
+  } catch (e) {
+    return false
+  }
+}
+```
 
-https://www.zhihu.com/question/24405222/answer/2324014798
+**原理**
 
-## toDataURL('image/webp') 误伤
-
-![](./img/can-i-use-wep.png)
+这种方法原理是啥呢？我们可以继续在 [Can I use](https://caniuse.com/?search=webp) 查询 `toDataURL('image/webp')` 的兼容性。
 
 ![](./img/can-i-use-toDataURL.png)
 
-也就是说，toDataURL('image/webp') 支持的浏览器，其实是支持查看 webp 浏览器的子集。
+可以看到，**兼容 `toDataURL('image/webp')` 的浏览器、是兼容 webp 浏览器的子集。**
 
 ![](./img/toDataURL.png)
 
-## 先加载图片，再判断是否支持 webp
+换句话说，这是一种「宁杀错一百，也不放过一个」的方法。举 Safari 浏览器为例子，它其实是可以展示 webp 图片的，但它会被这种 `toDataURL('image/webp')` 方法误伤。
 
-webp 有四个特性，无损、有损、透明度和动画，[Google 官方文档](https://developers.google.com/speed/webp/faq?hl=zh-cn#in_your_own_javascript) 中列出了四种判断方法
+![](./img/safari.jpg)
+
+**优缺点**
+
+这种方法的优缺点如下:
+
+- 优点：代码短小，且方法是同步的，容易理解
+- 缺点：误伤性太高，iOS 的 Safari 浏览器被全部误伤。
+
+**微信小程序能用吗**
+
+这种判断方法微信小程序可以使用吗？很遗憾不可以。
+
+我们之所以用 `toDataURL('image/webp')` 判断 H5 能不能使用 webp，前提是我们知道 **兼容 `toDataURL('image/webp')` 的浏览器、是兼容 webp 浏览器的子集**。
+
+但我在微信官方文档中，没有看到 canvas 的 [toDataURL('image/webp')](https://developers.weixin.qq.com/miniprogram/dev/api/canvas/Canvas.toDataURL.html) 是 webp 的描述。基于此，我判断微信小程序不能用这个方法。
+
+## 加载一张 webp 图片试试，看会不会出错
+
+**代码**
+
+第二种 H5 的判断方法，是直接异步加载一张 webp 格式的图片。如果加载成功，证明环境能支持 webp；如果加载失败，证明环境不支持 webp。
 
 ```js
-// check_webp_feature:
-//   'feature' can be one of 'lossy', 'lossless', 'alpha' or 'animation'.
-//   'callback(feature, result)' will be passed back the detection result (in an asynchronous way!)
-function check_webp_feature(feature, callback) {
-  var kTestImages = {
+function isWebpSupported() {
+  if (!Image) {
+    return Promise.resolve(false)
+  }
+
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onload = function () {
+      resolve((img.width > 0) && (img.height > 0))
+    }
+    img.onerror = function () {
+      reject(false)
+    }
+    img.src = 'data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA';
+  })
+}
+```
+
+**原理**
+
+这种方法来源于 [Google 官方文档](https://developers.google.com/speed/webp/faq?hl=zh-cn#in_your_own_javascript)，webp 其实支持四个功能，无损压缩、有损压缩、透明度和动画，每个功能对应了一张 webp 图片：
+
+```js
+function checkWebpFeature(feature, callback) {
+  const kTestImages = {
     lossy: "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
     lossless: "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
     alpha: "UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",
     animation: "UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA"
-  };
-  var img = new Image();
+  }
+  const img = new Image()
   img.onload = function () {
-    var result = (img.width > 0) && (img.height > 0);
-    callback(feature, result);
-  };
+    const result = (img.width > 0) && (img.height > 0)
+    callback(feature, result)
+  }
   img.onerror = function () {
-    callback(feature, false);
-  };
-  img.src = "data:image/webp;base64," + kTestImages[feature];
+    callback(feature, false)
+  }
+  img.src = "data:image/webp;base64," + kTestImages[feature]
 }
 ```
 
-当然，经过我们在 Can I use 的查询，基本上我们会选择一个判断一个浏览器是否支持有损，这也是为什么有些代码是这样写的原因。
+如果对四种功能都进行判断的话，代码会变得很臃肿。所以实际开发中，基本只选择一张 webp 的图片。
 
+从 [Can I use](https://caniuse.com/?search=webp) 查询结果来看，浏览器要么是先支持 webp 的有损压缩，再支持 webp 的无损压缩、透明度和动画；要么是有损压缩、无损压缩、透明度和动画一起支持。因此，我们往往选择一张支持动画的 webp 图片，用它去试探浏览器是否支持 webp 格式。
+
+**优缺点**
+
+- 优点，安全可靠；
+- 缺点，异步加载。
+
+**微信小程序能用吗**
+
+这种方法小程序可以用吗？理论上可以，但需要进行改造。
+
+微信官方文档上虽然提到了 [createImage](https://developers.weixin.qq.com/minigame/dev/api/render/image/wx.createImage.html) 方法，但我实际测试发现，这个方法竟然没了 (* ￣︿￣)。
+
+![](./img/createImage.jpg)
+
+那么我们要怎么改造呢？我们不能再单独使用 js，而是需要结合 js 和 wxml。在 wxml 中手动写一个 `image` 标签，再给它绑定 `onload` 和 `onerror` 事件。虽然不太优雅，但对小程序来说，优不优雅已经不重要了，能用就很不错了。
+
+## 直接判断版本
+
+**代码**
+
+第三种方法 H5 不常使用，一般是小程序使用，那就是直接判断版本。
+
+```js
+function isWebpSuported() {
+  try {
+    const { system, SDKVersion } = wx.getSystemInfoSync()
+    const [sysName, sysVersion] = (system || '').split(' ')
+    if (!compareVersion(SDKVersion, '2.9.0')) {
+      return false
+    }
+
+    if (
+      sysName.toUpperCase() === 'ANDROID' &&
+      compareVersion(sysVersion, '4.4.4')
+    ) {
+      return true
+    }
+
+    if (
+      sysName.toUpperCase() === 'IOS' &&
+      compareVersion(sysVersion, '14.0.0')
+    ) {
+      return true
+    }
+
+    return false
+  } catch (e) {
+    return false
+  }
+}
+```
+
+**原理**
+
+我们已经通过 [Can I use](https://caniuse.com/?search=webp) 知道：
+
+- Android 4.4.4 以下，iOS 14 以下的浏览器不支持 webp。
+
+又从 [微信小程序 image 组件文档](https://developers.weixin.qq.com/miniprogram/dev/component/image.html#WebView-%E7%89%B9%E6%9C%89%E5%B1%9E%E6%80%A7) 里知道：
+
+- 基础库版本 > 2.9.0 支持 webp。
+
+那么干脆把所有条件都做一个组合，就得到了上述代码，其中 `compareVersion()` 是 [微信官方文档](https://developers.weixin.qq.com/ebook?action=get_post_info&volumn=1&lang=zh_CN&book=miniprogram&docid=000288319f40c0eb00860cd135100a) 中比较版本号的代码。
+
+**优点**
+
+- 优点：同步判断。
+- 缺点：腾讯文档不靠谱，让这个方法都显得有些不靠谱了，我不知道会不会有坑。
+
+## 总结
+
+本文介绍了 H5、小程序使用 webp 格式图片时，判断环境是否支持的方法。
+
+- `toDataURL('image/webp')` 的方法，H5 支持，但是会误伤部分浏览器。小程序不支持。
+- 先加载一张 webp 图片的方法，H5 和小程序都支持。但小程序代码实现得不优雅。
+- 直接判断版本号的方法。H5 不常采用，小程序可以采用。但由于微信文档不靠谱，即便做了多重判断，也让人有些担忧方法是否有效。
+
+拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
