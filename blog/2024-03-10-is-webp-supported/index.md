@@ -62,7 +62,7 @@ function isWebpSupported() {
 
 我们之所以用 `toDataURL('image/webp')` 判断 H5 能不能使用 webp，前提是我们知道 **兼容 `toDataURL('image/webp')` 的浏览器、是兼容 webp 浏览器的子集**。
 
-但我在微信官方文档中，没有看到 canvas 的 [toDataURL('image/webp')](https://developers.weixin.qq.com/miniprogram/dev/api/canvas/Canvas.toDataURL.html) 是 webp 的描述。基于此，我判断微信小程序不能用这个方法。
+但我在微信官方文档中，没有看到类似 canvas 的 [toDataURL('image/webp')](https://developers.weixin.qq.com/miniprogram/dev/api/canvas/Canvas.toDataURL.html) 是 webp 子集的描述。基于此，我判断微信小程序不能用这个方法。
 
 ## 加载一张 webp 图片试试，看会不会出错
 
@@ -82,7 +82,7 @@ function isWebpSupported() {
       resolve((img.width > 0) && (img.height > 0))
     }
     img.onerror = function () {
-      reject(false)
+      resolve(false)
     }
     img.src = 'data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA';
   })
