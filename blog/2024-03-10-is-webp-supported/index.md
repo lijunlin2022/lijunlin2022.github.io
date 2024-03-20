@@ -1,25 +1,23 @@
 # H5、小程序使用 webp 格式图片，如何判断环境是否支持
 
-最近我在做 H5、小程序的性能优化，其中一项优化，是把 H5、小程序的 jpg、png 图片转换为 webp 格式的图片，这是因为相比 jpg、png，webp 格式的图片体积更小、传输速度更快。
+最近我在做 H5、小程序的性能优化，其中一项优化是把 H5、小程序的 jpg、png 图片转换为 webp 图片，这是因为相比 jpg、png，webp 体积更小、传输速度更快。
 
-转换方法很简单，现在各大云服务商基本都提供了方法，比如 [腾讯云](https://cloud.tencent.com/document/product/436/60453) 只需要在图片 CDN 链接后面拼接一些参数：
+转换方法很简单，现在各大云服务商基本都提供了方法。比如 [腾讯云](https://cloud.tencent.com/document/product/436/60453) 只需要在图片 CDN 链接后面拼接一些参数：
 
 - 转换前：https://example-1258125638.cos.ap-shanghai.myqcloud.com/sample.png
 - 转换后：http://example-1258125638.cos.ap-shanghai.myqcloud.com/sample.png?imageMogr2/format/webp
 
-不过我还是遇到了些小麻烦，从 [can I use](https://caniuse.com/?search=webp) 查询发现，目前还有少部分浏览器不支持 webp。H5 使用 webp 格式图片时，我需要做一些兼容。
+不过我还是遇到了些小麻烦，从 [can I use](https://caniuse.com/?search=webp) 查询发现，目前还有少部分浏览器不支持 webp。所以在 H5、小程序使用 webp 格式图片时，我需要做一些兼容。
 
 ![](./img/can-i-use-webp.png)
 
-至于微信小程序使用 webp 格式图片，也需要我再琢磨琢磨。[微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/component/image.html) 虽然说基础库 2.9.0 之上支持 webp，但微信的文档一向不太靠谱，我不能完全信任它。
-
-一番研究后，我知道了判断环境支持 webp 的几种办法。对这些办法的优劣，我也有自己的观点，于是我便整理了这篇文章。
+一番研究后，我知道了判断环境是否支持 webp 的几种办法。对这些办法的优劣，我也有自己的观点，于是我便整理了这篇文章。
 
 拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
 
 ## toDataURL('image/webp')
 
-**代码**
+### 代码
 
 第一种 H5 的判断方法，其实是判断 H5 能不能利用 canvas 的 `toDataURL()` API 得到一张 webp 图片。
 
@@ -35,7 +33,7 @@ function isWebpSupported() {
 }
 ```
 
-**原理**
+### 原理
 
 这种方法原理是啥呢？我们可以继续在 [Can I use](https://caniuse.com/?search=webp) 查询 `toDataURL('image/webp')` 的兼容性。
 
@@ -49,14 +47,14 @@ function isWebpSupported() {
 
 ![](./img/safari.jpg)
 
-**优缺点**
+### 优缺点
 
 这种方法的优缺点如下:
 
-- 优点：代码短小，且方法是同步的，容易理解
+- 优点：代码短小，且方法是同步的，不影响首屏性能。
 - 缺点：误伤性太高，iOS 的 Safari 浏览器被全部误伤。
 
-**微信小程序能用吗**
+### 微信小程序能用吗
 
 这种判断方法微信小程序可以使用吗？很遗憾不可以。
 
@@ -66,7 +64,7 @@ function isWebpSupported() {
 
 ## 加载一张 webp 图片试试，看会不会出错
 
-**代码**
+### 代码
 
 第二种 H5 的判断方法，是直接异步加载一张 webp 格式的图片。如果加载成功，证明环境能支持 webp；如果加载失败，证明环境不支持 webp。
 
@@ -89,7 +87,7 @@ function isWebpSupported() {
 }
 ```
 
-**原理**
+### 原理
 
 这种方法来源于 [Google 官方文档](https://developers.google.com/speed/webp/faq?hl=zh-cn#in_your_own_javascript)，webp 其实支持四个功能，无损压缩、有损压缩、透明度和动画，每个功能对应了一张 webp 图片：
 
@@ -117,26 +115,33 @@ function checkWebpFeature(feature, callback) {
 
 从 [Can I use](https://caniuse.com/?search=webp) 查询结果来看，浏览器要么是先支持 webp 的有损压缩，再支持 webp 的无损压缩、透明度和动画；要么是有损压缩、无损压缩、透明度和动画一起支持。因此，我们往往选择一张支持动画的 webp 图片，用它去试探浏览器是否支持 webp 格式。
 
-**优缺点**
+### 优缺点
 
-- 优点，安全可靠；
-- 缺点，异步加载。
+- 优点：基本不会误伤；
+- 缺点：异步加载，可能无法及时转换图片链接、影响首屏性能。如果 H5 不选择 CSR，而选择 SSR，则无法使用此方法。
 
-**微信小程序能用吗**
+### 微信小程序能用吗
 
-这种方法小程序可以用吗？理论上可以，但需要进行改造。
+这种方法小程序可以用吗？理论上可以，但不推荐使用。
 
 微信官方文档上虽然提到了 [createImage](https://developers.weixin.qq.com/minigame/dev/api/render/image/wx.createImage.html) 方法，但我实际测试发现，这个方法竟然没了 (* ￣︿￣)。
 
 ![](./img/createImage.jpg)
 
-那么我们要怎么改造呢？我们不能再单独使用 js，而是需要结合 js 和 wxml。在 wxml 中手动写一个 `image` 标签，再给它绑定 `onload` 和 `onerror` 事件。虽然不太优雅，但对小程序来说，优不优雅已经不重要了，能用就很不错了。
+我们使用此方法，就必须在 wxml 中手动写一个 `image` 标签，再给它绑定 `onload` 和 `onerror` 事件。这意味着：
+
+- 如果我们把这个标签放到自己封装的 WebpImage 组件中，WebpImage 被多次使用后，小程序页面会多出很多额外的节点。
+- 如果我们把这个标签放到页面上（比如 index 页面），就需要给每一个用户可能直接访问的页面都加上这个标签。也会出现很多额外的节点。
+
+因此不推荐使用。
 
 ## 直接判断版本
 
-**代码**
+### 代码
 
-第三种方法 H5 不常使用，一般是小程序使用，那就是直接判断版本。
+第三种方法，就是直接判断版本号，Android 版本大于 4.4.4，iOS 大于 14.0.0 时，认为 webp 可用。
+
+H5 通过 ua 获取系统版本号的文章很多，我们这里给出小程序的代码。
 
 ```js
 function isWebpSuported() {
@@ -168,7 +173,7 @@ function isWebpSuported() {
 }
 ```
 
-**原理**
+### 原理
 
 我们已经通过 [Can I use](https://caniuse.com/?search=webp) 知道：
 
@@ -180,17 +185,17 @@ function isWebpSuported() {
 
 那么干脆把所有条件都做一个组合，就得到了上述代码，其中 `compareVersion()` 是 [微信官方文档](https://developers.weixin.qq.com/ebook?action=get_post_info&volumn=1&lang=zh_CN&book=miniprogram&docid=000288319f40c0eb00860cd135100a) 中比较版本号的代码。
 
-**优点**
+### 优缺点
 
-- 优点：同步判断。
-- 缺点：腾讯文档不靠谱，让这个方法都显得有些不靠谱了，我不知道会不会有坑。
+- 优点：同步判断、不影响首屏性能；误伤范围小；且 CSR 和 SSR 可用。
+- 缺点：无明显缺点。
 
 ## 总结
 
 本文介绍了 H5、小程序使用 webp 格式图片时，判断环境是否支持的方法。
 
-- `toDataURL('image/webp')` 的方法，H5 支持，但是会误伤部分浏览器。小程序不支持。
-- 先加载一张 webp 图片的方法，H5 和小程序都支持。但小程序代码实现得不优雅。
-- 直接判断版本号的方法。H5 不常采用，小程序可以采用。但由于微信文档不靠谱，即便做了多重判断，也让人有些担忧方法是否有效。
+- 方法一：利用 `toDataURL('image/webp')` 判断。H5 支持，但是会误伤大部分浏览器；小程序不支持。
+- 方法二：利用一张小体积的 webp 图片试探。H5 CSR 时支持，但因为方法是异步的、可能影响首屏性能；H5 SSR 时不支持；小程序支持，但实现不优雅。
+- 方法三：**利用版本号判断。H5 和浏览器均支持，是最佳实现方案。**
 
 拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
