@@ -73,7 +73,7 @@ export default {
     },
     prism: {
       theme: prismThemes.oneLight,
-      darkTheme: prismThemes.oneDark,
+      darkTheme: prismThemes.oneDark
     },
   },
   markdown: {
