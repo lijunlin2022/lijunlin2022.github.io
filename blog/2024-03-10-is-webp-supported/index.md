@@ -139,7 +139,7 @@ function checkWebpFeature(feature, callback) {
 
 ### 代码
 
-第三种方法，就是直接判断版本号，Android 版本大于 4.4.4，iOS 大于 14.0.0 时，认为 webp 可用。
+第三种方法，就是直接判断版本号，Android 版本大于 4.2.0，iOS 大于 14.0.0 时，认为 webp 可用。
 
 H5 通过 ua 获取系统版本号的文章很多，我们这里给出小程序的代码。
 
@@ -148,20 +148,20 @@ function isWebpSuported() {
   try {
     const { system, SDKVersion } = wx.getSystemInfoSync()
     const [sysName, sysVersion] = (system || '').split(' ')
-    if (!compareVersion(SDKVersion, '2.9.0')) {
+    if (compareVersion(SDKVersion, '2.9.0') < 0) {
       return false
     }
 
     if (
       sysName.toUpperCase() === 'ANDROID' &&
-      compareVersion(sysVersion, '4.4.4')
+      compareVersion(sysVersion, '4.2.0') >= 0
     ) {
       return true
     }
 
     if (
       sysName.toUpperCase() === 'IOS' &&
-      compareVersion(sysVersion, '14.0.0')
+      compareVersion(sysVersion, '14.0.0') >= 0
     ) {
       return true
     }
@@ -177,11 +177,11 @@ function isWebpSuported() {
 
 我们已经通过 [Can I use](https://caniuse.com/?search=webp) 知道：
 
-- Android 4.4.4 以下，iOS 14 以下的浏览器不支持 webp。
+- Android 4.2.0 以下，iOS 14 以下的浏览器不支持 webp。
 
 又从 [微信小程序 image 组件文档](https://developers.weixin.qq.com/miniprogram/dev/component/image.html#WebView-%E7%89%B9%E6%9C%89%E5%B1%9E%E6%80%A7) 里知道：
 
-- 基础库版本 > 2.9.0 支持 webp。
+- 基础库版本 >= 2.9.0 支持 webp。
 
 那么干脆把所有条件都做一个组合，就得到了上述代码，其中 `compareVersion()` 是 [微信官方文档](https://developers.weixin.qq.com/ebook?action=get_post_info&volumn=1&lang=zh_CN&book=miniprogram&docid=000288319f40c0eb00860cd135100a) 中比较版本号的代码。
 
