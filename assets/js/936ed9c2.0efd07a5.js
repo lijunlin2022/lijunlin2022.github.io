@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[9721],{41716:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"\u6211\u7684\u7259\u9f7f\u77eb\u6b63\u7ecf\u5386","permalink":"/life/2023/12/17/orthodontic","unlisted":false}]}')}}]);
