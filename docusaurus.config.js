@@ -49,11 +49,6 @@ export default {
           position: "left",
           label: "技术笔记",
         },
-        {
-          to: "/life",
-          label: "生活",
-          position: "left",
-        },
         // {
         //   to: "/impression",
         //   label: "观后感",
@@ -87,14 +82,6 @@ export default {
         id: 'impression',
         routeBasePath: 'impression',
         path: './impression',
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-blog',
-      {
-        id: 'life',
-        routeBasePath: 'life',
-        path: './life',
       },
     ],
     [
