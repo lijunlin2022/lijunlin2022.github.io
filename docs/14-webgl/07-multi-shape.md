@@ -1,7 +1,7 @@
 # 实现多种图形的绘制
 
 ```js
-...
+// ... 省略
 gl.drawArrays(gl.LINE_STRIP, 0, 3)
 ```
 
