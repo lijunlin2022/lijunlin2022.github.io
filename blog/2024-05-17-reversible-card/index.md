@@ -83,7 +83,7 @@ btn.addEventListener('click', function () {
 
 codepen: https://codepen.io/lijunlin2022/pen/yLrJMZL
 
-码上掘金：https://code.juejin.cn/pen/7370534206583898150
+码上掘金: https://code.juejin.cn/pen/7370534206583898150
 
 ## 总结
 

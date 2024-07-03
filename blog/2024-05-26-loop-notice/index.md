@@ -110,7 +110,7 @@ move();
 完整代码如下，你可以在 codepen 或者码上掘金上查看。
 
 - codepen: [https://codepen.io/lijunlin2022/pen/rNgMrwg](https://codepen.io/lijunlin2022/pen/rNgMrwg)
-- 码上掘金：[https://code.juejin.cn/pen/7373131233506623538](https://code.juejin.cn/pen/7373131233506623538)
+- 码上掘金: [https://code.juejin.cn/pen/7373131233506623538](https://code.juejin.cn/pen/7373131233506623538)
 
 ## 总结
 

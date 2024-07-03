@@ -5,6 +5,10 @@ body {
   overflow-x: hidden;
 }
 
+pre code {
+  font-size: 12px !important;
+}
+
 :root {
   --ifm-color-primary-lightest: #f9e5e2;
   --ifm-color-primary-lighter: #f2ccc6;
