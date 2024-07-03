@@ -3,77 +3,51 @@ body {
   width: 100%;
   overscroll-behavior: none;
   overflow-x: hidden;
-  font-size: 14px;
+  font-size: 16px;
+
+  --ifm-h1-font-size: 28px !important;
+  --ifm-h2-font-size: 24px !important;
+  --ifm-h3-font-size: 20px !important;
+  --ifm-h4-font-size: 18px !important;
+  --ifm-h5-font-size: 16px !important;
+  --ifm-h6-font-size: 14px !important;
 }
-
-/* 粉色主题 */
-/* :root {
-  --ifm-color-primary-lightest: #ffd6e7;
-  --ifm-color-primary-lighter: #ffadd2;
-  --ifm-color-primary-light: #ff85c0;
-  --ifm-color-primary: #f759ab;
-  --ifm-color-primary-dark:#eb2f96;
-  --ifm-color-primary-darker: #c41d7f;
-  --ifm-color-primary-darkest: #9e1068;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: #ffd6e7;
-
-  --ifm-h1-font-size: 2rem !important;
-  --ifm-h2-font-size: 1.5rem !important;
-  --ifm-h3-font-size: 1.25rem !important;
-  --ifm-h4-font-size: 1rem !important;
-  --ifm-h5-font-size: 0.875rem !important;
-  --ifm-h6-font-size: 0.85rem !important;
-}
-
-[data-theme='dark'] {
-  --ifm-color-primary-lightest: #fff0f6;
-  --ifm-color-primary-lighter: #ffd6e7;
-  --ifm-color-primary-light: #ffadd2;
-  --ifm-color-primary: #ff85c0;
-  --ifm-color-primary-dark:#f759ab;
-  --ifm-color-primary-darker: #eb2f96;
-  --ifm-color-primary-darkest: #c41d7f;
-  --docusaurus-highlighted-code-line-bg: #9e1068;
-
-  --ifm-h1-font-size: 2rem !important;
-  --ifm-h2-font-size: 1.5rem !important;
-  --ifm-h3-font-size: 1.25rem !important;
-  --ifm-h4-font-size: 1rem !important;
-  --ifm-h5-font-size: 0.875rem !important;
-  --ifm-h6-font-size: 0.85rem !important;
-} */
 
 /* 绿色主题 */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary-lightest: #f9e5e2;
+  --ifm-color-primary-lighter: #f2ccc6;
+  --ifm-color-primary-light: #e5a6a0;
+  --ifm-color-primary: #b93934;
+  --ifm-color-primary-dark: #992c28;
+  --ifm-color-primary-darker: #7f2420;
+  --ifm-color-primary-darkest: #4d1512;
   --ifm-code-font-size: 95%;
+  --ifm-background-color: #f8f6f4;
+  --ifm-navbar-background-color: #f8f6f4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary-lightest: #fffbf8;
+  --ifm-color-primary-lighter: #f9e5e2;
+  --ifm-color-primary-light: #f2ccc6;
+  --ifm-color-primary: #e5a6a0;
+  --ifm-color-primary-dark: #992c28;
+  --ifm-color-primary-darker: #7f2420;
+  --ifm-color-primary-darkest: #4d1512;
+  --ifm-code-font-size: 95%;
+  --ifm-background-color: #333 !important;
+  --ifm-navbar-background-color: #333 !important;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 .markdown h1:first-child {
-  --ifm-h1-font-size: 2rem !important;
+  --ifm-h1-font-size: 28px !important;
 }
 
 .title_node_modules-\@docusaurus-theme-classic-lib-theme-DocCategoryGeneratedIndexPage-styles-module {
-  --ifm-h1-font-size: 2rem !important;
+  --ifm-h1-font-size: 28px !important;
 }
 
 .hero__title, .title_f1Hy {
@@ -81,7 +55,7 @@ body {
 }
 
 .markdown > h2 {
-  --ifm-h2-font-size: 1.5rem !important;
+  --ifm-h2-font-size: 24px !important;
 }
 
 .title_node_modules-\@docusaurus-theme-classic-lib-theme-BlogPostItem-Header-Title-styles-module {

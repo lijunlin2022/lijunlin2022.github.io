@@ -34,9 +34,6 @@ export default {
     ],
     navbar: {
       title: "小霖家的混江龙",
-      logo: {
-        src: 'img/logo.png'
-      },
       items: [
         {
           to: "/blog",
@@ -67,8 +64,8 @@ export default {
       ],
     },
     prism: {
-      theme: prismThemes.oneLight,
-      darkTheme: prismThemes.oneDark
+      theme: prismThemes.vsLight,
+      darkTheme: prismThemes.vsDark
     },
   },
   markdown: {
