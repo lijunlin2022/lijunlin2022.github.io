@@ -3,17 +3,8 @@ body {
   width: 100%;
   overscroll-behavior: none;
   overflow-x: hidden;
-  font-size: 16px;
-
-  --ifm-h1-font-size: 28px !important;
-  --ifm-h2-font-size: 24px !important;
-  --ifm-h3-font-size: 20px !important;
-  --ifm-h4-font-size: 18px !important;
-  --ifm-h5-font-size: 16px !important;
-  --ifm-h6-font-size: 14px !important;
 }
 
-/* 绿色主题 */
 :root {
   --ifm-color-primary-lightest: #f9e5e2;
   --ifm-color-primary-lighter: #f2ccc6;
