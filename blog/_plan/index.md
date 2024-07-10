@@ -14,3 +14,5 @@
 - [ ] H5 Vite 如何兼容低版本浏览器？—— 只用 vite-legacy 就可以了吗？
 - [ ] H5 如何与 Android 和 iOS 进行通信？
 - [ ] H5 HTML 内联 script 如何提取处理？
+- [ ] canvas 画圆角矩形
+- [ ] canvas 实现文本溢出显示省略号

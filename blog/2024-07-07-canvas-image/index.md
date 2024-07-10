@@ -1,18 +1,16 @@
-# 仿拼多多分享商品，canvas 绘制图片时如何实现 contain 和 cover 效果？
+# 从拼多多分享商品说起，canvas 绘图如何实现 contain 和 cover 效果？
 
-我们偶尔会在一些 H5、小程序中，看到分享商品的功能。比如拼多多小程序中，用户可以把商品分享给自己的好友。分享图有三个主要组成部分，一张背景图、一张商品图和一串价格。其中背景图通常保持不变，商品图、价格则随着商品的改变而改变。
+我们偶尔会在一些 H5、小程序中，看到分享商品的功能。比如拼多多小程序中，用户可以把商品分享给自己的好友。分享图主要由 2 张图片组成，一张商品图，一张背景图。
 
 ![](./img/pdd.jpg)
 
-这类分享图一般由前端使用 canvas 动态绘制，canvas 也提供了 [drawImage()](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage) API 绘制图片。不过，相比 css 实现样式，canvas 实现样式并不方便。
-
-在 css 中，我们可以给 `background-size` 设置 `contain`，实现「缩放背景图片以**完全装入**容器」效果；可以给 `background-size` 设置 `cover`，实现「缩放背景图片以**完全覆盖**容器」效果。
+商品图通常由商家自己配置，尺寸会变动，一般是 contain 效果；背景图通常由 UI 提供，尺寸固定，一般是 cover 效果。
 
 ![](./img/contain-and-cover.png)
 
-但在 canvas 中，并没有原生 API 帮助我们绘制缩放图片，于是我实现了 drawContainImage 和 drawCoverImage 两个工具函数。
+如果使用 css，我们可以给 `background-size` 设置 `contain` 和 `cover`，可惜这类分享图基本由 canvas 绘制而成。canvas 只提供了 [drawImage()](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage) 绘制图片，无法精准实现 `contain` 和 `cover` 效果，于是我实现了 `drawContainImage` 和 `drawCoverImage` 两个工具函数。
 
-本文我会先分析 contain 效果的`图片宽高比`和`容器宽高比`关系，并给出 drawContainImage 工具函数；再分析 cover 效果的`图片宽高比`和`容器宽高比`关系，并给出 drawCoverImage 工具函数；最后我会用两个工具函数，绘制如下分享图（背景图效果是 cover，商品图效果是 contain）：
+本文我会先分析 contain 效果的`图片宽高比`和`容器宽高比`，并给出 drawContainImage 工具函数；再分析 cover 效果的`图片宽高比`和`容器宽高比`，并给出 drawCoverImage 工具函数；最后我会用两个工具函数，绘制如下分享图：
 
 ![](./img/product.png)
 
@@ -20,7 +18,7 @@
 
 ## contain 效果
 
-先来看 contain 效果。contain 效果是「缩放背景图片以**完全装入**容器」，它会有两种情况：
+先来看 contain 效果。contain 效果是「缩放图片以**完全装入**容器」，它会有两种情况：
 
 - 图片宽高比 < 容器宽高比，缩放后图片宽度 < 容器宽度，图片高度 = 容器高度。
 - 图片宽高比 > 容器宽高比，缩放后图片宽度 = 容器宽度，图片高度 < 容器高度。
@@ -41,10 +39,10 @@
 
 ![](./img/canvas-contain-imgRatio-le-canvasRatio.png)
 
-- dx 是 image 的左上角在目标画布上 X 轴坐标，需要按 `dx = (width - dw) / 2` 公式计算；
+- dx 是 image 的左上角在目标画布上 X 轴坐标，`dx = (width - dw) / 2`；
 - dy 是 image 的左上角在目标画布上 Y 轴坐标，`dy = 0`；
-- dw 是 image 在目标画布上绘制的宽度，知道图片宽高比、容器宽度，可以按 `dw = imgRatio * width` 公式计算；
-- dh 是 image 在目标画布上绘制的高度，直接等于容器高度，`dh = height`。
+- dw 是 image 在目标画布上绘制的宽度，`dw = imgRatio * width`；
+- dh 是 image 在目标画布上绘制的高度，`dh = height`。
 
 ### 图片宽高比 > 容器宽高比
 
@@ -53,9 +51,9 @@
 ![](./img/canvas-contain-imgRatio-ge-canvasRatio.png)
 
 - dx 是 image 的左上角在目标画布上 X 轴坐标，`dx = 0`；
-- dy 是 image 的左上角在目标画布上 Y 轴坐标，需要按 `dy = (height - dh) / 2` 公式计算；
-- dw 是 image 在目标画布上绘制的宽度，直接等于容器宽度，`dw = width`；
-- dh 是 image 在目标画布上绘制的高度，知道图片宽高比，容器高度，可以按 `dh = dw / imgRatio` 公式计算。
+- dy 是 image 的左上角在目标画布上 Y 轴坐标，`dy = (height - dh) / 2`；
+- dw 是 image 在目标画布上绘制的宽度，`dw = width`；
+- dh 是 image 在目标画布上绘制的高度，`dh = dw / imgRatio`。
 
 ### drawContainImage 代码
 
@@ -90,7 +88,7 @@ function drawContainImage({
 
 ## cover 效果
 
-再看 cover 效果，cover 效果是「缩放背景图片以**完全覆盖**容器」。如下示意图所示，缩放后图片（红色部分）比容器（绿色部分）大。它会有两种情况：
+再看 cover 效果，cover 效果是「缩放图片以**完全覆盖**容器」。如下示意图所示，缩放后图片（红色部分）比容器（绿色部分）大。它会有两种情况：
 
 - 图片宽高比 > 容器宽高比，缩放后图片宽度 = 容器宽度，图片高度 > 容器高度。
 - 图片宽高比 < 容器宽高比，缩放后图片宽度 < 容器宽度，图片高度 = 容器高度。
@@ -117,10 +115,10 @@ function drawContainImage({
 
 ![](./img/canvas-cover-imgRatio-ge-canvasRatio.png)
 
-- sx 是 image 的矩形（裁剪）选择框的左上角 X 轴坐标，可以按 `sx = (img.width - sw) / 2` 公式计算；
-- sy 是 image 的矩形（裁剪）选择框的左上角 Y 轴坐标，`sy = 0`；
-- sw 是 image 的矩形（裁剪）选择框的宽度，可以按 `sw = sh * boxRatio` 公式计算；
-- sh 是 image的矩形（裁剪）选择框的高度，直接等于图片高度，`sh = img.height`。
+- sx 是 image 裁剪选择框（绿色部分）的左上角 X 轴坐标，`sx = (img.width - sw) / 2`；
+- sy 是 image 裁剪选择框（绿色部分）的左上角 Y 轴坐标，`sy = 0`；
+- sw 是 image 裁剪选择框（绿色部分）的宽度，`sw = sh * boxRatio`；
+- sh 是 image 裁剪选择框（绿色部分）的高度，`sh = img.height`。
 
 ### 图片宽高比 < 容器宽高比
 
@@ -128,10 +126,10 @@ function drawContainImage({
 
 ![](./img/canvas-cover-imgRatio-le-canvasRatio.png)
 
-- sx 是 image 的矩形（裁剪）选择框的左上角 X 轴坐标，`sx = 0`；
-- sy 是 image 的矩形（裁剪）选择框的左上角 Y 轴坐标，可以按 `sy = (img.height - sh) / 2` 公式计算；
-- sw 是 image 的矩形（裁剪）选择框的宽度，直接等于图片宽度，`sw = img.width`；
-- sh 是 image的矩形（裁剪）选择框的高度，可以按 `sh = sw / boxRatio` 公式计算。
+- sx 是 image 裁剪选择框（绿色部分）的左上角 X 轴坐标，`sx = 0`；
+- sy 是 image 裁剪选择框（绿色部分）的左上角 Y 轴坐标，`sy = (img.height - sh) / 2`；
+- sw 是 image 裁剪选择框（绿色部分）的宽度，`sw = img.width`；
+- sh 是 image 裁剪选择框（绿色部分）的高度，`sh = sw / boxRatio`。
 
 ### drawCoverImage 代码
 
@@ -163,11 +161,13 @@ function drawCoverImage({
 
 ## 完整代码
 
-完整代码如下，你可以在 codepen 或者码上掘金上查看：
-
-- 码上掘金: https://code.juejin.cn/pen/7388885726391992371
+完整代码可以在码上掘金上查看：https://code.juejin.cn/pen/7388885726391992371
 
 ## 总结
+
+本文我分析了 contain 效果、cover 效果的`图片宽高比`和`容器宽高比`关系，并给出 drawContainImage 和 drawCoverImage 工具函数，最后用两个工具函数，绘制了一个商品分享图。
+
+拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
 
 ## 参考文章
 
