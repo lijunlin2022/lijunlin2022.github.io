@@ -46,16 +46,12 @@ export default {
           position: "left",
           label: "技术笔记",
         },
-        // {
-        //   to: "/impression",
-        //   label: "观后感",
-        //   position: "left",
-        // },
-        // {
-        //   to: "/resume",
-        //   label: "简历",
-        //   position: "left",
-        // },
+        {
+          to: '/reader-runner/dev-log/',
+          sidebarId: "readerRunnerSidebar",
+          position: "left",
+          label: "伴读伴跑"
+        },
         {
           href: "https://github.com/lijunlin2022",
           label: "GitHub",
@@ -74,19 +70,12 @@ export default {
   themes: ["@docusaurus/theme-live-codeblock", "@docusaurus/theme-mermaid"],
   plugins: [
     [
-      '@docusaurus/plugin-content-blog',
+      '@docusaurus/plugin-content-docs',
       {
-        id: 'impression',
-        routeBasePath: 'impression',
-        path: './impression',
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-blog',
-      {
-        id: 'novel',
-        routeBasePath: 'novel',
-        path: './novel',
+        id: "readerRunnerSidebar",
+        path: 'reader-runner',
+        routeBasePath: 'reader-runner',
+        sidebarPath: './sidebars-reader-runner.js',
       },
     ],
   ],
