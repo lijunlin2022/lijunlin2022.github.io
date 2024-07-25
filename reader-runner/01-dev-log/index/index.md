@@ -1,4 +1,8 @@
-# Epub 的错误
+# 开发日志
+
+## 2024.07.24
+
+### Epub 的错误
 
 ![](./img/es5-ext-string-contains.png)
 
@@ -18,10 +22,22 @@ https://github.com/webpack/enhanced-resolve/issues/282
 
 ![](./img/epub-dependency.png)
 
-# 小程序上解析错误
+### 小程序上解析错误
 
 因为 epubjs 自己用 XMLHttpRequest 实现了请求。
 
 此外 event-emitter 太离谱了，竟然已经三年没更新了
 
 https://github.com/medikoo/event-emitter
+
+![](./img/2024-07-24.png)
+
+## 2024.07.25
+
+设置字体大小、字体
+
+epubjs 的 rendition 内部有一个 themes，通过设置 themes 的 fontSize 和 font，我们可以改变字体大小、字体。
+
+http://epubjs.org/documentation/0.3/#themes
+
+![](./img/2024-07-25.png)

@@ -47,7 +47,7 @@ export default {
           label: "技术笔记",
         },
         {
-          to: '/reader-runner/dev-log/',
+          to: '/reader-runner/dev-log/index',
           sidebarId: "readerRunnerSidebar",
           position: "left",
           label: "伴读伴跑"
