@@ -41,3 +41,20 @@ epubjs 的 rendition 内部有一个 themes，通过设置 themes 的 fontSize �
 http://epubjs.org/documentation/0.3/#themes
 
 ![](./img/2024-07-25.png)
+
+epubjs 通过 ePub 生成的 book，book 可以通过 loaded 上的属性获取解析的结果：
+
+- metadata 可以获取标题相关数据
+- navigation 可以获取导航相关数据
+
+## 2024.07.26
+
+尝试用 class 替换掉 event-emitter，发现替换后原本的方法我不会用了。
+
+关于 class 和 function 原型的关系，我还比较模糊。
+
+一番折腾下来，运行失败了，代码倒是大致看明白了。
+
+## 2027.07.27
+
+格式化了 epubjs 的源代码，发现 epubjs 里有许多方法其实没有实现。
