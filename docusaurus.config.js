@@ -78,5 +78,13 @@ export default {
         sidebarPath: './sidebars-reader-runner.js',
       },
     ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: "officialAccountsSidebar",
+        path: 'official-accounts',
+        routeBasePath: 'official-accounts',
+      },
+    ],
   ],
 };
