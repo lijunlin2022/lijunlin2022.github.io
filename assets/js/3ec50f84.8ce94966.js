@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[775],{8538:e=>{e.exports=JSON.parse('{"blogBasePath":"/official-accounts","blogTitle":"Blog"}')}}]);
