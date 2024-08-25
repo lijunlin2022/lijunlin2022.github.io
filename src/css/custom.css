@@ -17,7 +17,7 @@ pre code {
   --ifm-color-primary-dark: #992c28;
   --ifm-color-primary-darker: #7f2420;
   --ifm-color-primary-darkest: #4d1512;
-  --ifm-code-font-size: 95%;
+  --ifm-code-font-size: 12px;
   --ifm-background-color: #f8f6f4;
   --ifm-navbar-background-color: #f8f6f4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);

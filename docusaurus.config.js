@@ -81,9 +81,9 @@ export default {
     [
       '@docusaurus/plugin-content-blog',
       {
-        id: "officialAccountsSidebar",
-        path: 'official-accounts',
-        routeBasePath: 'official-accounts',
+        id: "officialSidebar",
+        path: 'official',
+        routeBasePath: 'official',
       },
     ],
   ],
