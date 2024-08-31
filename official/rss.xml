@@ -4,7 +4,7 @@
         <title>小霖家的混江龙 Blog</title>
         <link>https://lijunlin2022.github.io/official</link>
         <description>小霖家的混江龙 Blog</description>
-        <lastBuildDate>Sun, 25 Aug 2024 14:22:15 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 31 Aug 2024 15:08:22 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,7 +12,13 @@
             <title><![CDATA[微信公众号]]></title>
             <link>https://lijunlin2022.github.io/official/index</link>
             <guid>https://lijunlin2022.github.io/official/index</guid>
-            <pubDate>Sun, 25 Aug 2024 14:22:15 GMT</pubDate>
+            <pubDate>Sat, 31 Aug 2024 15:08:22 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[反本能]]></title>
+            <link>https://lijunlin2022.github.io/official/2024/08/31/anti-instinct</link>
+            <guid>https://lijunlin2022.github.io/official/2024/08/31/anti-instinct</guid>
+            <pubDate>Sat, 31 Aug 2024 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
