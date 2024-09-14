@@ -4,7 +4,7 @@
         <title>小霖家的混江龙 Blog</title>
         <link>https://lijunlin2022.github.io/official</link>
         <description>小霖家的混江龙 Blog</description>
-        <lastBuildDate>Sat, 14 Sep 2024 11:50:01 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 14 Sep 2024 12:00:20 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[微信公众号]]></title>
             <link>https://lijunlin2022.github.io/official/index</link>
             <guid>https://lijunlin2022.github.io/official/index</guid>
-            <pubDate>Sat, 14 Sep 2024 11:50:01 GMT</pubDate>
+            <pubDate>Sat, 14 Sep 2024 12:00:20 GMT</pubDate>
             <description><![CDATA[测试]]></description>
             <content:encoded><![CDATA[<p>测试</p>
 <p>尝试提交代码</p>]]></content:encoded>
@@ -22,6 +22,8 @@
             <link>https://lijunlin2022.github.io/official/2024/08/31/anti-instinct</link>
             <guid>https://lijunlin2022.github.io/official/2024/08/31/anti-instinct</guid>
             <pubDate>Sat, 31 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[测试]]></description>
+            <content:encoded><![CDATA[<p>测试</p>]]></content:encoded>
         </item>
     </channel>
 </rss>
