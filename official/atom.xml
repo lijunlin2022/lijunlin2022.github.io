@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lijunlin2022.github.io/official</id>
     <title>小霖家的混江龙 Blog</title>
-    <updated>2024-09-14T12:00:20.000Z</updated>
+    <updated>2024-09-14T12:02:30.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lijunlin2022.github.io/official"/>
     <subtitle>小霖家的混江龙 Blog</subtitle>
@@ -11,10 +11,10 @@
         <title type="html"><![CDATA[微信公众号]]></title>
         <id>https://lijunlin2022.github.io/official/index</id>
         <link href="https://lijunlin2022.github.io/official/index"/>
-        <updated>2024-09-14T12:00:20.000Z</updated>
+        <updated>2024-09-14T12:02:30.000Z</updated>
         <summary type="html"><![CDATA[测试]]></summary>
         <content type="html"><![CDATA[<p>测试</p>
-<p>尝试提交代码</p>]]></content>
+<p>测试同时提交两个文件</p>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[反本能]]></title>
@@ -22,6 +22,7 @@
         <link href="https://lijunlin2022.github.io/official/2024/08/31/anti-instinct"/>
         <updated>2024-08-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[测试]]></summary>
-        <content type="html"><![CDATA[<p>测试</p>]]></content>
+        <content type="html"><![CDATA[<p>测试</p>
+<p>测试同时提交两个文件</p>]]></content>
     </entry>
 </feed>
