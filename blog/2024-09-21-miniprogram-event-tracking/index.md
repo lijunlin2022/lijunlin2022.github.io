@@ -1,15 +1,68 @@
 # 一个小程序组件埋点的优雅思路
 
-问题：你有没有感觉小程序的埋点实现起来不太优雅？
+```js
+function mergeMethods(target, fns) {
+  Object.keys(fns).forEach(key => {
+    if (typeof fns[key] === 'function') {
+      // 如果是组件，fns 需要包裹在 fns 里
+      if (target.hasOwnProperty('methods')) {
+        target.methods = target.methods || {};
+        target.methods[key] = fns[key];
+      }
+      // 如果是页面，直接混入函数
+      else {
+        target[key] = fns[key];
+      }
+    }
+  });
+  return target
+}
+```
 
-原因：组件内部的埋点，需要用到外层的公共参数。常见的复用方法：
+```js
+const mergeMethods = require('../../../utils/mergeMethods')
+const track = require('../../utils/track')
 
-1. 外层页面需要写两个方法，一个用来上报页面埋点，一个用来上报组件埋点。然后组件内部需要埋点时，把埋点 trigger 出去；
-坏处是：两个埋点函数，组件层级过深时，trigger 方法容易遗漏；
-2. 把参数传递给每个组件。坏处是：每个组件都自己组合公共参数。
+const config = {
+  properties: {
+    commonParams: Object,
+  },
+  methods: {
+    onCompBtnClick() {
+      this.track('click', 'comp id', { btnName: '组件按钮' })
+    }
+  }
+}
 
-解决办法：
+Component(mergeMethods(config, { track }))
+```
 
-利用 mix 方法，把埋点 mix 到方法里，然后每次取公共参数都从 data 中取。
+```js
+const mergeMethods = require('../../utils/mergeMethods')
+const track = require('../utils/track')
 
-<!-- truncate -->
+const config = {
+  data: {
+    commonParams: {
+      channel: 'picture',
+      activityId: '123456'
+    }
+  },
+  onPageBtnClick() {
+    this.track('click', 'page id', { btnName: '页面按钮' })
+  }
+}
+
+Page(mergeMethods(config, { track }))
+```
+
+```html
+<button
+  type="primary"
+  style="margin-top: 200rpx;"
+  bind:tap="onPageBtnClick"
+>
+  页面按钮
+</button>
+<comp commonParams="{{commonParams}}" />
+```

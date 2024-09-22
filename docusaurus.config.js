@@ -17,6 +17,7 @@ export default {
         blog: {
           showReadingTime: true,
           blogSidebarCount: "ALL",
+          onUntruncatedBlogPosts: 'ignore'
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -84,6 +85,7 @@ export default {
         id: "officialSidebar",
         path: 'official',
         routeBasePath: 'official',
+        onUntruncatedBlogPosts: 'ignore'
       },
     ],
   ],
