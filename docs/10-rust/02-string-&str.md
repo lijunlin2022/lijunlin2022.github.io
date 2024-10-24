@@ -202,16 +202,38 @@ println!("{}", s);
 
 原始字符串可以避免繁琐的反斜杠，让代码更清晰易懂。因此在表示正则表达式、文件路径时，我们通常会选择原始字符串字面量。
 
-## 参考资料
+## 字符串和所有权
 
-- [^1]: C 语言风格的字符串以 `'/0'` 结尾。
+1. Rust 中的每一个值都有一个变量，称为其所有者；
+2. 值在任一时刻有且只有一个所有者；
+3. 当所有者（变量）离开作用域，这个值将被丢弃。
 
-<script
-  src="https://utteranc.es/client.js"
-  repo="lijunlin2022/blog-issues"
-  issue-term="rust-string-&str"
-  theme="github-light"
-  crossorigin="anonymous"
-  async
->
-</script>
+举例来说：下述代码将会报错，因为变量 `your_name` 离开作用域后，变量就销毁了。
+
+如果把 `print_name_2` 和 `print_name_1` 调换位置，则能够正常运行，因为 `print_name_2` 借用了 `your_name` 的所有权，`your_name` 变量还存在。
+
+```rust
+use std::io::stdin;
+
+fn what_is_your_name() -> String {
+    let mut your_name = String::new();
+    stdin().read_line(&mut your_name).expect("Failed to read line");
+    your_name = your_name.trim().to_lowercase().to_string();
+    your_name
+}
+fn print_name_1(name: &String) {
+    println!("Hello, {}!", name);
+}
+fn print_name_2(name: String) {
+    println!("Hello, {}!", name);
+}
+fn main() {
+    let your_name = what_is_your_name();
+    // 正常
+    print_name_1(&your_name);
+    print_name_2(your_name);
+    // 报错
+    // print_name_2(your_name);
+    // print_name_1(&your_name);
+}
+```
