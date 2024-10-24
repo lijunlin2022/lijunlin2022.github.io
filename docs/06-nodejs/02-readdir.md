@@ -70,12 +70,34 @@ routes
 const { readdirSync } = require('fs')
 
 module.exports = (app) => {
-	readdirSync(__dirname).forEach(file => {
-  	if (file === 'index.js') {
+  readdirSync(__dirname).forEach(file => {
+    if (file === 'index.js') {
       return
     }
     const router = require(`./${file}`)
     app.use(router.routes()).use(router.allowedMethods())
   })
 }
+```
+
+类似代码有，gulp 批量注册任务：
+
+```js
+const gulp = require('gulp');
+const path = require('path');
+const { readdirSync } = require('fs');
+
+const gulpDirPath = path.join(__dirname, './gulp/')
+const customTasks = readdirSync(gulpDirPath);
+
+const load = (taskfile) => {
+  const extname = path.extname(taskfile);
+  if (extname === '.js') { // 过滤其它文件
+    const taskFilePath = path.join(gulpDirPath, taskfile);
+    const taskFunc = require(taskFilePath);
+    taskFunc(gulp);
+  }
+}
+
+customTasks.forEach(file => load(file));
 ```
