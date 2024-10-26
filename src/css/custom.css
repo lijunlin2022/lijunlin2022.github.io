@@ -1,12 +1,7 @@
-html,
 body {
-  width: 100%;
   overscroll-behavior: none;
   overflow-x: hidden;
-}
-
-pre code {
-  font-size: 12px !important;
+  font-size: 16px;
 }
 
 :root {
@@ -17,7 +12,6 @@ pre code {
   --ifm-color-primary-dark: #992c28;
   --ifm-color-primary-darker: #7f2420;
   --ifm-color-primary-darkest: #4d1512;
-  --ifm-code-font-size: 12px;
   --ifm-background-color: #f8f6f4;
   --ifm-navbar-background-color: #f8f6f4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
@@ -31,33 +25,11 @@ pre code {
   --ifm-color-primary-dark: #992c28;
   --ifm-color-primary-darker: #7f2420;
   --ifm-color-primary-darkest: #4d1512;
-  --ifm-code-font-size: 95%;
   --ifm-background-color: #333 !important;
   --ifm-navbar-background-color: #333 !important;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-.markdown h1:first-child {
-  --ifm-h1-font-size: 28px !important;
-}
-
-.title_node_modules-\@docusaurus-theme-classic-lib-theme-DocCategoryGeneratedIndexPage-styles-module {
-  --ifm-h1-font-size: 28px !important;
-}
-
-.hero__title, .title_f1Hy {
-  font-size: var(--ifm-h1-font-size) !important;
-}
-
-.markdown > h2 {
-  --ifm-h2-font-size: 24px !important;
-}
-
-.title_node_modules-\@docusaurus-theme-classic-lib-theme-BlogPostItem-Header-Title-styles-module {
-  font-size: var(--ifm-h1-font-size) !important;
-}
-
-/* 隐藏脚注箭头 */
 .data-footnote-backref {
   display: none;
 }

@@ -61,8 +61,8 @@ export default {
       ],
     },
     prism: {
-      theme: prismThemes.vsLight,
-      darkTheme: prismThemes.vsDark
+      theme: prismThemes.okaidia,
+      darkTheme: prismThemes.oneDark
     },
   },
   markdown: {
