@@ -151,7 +151,7 @@ console.log(p); // rejected 的 Promise
 **一个 Promise 指定多个成功/失败回调函数, 都会调用**
 
 <details>
-<summary>展开代码示例</summary>
+<summary>点击查看代码</summary>
 ```js
 const p = new Promise((resolve, reject) => {
   resolve(1);
@@ -185,7 +185,7 @@ p.then(value => {
   * 没有返回则相当于 `return undefined;`, 则新 Promise 状态为 resolved
 
 <details>
-<summary>展开代码示例</summary>
+<summary>点击查看代码</summary>
 ```javascript
 const p = new Promise((resolve, reject) => {
   reject(1);
@@ -214,7 +214,7 @@ p.then(
 ### Promise 可以串联多个同步和异步任务
 
 <details>
-<summary>展开代码示例</summary>
+<summary>点击查看代码</summary>
 
 ```js
 new Promise((resolve, reject) => {
