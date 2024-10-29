@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0">
     <channel>
         <title>小霖家的混江龙 Blog</title>
         <link>https://lijunlin2022.github.io/official</link>
         <description>小霖家的混江龙 Blog</description>
-        <lastBuildDate>Mon, 28 Oct 2024 23:27:51 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 29 Oct 2024 00:54:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,19 +12,7 @@
             <title><![CDATA[微信公众号]]></title>
             <link>https://lijunlin2022.github.io/official/index</link>
             <guid>https://lijunlin2022.github.io/official/index</guid>
-            <pubDate>Mon, 28 Oct 2024 23:27:51 GMT</pubDate>
-            <description><![CDATA[测试]]></description>
-            <content:encoded><![CDATA[<p>测试</p>
-<p>测试同时提交两个文件</p>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[反本能]]></title>
-            <link>https://lijunlin2022.github.io/official/2024/08/31/anti-instinct</link>
-            <guid>https://lijunlin2022.github.io/official/2024/08/31/anti-instinct</guid>
-            <pubDate>Sat, 31 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[测试]]></description>
-            <content:encoded><![CDATA[<p>测试</p>
-<p>测试同时提交两个文件</p>]]></content:encoded>
+            <pubDate>Tue, 29 Oct 2024 00:54:27 GMT</pubDate>
         </item>
     </channel>
 </rss>
