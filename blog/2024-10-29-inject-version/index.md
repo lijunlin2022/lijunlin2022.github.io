@@ -1,28 +1,68 @@
-# Vite 打包 H5 如何注入版本号？
+# 对比静态替换和动态插入标签，Vite 打包 H5 注入版本号哪种方式更优雅？
 
 日常维护 H5 时，你可能有一个诉求，在 H5 发布时带上版本号。这样发现报错时，版本号可以辅助你排查错误；上线优化措施时，版本号可以辅助你观测性能……
 
-本文我会告诉你 Vite 如何在 H5 注入版本号。
+本文我会告诉你 Vite 在 H5 注入版本号的两种方式，并对比它们的优劣。
 
 拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
 
-## 注入版本号的流程
+## 静态替换和动态插入标签
 
-注入版本号主要分为三个步骤：
+- 静态替换，利用 Vite 的 .env 文件和 `import.meta.env` 对象，打包时直接替换 js 代码、Vue 模板中的变量
+- 动态插入标签，利用 Vite 插件和 `tansformIndexHtml` 钩子，打包时往 HTML 里插入标签
+
+为了方便理解，下面演示这两种方法。首先用 Vite 新建一个 Demo，出于习惯我这里直接选择了 React，你也可以选择 Vue。
+
+![](./img/vite-demo.png)
+
+## 静态替换的流程
+
+静态替换主要分为三个步骤：
+
+1. 在 .env 文件写入变量
+2. 在 js 代码中替换变量
+3. 上报版本号给监控 SDK
+
+### 在 .env 文件写入变量
+
+需要注意的是，**只有以 VITE_ 为前缀的变量才会暴露给经过 vite 处理的代码**。你可以把版本号命名为 `Vite_H5_VERSION`。
+
+```
+VITE_H5_VERSION=0.0.1
+```
+
+### 在 js 代码中替换变量
+
+你可以在 vite 需要处理的代码中，直接使用 `import.meta.env.VITE_H5_VERSION`。比如在 main.jsx 中直接打印它。
+
+这样编译后，`import.meta.env.VITE_H5_VERSION` 会被自动替换。如下图所示，第三个文件是编译后的 js，可以看到变量已经被替换为版本号。
+
+![](./img/vite-h5-version.png)
+
+### 上报版本号给监控 SDK
+
+现在，你要做的就是把版本号上传到监控平台。我们以阿里云的 ARMS npm 包为例子：
+
+```js
+const BrowserLogger = require('alife-logger')
+
+const __bl = BrowserLogger.singleton({
+ pid: 'xxx',
+ // ARMS 配置应用版本号
+ release: import.meta.env.VITE_H5_VERSION,
+ // ... 省略
+});
+```
+
+## 动态插入标签的流程
+
+动态插入标签也主要分为三个步骤：
 
 1. 从命令行读取版本号
 2. 插入版本号到 HTML
 3. 上报版本号给监控 SDK
 
-为了方便演示这三个流程，我用 Vite 新建一个 Demo 项目。出于习惯，我这里直接选择了 React，你也可以选择 Vue。
-
-![](./img/vite-demo.png)
-
-注入版本号时，你只需要关心 vite.config.js。
-
-![](./img/vite-config-js.png)
-
-## 从命令行读取版本号
+### 从命令行读取版本号
 
 Windows、Linux 和 Mac 系统，在命令行设置临时环境变量的写法不同，你可以在安装 cross-env 这个开发依赖。它可以让你在不同系统使用相同方式注入环境变量（比如版本号）。
 
@@ -54,7 +94,7 @@ export default defineConfig({
 
 下面，你需要把版本号插入到 HTML 中。
 
-## 插入版本号到 HTML
+### 插入版本号到 HTML
 
 你可以使用一个 vite 官方插件钩子函数 [transformIndexHtml](https://vitejs.cn/vite3-cn/guide/api-plugin.html#transformindexhtml) 编写一个插件，它可以替换 HTML 的内容，也可以插入 js 脚本。
 
@@ -91,7 +131,7 @@ export default defineConfig({
 
 ![](./img/dist.png)
 
-## 上报版本号给监控 SDK
+### 上报版本号给监控 SDK
 
 因为版本号脚本在 head 标签最顶层，会最早执行，所以你之后在 HTML、React 中都可以用 `window.$H5_VERSION` 获取版本号。
 
@@ -109,14 +149,9 @@ export default defineConfig({
         c[a] || (c[a] = {})
         c[a].config = {
           pid: 'xxx',
-          appType: 'web',
           // ARMS 配置应用版本号
           release: window.$H5_VERSION,
-          sendResource: true,
-          enableLinkTrace: true,
-          behavior: true,
-          useFmp: true,
-          enableSPA: true,
+          // ... 省略
         }
         // ... 省略
       })(window, document, 'xxx.js', '__bl')
@@ -128,6 +163,12 @@ export default defineConfig({
 
 ## 总结
 
-本文介绍了 Vite 如何在 H5 注入版本号。主要包括从命令行读取版本号、插入版本号到 HTML、上报版本号给监控 SDK 三个步骤。
+|  | 静态替换 | 动态插入标签 |
+| -- | -- | -- |
+| **读入变量方式** | 从 .env 文件读入 | 从命令行读取 |
+| **替换变量方式** | 利用 vite 替换 | 利用插入标签替换 |
+| **使用变量的地方** | vite 处理后的 js 文件 | html、js 均可 |
+
+总结来看，动态插入标签，可以在 HTML 里使用变量，对 cdn 引入的 js、npm 包引入的 js 使用都很友好，我认为这是一种更优雅的方式。
 
 拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
