@@ -14,5 +14,9 @@
   },
   "engines": {
     "node": ">=18.0"
+  },
+  "dependencies": {
+    "rspress-plugin-mermaid": "^0.3.0",
+    "rspress-plugin-reading-time": "^0.3.0"
   }
 }
