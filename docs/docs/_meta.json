@@ -26,5 +26,12 @@
     "label": "React",
     "collapsible": true,
     "collapsed": false
+  },
+  {
+    "type": "dir",
+    "name": "个人开发",
+    "label": "个人开发",
+    "collapsible": true,
+    "collapsed": false
   }
 ]

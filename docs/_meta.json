@@ -1,0 +1,12 @@
+[
+  {
+    "text": "博客",
+    "link": "/blog",
+    "activeMatch": "^/blog/"
+  },
+  {
+    "text": "笔记",
+    "link": "/docs",
+    "activeMatch": "^/docs/"
+  }
+]

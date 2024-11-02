@@ -145,8 +145,8 @@ BFC 全称 Block Format Context，即块级格式化上下文。BFC 可以看作
 
 floatDiv 脱离标准流后会遮挡 normalDiv，效果如下
 
-![](./img/bfc1.jpg)
+![](./bfc1.jpg)
 
 添加 bfc 之后，效果如下图：
 
-![](./img/bfc2.jpg)
+![](./bfc2.jpg)

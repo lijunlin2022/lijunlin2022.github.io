@@ -15,7 +15,10 @@ function transformRoute(): RspressPlugin {
         if (match) {
           const [, year, month, day, remainingPart] = match
           const val =  `/blog/${year}/${month}/${day}/${remainingPart}`
-          routes[index].routePath = val
+          routes.push({
+            ...routes[index],
+            routePath: val
+          })
         }
       })
     },
@@ -27,18 +30,6 @@ export default defineConfig({
   icon: '/img/logo.png',
   logo: '/img/logo.png',
   logoText: '小霖家的混江龙',
-  // head: [
-  //   {
-  //     tag: 'meta',
-  //     attrs: {
-  //       name: 'google-site-verification',
-  //       content: 'z1w9iBabIBZmBrBiQPn3K-e8msiNRO_hR9O3oWhdcok'
-  //     }
-  //   },
-  // ],
-  // head: [
-  //   '<meta name="author" content="John Doe">'
-  // ],
   root: 'docs',
   route: {
     cleanUrls: true,

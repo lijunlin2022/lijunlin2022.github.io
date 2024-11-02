@@ -13,19 +13,19 @@
 
 - `margin-top` 负值
 
-  ![](./img/negative-margin1.jpg)
+  ![](./negative-margin1.jpg)
 
 - `margin-bottom` 负值
 
-  ![](./img/negative-margin2.jpg)
+  ![](./negative-margin2.jpg)
 
 - `margin-left` 负值
 
-  ![](./img/negative-margin3.jpg)
+  ![](./negative-margin3.jpg)
 
 - `margin-right` 负值
 
-  ![](./img/negative-margin4.jpg)
+  ![](./negative-margin4.jpg)
 
 ### 元素没有自身宽度, 即 `width:auto;` 时
 
@@ -44,11 +44,11 @@
 
 - `margin-left` 负值
 
-  ![](./img/negative-margin5.jpg)
+  ![](./negative-margin5.jpg)
 
 - `margin-right` 负值
 
-  ![](./img/negative-margin6.jpg)
+  ![](./negative-margin6.jpg)
 
 ## margin 负值的应用
 
@@ -58,5 +58,5 @@
 
 如下图所示：
 
-  ![](./img/negative-margin7.jpg)
+  ![](./negative-margin7.jpg)
 
