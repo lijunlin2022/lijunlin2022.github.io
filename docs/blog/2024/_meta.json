@@ -1,0 +1,58 @@
+[
+  {
+    "type": "dir",
+    "name": "01",
+    "label": "01",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "02",
+    "label": "02",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "03",
+    "label": "03",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "04",
+    "label": "04",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "05",
+    "label": "05",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "07",
+    "label": "07",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "10",
+    "label": "10",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "11",
+    "label": "11",
+    "collapsible": true,
+    "collapsed": true
+  }
+]

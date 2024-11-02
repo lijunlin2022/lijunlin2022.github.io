@@ -1,0 +1,16 @@
+[
+  {
+    "type": "dir",
+    "name": "07",
+    "label": "07",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "12",
+    "label": "12",
+    "collapsible": true,
+    "collapsed": true
+  }
+]
