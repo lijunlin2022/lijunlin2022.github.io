@@ -1,5 +1,4 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import { Tab, Tabs } from 'rspress/theme';
 
 # 登录注册
 
@@ -14,12 +13,12 @@ import TabItem from '@theme/TabItem';
 5. 服务器接到请求后，验证 Token 的有效性，并根据 Token 的信息进行授权
 
 <Tabs>
-<TabItem value="服务器生成 Token" label="服务器生成 Token" default>
+<Tab value="服务器生成 Token" label="服务器生成 Token" default>
 服务器生成的 Token 由三部分组成：
 
 ![](./img/jwt.png)
-</TabItem>
-<TabItem value="代码" label="代码">
+</Tab>
+<Tab value="代码" label="代码">
 ```js
 const jws = require('jws')
 
@@ -48,14 +47,14 @@ module.exports.sign = async function (payload, exp) {
   return promise
 }
 ```
-</TabItem>
+</Tab>
 </Tabs>
 
 <Tabs>
-<TabItem value="服务器验证 Token" label="服务器验证 Token" default>
+<Tab value="服务器验证 Token" label="服务器验证 Token" default>
 传入签名后，服务器利用自己保存好的秘钥解密，然后验证功能。
-</TabItem>
-<TabItem value="代码" label="代码">
+</Tab>
+<Tab value="代码" label="代码">
 ```js
 const jws = require('jws')
 
@@ -83,7 +82,7 @@ module.exports.verify = function (signature) {
   return promise
 }
 ```
-</TabItem>
+</Tab>
 </Tabs>
 
 ## JSON Web Token 优缺点

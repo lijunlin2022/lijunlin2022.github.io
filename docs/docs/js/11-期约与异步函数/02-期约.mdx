@@ -1,5 +1,4 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import { Tab, Tabs } from 'rspress/theme';
 
 # 期约（Promise）
 
@@ -23,7 +22,7 @@ Promise 是 JavaScript 中进行异步编程的新的解决方法，从语法上
 ### 以 nodejs 读取文件为例：
 
 <Tabs>
-<TabItem value="callback" label="回调函数" default>
+<Tab value="callback" label="回调函数" default>
 ```js
 const fs = require("fs");
 
@@ -32,8 +31,8 @@ fs.readFile("./为学.md"， (err, data) => {
   console.log(data.toString());
 });
 ```
-</TabItem>
-<TabItem value="promise" label="Promise">
+</Tab>
+<Tab value="promise" label="Promise">
 ```js
 const fs = require("fs");
 
@@ -50,13 +49,13 @@ p.then(function (value) {
   console.log("读取失败");
 });
 ```
-</TabItem>
+</Tab>
 </Tabs>
 
 ### 以连续读取三个文件为例
 
 <Tabs>
-<TabItem value="callback" label="回调函数" default>
+<Tab value="callback" label="回调函数" default>
 ```js
 const fs = require("fs");
 
@@ -69,8 +68,8 @@ fs.readFile("./为学.md", (err, data1) => {
   })
 })
 ```
-</TabItem>
-<TabItem value="promise" label="Promise">
+</Tab>
+<Tab value="promise" label="Promise">
 ```js
 const fs = require("fs");
 const p = new Promise((resolve, reject) => {
@@ -96,7 +95,7 @@ p.then(value => {
   console.log(value[0] + "\n" + value[1] + "\n" + value[2]);
 });
 ```
-</TabItem>
+</Tab>
 </Tabs>
 
 ## 为什么使用 Promise

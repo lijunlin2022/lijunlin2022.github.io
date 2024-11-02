@@ -1,0 +1,30 @@
+[
+  {
+    "type": "dir",
+    "name": "html",
+    "label": "HTML",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "dir",
+    "name": "css",
+    "label": "CSS",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "dir",
+    "name": "js",
+    "label": "JavaScript",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "dir",
+    "name": "react",
+    "label": "React",
+    "collapsible": true,
+    "collapsed": false
+  }
+]
