@@ -1,6 +1,6 @@
 import { Tab, Tabs } from 'rspress/theme';
 
-# 登录注册
+# 开发流程
 
 ## JSON Web Token 流程
 
@@ -12,14 +12,11 @@ import { Tab, Tabs } from 'rspress/theme';
 4. 客户端每次请求时将 Token 附加在请求头部
 5. 服务器接到请求后，验证 Token 的有效性，并根据 Token 的信息进行授权
 
-<img src="./jwt.png" />
-
 <Tabs>
 <Tab value="服务器生成 Token" label="服务器生成 Token">
 服务器生成的 Token 由三部分组成：
 
-![](./jwt.png)
-
+![](./img/jwt.png)
 </Tab>
 <Tab value="代码" label="代码">
 ```js

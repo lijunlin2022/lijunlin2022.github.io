@@ -1,0 +1,44 @@
+[
+  {
+    "type": "dir",
+    "name": "语言基础",
+    "label": "语言基础",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "变量、作用域与内存",
+    "label": "变量、作用域与内存",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "函数",
+    "label": "函数",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "期约与异步函数",
+    "label": "期约与异步函数",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "网络请求与远程资源",
+    "label": "网络请求与远程资源",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "客户端存储",
+    "label": "客户端存储",
+    "collapsible": true,
+    "collapsed": true
+  }
+]

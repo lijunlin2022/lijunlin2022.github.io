@@ -4,34 +4,34 @@
     "name": "html",
     "label": "HTML",
     "collapsible": true,
-    "collapsed": false
+    "collapsed": true
   },
   {
     "type": "dir",
     "name": "css",
     "label": "CSS",
     "collapsible": true,
-    "collapsed": false
+    "collapsed": true
   },
   {
     "type": "dir",
     "name": "js",
     "label": "JavaScript",
     "collapsible": true,
-    "collapsed": false
+    "collapsed": true
   },
   {
     "type": "dir",
     "name": "react",
     "label": "React",
     "collapsible": true,
-    "collapsed": false
+    "collapsed": true
   },
   {
     "type": "dir",
     "name": "个人开发",
     "label": "个人开发",
     "collapsible": true,
-    "collapsed": false
+    "collapsed": true
   }
 ]

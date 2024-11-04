@@ -1,0 +1,16 @@
+[
+  {
+    "type": "dir",
+    "name": "数据类型",
+    "label": "数据类型",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "操作符",
+    "label": "操作符",
+    "collapsible": true,
+    "collapsed": true
+  }
+]
