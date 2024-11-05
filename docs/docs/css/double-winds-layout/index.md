@@ -65,7 +65,7 @@ body {
 
 效果为：
 
-![](./double-wings-layout1.jpg)
+![](./img/double-wings-layout1.jpg)
 
 ## 添加浮动
 
@@ -93,7 +93,7 @@ body {
 
 效果为：
 
-![](./double-wings-layout2.jpg)
+![](./img/double-wings-layout2.jpg)
 
 ## 通过 margin 让 main-wrap 留出空位给 left 和 right
 
@@ -105,7 +105,7 @@ body {
 
 由于只是留出空位，效果并不明显：
 
-![](./double-wings-layout3.jpg)
+![](./img/double-wings-layout3.jpg)
 
 ## 给 left 设置 margin-left 负值，让 left 移动到指定空位
 
@@ -122,7 +122,7 @@ left 取的 margin 负值是 `-100%`:
 
 效果为：
 
-![](./double-wings-layout4.jpg)
+![](./img/double-wings-layout4.jpg)
 
 ## 给 right 设置 margin-left 负值，让 right 移动到指定位置
 
@@ -137,4 +137,4 @@ left 取的 margin 负值是 `-100%`:
 
 效果为：
 
-![](./double-wings-layout5.jpg)
+![](./img/double-wings-layout5.jpg)

@@ -62,7 +62,7 @@ body {
 
 效果为：
 
-![](./honly-grail-layout1.jpg)
+![](./img/honly-grail-layout1.jpg)
 
 ## 添加浮动
 
@@ -84,7 +84,7 @@ body {
 
 效果为：
 
-![](./honly-grail-layout2.jpg)
+![](./img/honly-grail-layout2.jpg)
 
 ## 清除浮动
 
@@ -100,7 +100,7 @@ body {
 
 效果为：
 
-![](./honly-grail-layout3.jpg)
+![](./img/honly-grail-layout3.jpg)
 
 ## 通过 padding 让 center 留出空位给 left 和 right
 
@@ -115,7 +115,7 @@ body {
 
 效果为：
 
-![](./honly-grail-layout4.jpg)
+![](./img/honly-grail-layout4.jpg)
 
 ## 给 left 设置 margin-left 负值，让 left 和 center 的左端重叠
 
@@ -133,7 +133,7 @@ margin-left 负值会让元素左移，如果左移 center 的长度，就能够
 
 效果为：
 
-![](./honly-grail-layout5.jpg)
+![](./img/honly-grail-layout5.jpg)
 
 ## 相对定位让 left 到达左边空出的位置
 
@@ -151,7 +151,7 @@ margin-left 负值会让元素左移，如果左移 center 的长度，就能够
 
 效果为：
 
-![](./honly-grail-layout6.jpg)
+![](./img/honly-grail-layout6.jpg)
 
 ## 给 right 设置 margin-right 负值，让 right 到达右边空出的位置
 
@@ -169,4 +169,4 @@ margin-right 负值，会让 right 后面的元素左移，原因时 margin-righ
 
 效果为：
 
-![](./honly-grail-layout7.jpg)
+![](./img/honly-grail-layout7.jpg)

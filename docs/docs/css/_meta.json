@@ -1,43 +1,43 @@
 [
   {
     "type": "dir",
-    "name": "html",
-    "label": "HTML",
+    "name": "bfc",
+    "label": "BFC",
     "collapsible": true,
     "collapsed": true
   },
   {
     "type": "dir",
-    "name": "css",
-    "label": "CSS",
+    "name": "clear-float",
+    "label": "清除浮动",
     "collapsible": true,
     "collapsed": true
   },
   {
     "type": "dir",
-    "name": "js",
-    "label": "JavaScript",
+    "name": "honly-grail-layout",
+    "label": "圣杯布局",
     "collapsible": true,
     "collapsed": true
   },
   {
     "type": "dir",
-    "name": "react",
-    "label": "React",
+    "name": "double-winds-layout",
+    "label": "双飞翼布局",
     "collapsible": true,
     "collapsed": true
   },
   {
     "type": "dir",
-    "name": "git",
-    "label": "Git",
+    "name": "negative-margin",
+    "label": "margin 负值",
     "collapsible": true,
     "collapsed": true
   },
   {
     "type": "dir",
-    "name": "个人开发",
-    "label": "个人开发",
+    "name": "margin-collapse",
+    "label": "margin 坍塌",
     "collapsible": true,
     "collapsed": true
   }

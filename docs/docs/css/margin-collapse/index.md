@@ -12,11 +12,11 @@ margin 纵向重叠一般有三种情形：
 
 请先看一个例子，图中的 `margin-left` 可以撑开父元素，但是 `margin-top` 却没有撑开父元素，这就是父元素与子元素的 margin 重叠
 
-![](./margin-collapse1.jpg)
+![](./img/margin-collapse1.jpg)
 
 如果给父元素添加 `border-top` 就可以解决 `margin-top` 的重叠问题，给父元素添加 `border-bottom` 就可以解决 `margin-bottom` 的重叠问题
 
-![](./margin-collapse2.jpg)
+![](./img/margin-collapse2.jpg)
 
 ## 形成 `margin-top` 重叠的原因
 
@@ -78,4 +78,4 @@ margin 纵向重叠一般有三种情形：
 
 ## margin 重叠的应用
 
-![](./margin-collapse3.jpg)
+![](./img/margin-collapse3.jpg)
