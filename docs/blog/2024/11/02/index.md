@@ -12,6 +12,8 @@
 
 ![](./img/embedded-miniprogram.png)
 
+需要考虑传参数据的设计，extraData 是一个对象
+
 ## 打开子包
 
 ![](./img/sub-miniprogram-pdd.png)
