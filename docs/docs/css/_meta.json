@@ -1,44 +1,32 @@
 [
   {
-    "type": "dir",
-    "name": "bfc",
+    "type": "custom-link",
     "label": "BFC",
-    "collapsible": true,
-    "collapsed": true
+    "link": "/docs/css/bfc/index"
   },
   {
-    "type": "dir",
-    "name": "clear-float",
+    "type": "custom-link",
     "label": "清除浮动",
-    "collapsible": true,
-    "collapsed": true
+    "link": "/docs/css/clear-float/index"
   },
   {
-    "type": "dir",
-    "name": "honly-grail-layout",
+    "type": "custom-link",
     "label": "圣杯布局",
-    "collapsible": true,
-    "collapsed": true
+    "link": "/docs/css/honly-grail-layout/index"
   },
   {
-    "type": "dir",
-    "name": "double-winds-layout",
+    "type": "custom-link",
     "label": "双飞翼布局",
-    "collapsible": true,
-    "collapsed": true
+    "link": "/docs/css/double-winds-layout/index"
   },
   {
-    "type": "dir",
-    "name": "negative-margin",
+    "type": "custom-link",
     "label": "margin 负值",
-    "collapsible": true,
-    "collapsed": true
+    "link": "/docs/css/negative-margin/index"
   },
   {
-    "type": "dir",
-    "name": "margin-collapse",
+    "type": "custom-link",
     "label": "margin 坍塌",
-    "collapsible": true,
-    "collapsed": true
+    "link": "/docs/css/margin-collapse/index"
   }
 ]
