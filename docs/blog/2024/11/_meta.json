@@ -8,5 +8,10 @@
     "type": "custom-link",
     "label": "H5 更早发出的请求、更晚被响应，应该怎么办？—— 请求竞态问题",
     "link": "/blog/2024/11/06"
+  },
+  {
+    "type": "custom-link",
+    "label": "如何结合 Vite 和 Rust，在 Vue/React 中运行 WebAssembly 代码？",
+    "link": "/blog/2024/11/16"
   }
 ]
