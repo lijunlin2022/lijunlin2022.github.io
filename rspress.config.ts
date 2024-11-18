@@ -12,6 +12,6 @@ export default defineConfig({
     cleanUrls: true,
   },
   plugins: [mermaid(), readingTime({
-    defaultLocale: 'zh-CN',
+      defaultLocale: 'zh-CN',
   })]
 });

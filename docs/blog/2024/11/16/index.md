@@ -21,8 +21,8 @@ Rust 近年很火热，我跟风尝试入门 Rust 几次，都放弃了。其中
 1. 用 Vite 创建 Vue/React 项目；
 2. 用 cargo 创建一个 Rust 库；
 3. 打包 Rust 代码；
-4. 在 Vue/React 项目中安装依赖 依赖；
-5. 在 Vue/React 项目中使用依赖 依赖。
+4. 在 Vue/React 项目中安装依赖；
+5. 在 Vue/React 项目中使用依赖。
 
 ## 步骤一：用 Vite 创建 Vue/React 项目
 
@@ -59,7 +59,7 @@ cargo add wasm-bindgen
 ```tree
 .
 └── wasm-lib
-  └── src
+  ├──src
   │ └──lib.rs
   ├──Cargo.lock
   └──Cargo.toml
