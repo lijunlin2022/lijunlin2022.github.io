@@ -299,3 +299,7 @@ function getRandomIndex() {
 - 中奖的概率：权重数组可以控制中奖概率。
 
 拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
+
+## 参考资料
+
+- [原生JS转盘抽奖 学到就是赚到 | 路克森](https://www.bilibili.com/video/BV11w411972W/?share_source=copy_web)

@@ -185,3 +185,7 @@ const onClick = () => {
 完整代码我放在 Gitee 上，感兴趣可以下载运行：https://gitee.com/lijunlin2022/vite-rust
 
 拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
+
+## 参考资料
+
+- [How to create a React app with Rust and WebAssembly](https://www.tkat0.dev/posts/how-to-create-a-react-app-with-rust-and-wasm/)
