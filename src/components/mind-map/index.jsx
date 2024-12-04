@@ -48,6 +48,7 @@ export default function MindMap({ markdown }) {
 
           setStyle({
             position: "fixed",
+            zIndex: 1,
             right: 0,
             bottom: 0,
             width: "100vw",
@@ -94,7 +95,7 @@ export default function MindMap({ markdown }) {
     <React.Fragment>
       <div className="relative" style={style}>
         <svg className="w-full h-full" ref={refSvg} style={style}></svg>
-        <div className="absolute bottom-0 right-0" ref={refToolbar}></div>
+        <div className="absolute bottom-0 right-0 z-10" ref={refToolbar}></div>
       </div>
     </React.Fragment>
   );
