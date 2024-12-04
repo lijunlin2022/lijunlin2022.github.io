@@ -33,15 +33,17 @@ export default function MindMap({ markdown }) {
         title: "full screen",
         content: Toolbar.icon(FULL_SVG),
         onClick: () => {
-          const asideEl =
+          const sidebarEl =
             document.getElementsByClassName("rspress-sidebar")?.[0];
+          const asideEl = document.getElementById("aside-container");
 
-          if (!asideEl) {
+          if (!sidebarEl || !asideEl) {
             return;
           }
 
           if (refSvg.current.style.position === "fixed") {
             setStyle(defaultStyle);
+            sidebarEl.style.display = "block";
             asideEl.style.display = "block";
             return;
           }
@@ -55,6 +57,7 @@ export default function MindMap({ markdown }) {
             height: "calc(100vh - var(--rp-nav-height))",
             backgroundColor: "#f1f1f1",
           });
+          sidebarEl.style.display = "none";
           asideEl.style.display = "none";
         },
       });

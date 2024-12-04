@@ -1,0 +1,180 @@
+import MindMap from '@components/mind-map/index'
+
+## 思维导图
+
+<MindMap markdown={`
+# 小程序如何检测无流量组件？分享一种打点检测方法
+
+## 背景
+
+- 无流量组件，但依然占用了包体积
+
+## 方法
+
+### 获取全体组件的集合
+
+#### 思路
+
+- json 文件中有 "component": true，则认为该 json 文件代表一个组件。
+
+#### 实现
+
+- 遍历项目中所有的文件，实现见代码 1
+
+- 找到所有能代表组件的 json 文件，实现见代码 2
+
+### 获取有流量组件的集合
+
+- 思路：给每一个组件生命周期里打点
+
+- 基础方法：利用 Behavior 给组件生命周期内插入一段逻辑，实现见代码 3；
+
+- 基础方法缺陷：如果有人新增组件，可能会忘记在 behaviors 中注册 myBehavior。
+
+- 改进思路，新增 enhanceComponent 函数替换 Component 函数，实现见代码 4；
+
+- 改进思路缺陷：如果有人新增组件时，忘记引入 enhanceComponent 函数，那么这个组件就不会被上报
+
+- 二次改进思路，依然使用 Component 函数，然后利用构建将 Component 替换成 enhanceComponent 来替换，实现见代码 5。
+
+- 二次前置问题：路径问题，可以通过配置别名解决
+
+### 取全体组件和有流量组件的差集，见代码 6
+`}
+/>
+
+
+## 代码 1
+
+```js
+const fs = require('fs');
+const path = require('path');
+
+// 目标文件夹路径
+const targetDir = './';
+
+// 使用栈读取文件夹中的所有文件
+function readDirWithStack(dir) {
+  let results = [];
+  let stack = [dir];
+
+  while (stack.length) {
+    const currentDir = stack.pop();
+    const list = fs.readdirSync(currentDir);
+
+    list.forEach(file => {
+      const filePath = path.resolve(currentDir, file);
+      const stat = fs.statSync(filePath);
+
+      if (stat && stat.isDirectory()) {
+        stack.push(filePath);
+      } else {
+        results.push(filePath);
+      }
+    });
+  }
+
+  return results;
+}
+```
+
+## 代码 2
+
+```js
+// 判断 json 是否能代表组件
+function isComponent(filePath) {
+  const dir = path.dirname(filePath);
+  const files = fs.readdirSync(dir);
+  const jsonFile = files.find(file => file.endsWith('.json'));
+  if (jsonFile) {
+    const jsonFilePath = path.join(dir, jsonFile);
+    const jsonContent = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
+    return jsonContent.component === true;
+  }
+  return false;
+}
+```
+
+## 代码 3
+
+```js
+const myBehavior = Behavior({
+  lifetimes: {
+    attached() {
+      console.log('>>>>> my behavior')
+    }
+  }
+})
+
+Component({
+  behaviors: [myBehavior],
+  lifetimes: {
+    attached() {
+      console.log('>>>>> normal behavior')
+    }
+  }
+})
+
+// 输出
+// >>>>> my behavior
+// >>>>> normal behavior
+```
+
+## 代码 4
+
+```js
+const enhanceBehavior = Behavior({
+  lifetimes: {
+    attached: function () {
+      console.log('enhance component >>>>>: ', this.is)
+    }
+  }
+})
+
+// 导出的 enhanceComponent 函数，默认就注册了 enhanceBehavior，enhanceBehavior 中我们可以打点
+module.exports.enhanceComponent = function (config) {
+  const { behaviors = [], ...params } = config || {}
+  return Component({
+    behaviors: [enhanceBehavior, ...behaviors],
+    ...params,
+  })
+}
+```
+
+## 代码 5
+
+```js
+// 替换 Component 函数
+function replaceComponentFunction(filePath) {
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const newContent = fileContent.replace(
+    /\bComponent\(/g,
+    "require('@utils/enhance-component.js').enhanceComponent("
+  );
+  fs.writeFileSync(filePath, newContent, 'utf8');
+}
+
+// 获取所有 .js 文件
+const files = readDirWithStack(targetDir).filter(file => file.endsWith('.js'));
+
+// 替换每个文件中的 Component 函数
+files.forEach(file => {
+  if (isComponent(file)) {
+    replaceComponentFunction(file);
+  }
+});
+```
+
+## 代码 6
+
+```js
+// 经过之前的处理，我们已经获取了全体组件的集合，也获取了有流量组件的集合。
+// 它们都可以用数组来表示。因此我们其中需要做的，就是取两个数组的差集。
+
+const arr1 = ['a', 'b', 'c', 'd', 'e']
+const arr2 = ['a', 'b', 'e']
+
+const diff = arr1.filter(item => !arr2.includes(item))
+
+console.log(diff) // ['c', 'd']
+```
