@@ -20,7 +20,6 @@
     "markmap-lib": "^0.17.2",
     "markmap-toolbar": "^0.17.2",
     "markmap-view": "^0.17.2",
-    "rspress-plugin-mermaid": "^0.3.0",
-    "rspress-plugin-reading-time": "^0.3.0"
+    "rspress-plugin-mermaid": "^0.3.0"
   }
 }

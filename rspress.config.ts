@@ -1,8 +1,14 @@
 import { defineConfig } from 'rspress/config';
 import mermaid from 'rspress-plugin-mermaid';
-import readingTime from 'rspress-plugin-reading-time';
 
 export default defineConfig({
+  locales: [
+    {
+      lang: 'zh',
+      label: '简体中文',
+    },
+  ],
+  lang: 'zh',
   builderConfig: {
     source: {
       alias: {
@@ -18,7 +24,5 @@ export default defineConfig({
   route: {
     cleanUrls: true,
   },
-  plugins: [mermaid(), readingTime({
-      defaultLocale: 'zh-CN',
-  })]
+  plugins: [mermaid()]
 });
