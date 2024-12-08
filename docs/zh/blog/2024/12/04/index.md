@@ -1,41 +1,48 @@
 # 小程序如何检测无流量组件？分享一种打点检测方法
 
-小程序项目经过长期迭代后，内部会有大量组件。其中有些组件，虽然在页面、组件的 json 中注册了，但实际不会用到（无流量），白白占用了小程序的包体积。这种无流量组件该如何检测呢？
+小程序项目经过长期迭代后，内部会有大量组件。其中有些组件，虽然在页面、组件的 json 中注册了，但实际不会用到，白白占用了小程序的包体积。这种无流量组件该如何检测呢？
 
-本文我分享一种打点检测方法，它可以较低成本低找出所有无流量的组件。
+本文我会分享一种打点检测方法，它可以较低成本地找出所有无流量的组件。
 
 拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
 
 ## 思路
 
-我的整体思路分为三部分：
+我的整体思路分为三个步骤：
 
 1. 遍历目录，获取全体组件的集合；
 2. 给组件打点，获取有流量组件的集合；
 3. 取全体组件和有流量组件的差集。
 
-下面我会向你介绍三部分的细节。
+下面我会向你介绍三个步骤的细节。
 
-## 获取全体组件集合
+## 步骤一：获取全体组件集合
 
-小程序的组件由 wxml、wxss、js 和 json 等文件组成，其中 json 文件总是有 `"component": true` 这一项。
+小程序的组件由 wxml、wxss、js 和 json 等文件组成，其中 json 文件总是有 `"component": true` 这一项。根据这个特点，你可以分两步获取全体组件的集合。
 
-根据这个特点，我们可以遍历项目中的所有文件，如果有 json 文件，并且 json 文件中有 `"component": true` 这一项，则认为该 json 文件代表一个组件。
+第一步是获取所有文件，第二步则是找到满足特点的 json 文件，该 json 文件就代表了一个组件。
 
-主要有两个关键代码：
+为了方便你理解，我现在新建一个项目，项目目录结构如下，src 中是一个小程序的项目代码，它的 components 中有 3 个组件 comp-1、comp-2、comp-3，其中 comp-1 和 comp-2 同级，comp-3 则是 comp-1 的子集。
+
+![](./img/get-all-files.png)
+
+bin 目录中，是我获取 src 全体组件的脚本，脚本的两个函数刚好对应之前说的 2 个步骤。
+
+### 函数一：获取 src 目录的所有文件路径
+
+第一个步骤对应 getFiles 函数。在函数中，我会利用栈来获取所有文件的路径。
+
+我会给 getAllFiles() 传入 src 的路径，开始时，函数会读取 src 内的文件和文件夹。如果我发现读到了一个文件夹，就把它压入栈 stack 中；如果我发现读到了一个文件，就把文件路径记录到 result 中。
+
+之后，我会从栈底部取出一个文件夹，继续重复读到文件夹就压入栈中，读到文件就记录到 result 的过程。直到栈内再也没有文件夹为止。
 
 ```js
-// 遍历项目中所有文件
 const fs = require('fs');
 const path = require('path');
 
-// 目标文件夹路径
-const targetDir = './';
-
-// 使用栈读取文件夹中的所有文件
-function readDirWithStack(dir) {
-  let results = [];
-  let stack = [dir];
+function getAllFiles(dir) {
+  const results = [];
+  const stack = [dir];
 
   while (stack.length) {
     const currentDir = stack.pop();
@@ -57,38 +64,39 @@ function readDirWithStack(dir) {
 }
 ```
 
-其中，result 是用于存储所有文件路径的数组，stack 则是用来完成工作的栈。初始情况下，stack 内部是根目录，我们开始读取根目录中的所有文件和子目录；
+### 函数二：找到 json，判断 json 是否能代表组件
 
-我们利用 fs.statSyc 获取文件状态信息 stat，如果 stat.isDirectory() 为 true，证明它是一个目录，把它压入栈中，以便之后处理
-
-如果为 false，证明它是一个文件，就放到 result 数组中
-
-我们会不断从栈中取出目录读取文件，直到栈中再也没有目录，这样就实现了获取所有文件路径的功能
+第二个步骤对应函数 isComponent。在第一步的基础上，我会先筛选出所有 json 文件，然后把每个 json 文件转变为 json 对象，看看它们内部是否有 一项是 component，且值为 true。
 
 ```js
-// 判断 json 是否能代表组件
 function isComponent(filePath) {
-  const dir = path.dirname(filePath);
-  const files = fs.readdirSync(dir);
-  const jsonFile = files.find(file => file.endsWith('.json'));
-  if (jsonFile) {
-    const jsonFilePath = path.join(dir, jsonFile);
-    const jsonContent = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
-    return jsonContent.component === true;
+  if (!filePath.endsWith('.json')) {
+    return false
   }
-  return false;
+
+  const jsonContent = fs.readFileSync(filePath, 'utf8');
+  const jsonObj = JSON.parse(jsonContent);
+  return jsonObj.component === true;
 }
 ```
 
-结合上述两段代码，我们可以获得小程序组件的全集。
+结合上述两段代码，就可以获得小程序组件的全集。
 
-## 获取有流量组件的集合
+![](./img/components.png)
 
-在每一个组件的生命周期里打点，如果走到组件生命周期，就上报一条记录，有记录的组件就是有流量的组件。
+## 步骤二：获取有流量组件的集合
+
+获取有流量的组件，你可能想到的方式，就是在每一个组件的生命周期里打点——组件挂载在页面时，就把组件路径上报到后台，有记录的组件就是有流量的组件。
+
+刚好，在组件运行时，可以直接在生命周期里用 `this.is` 获取组件路径。
+
+![](./img/this.is.png)
 
 不过，如果给所有组件直接插入代码打点，工作量会非常庞大。
 
-你可能想到的第一个优化方法是，小程序可以利用 Behavior 来给生命周期插入一段逻辑。
+### 初次改进：Behavior 插入打点
+
+我想到的第一个优化方法是，小程序可以利用 Behavior 来给生命周期插入打点逻辑。
 
 ```js
 const myBehavior = Behavior({
@@ -113,9 +121,15 @@ Component({
 // >>>>> normal behavior
 ```
 
-它的缺陷则是，：如果有人新增组件，可能会忘记在 behaviors 中注册 myBehavior，为此，我们需要改进这个方法。
+不过这个思路有缺陷，如果有人新增组件，可能会忘记在 behaviors 中注册 myBehavior，为此，我需要改进这个方法。
 
-改进的思路是，用一个 enhanceComponent 函数替换所有的 Component 函数。
+### 再次改进：用 enhanceComponent 函数替换所有的 Component 函数
+
+我改进的思路，是先编写一个 enhanceComponent 函数，它是一个构建组件的函数，且 behaviors 里面已经插入了打点。之后我在构建时，把每一个 Component 函数，替换为 enhanceComponent 函数。
+
+这样就不需要新开发组件的同学，特意去记录加 behaviors 的逻辑。
+
+我编写的 enhanceCompnent 如下，我会把这个函数放在 src 内的 utils 目录：
 
 ```js
 const enhanceBehavior = Behavior({
@@ -126,7 +140,6 @@ const enhanceBehavior = Behavior({
   }
 })
 
-// 导出的 enhanceComponent 函数，默认就注册了 enhanceBehavior，enhanceBehavior 中我们可以打点
 module.exports.enhanceComponent = function (config) {
   const { behaviors = [], ...params } = config || {}
   return Component({
@@ -136,28 +149,9 @@ module.exports.enhanceComponent = function (config) {
 }
 ```
 
-使用 enhanceComponent 后，组件的 js 变成：
+我构建时替换 Component 函数的关键代码如下，我会把 `Component(` 替换为 `require('@utils/enhance-component.js').enhanceComponent(`，其中 `@utils` 是在小程序 app.json 配置的[别名](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#resolveAlias )，方便小程序内部引用文件：
 
 ```js
-require('../../utils/enhance-component').enhanceComponent({
-  properties: {},
-  data: {},
-  methods: {}
-})
-```
-
-在组件 js 文件中，不使用 Component 函数创建组件，而是使用 enhanceComponent 函数
-
-这样依然有缺陷，如果有人新增组件时，忘记引入 enhanceComponent 函数，那么这个组件就不会被上报
-
-最好的办法是，我们能够在构建时，将 Component 函数替换为 enhanceComponent 函数。
-
-替换之前，我们需要解决一个问题，那就是路径问题，所幸小程序已经可以通过设置别名。
-
-https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#resolveAlias 
-
-```js
-// 替换 Component 函数
 function replaceComponentFunction(filePath) {
   const fileContent = fs.readFileSync(filePath, 'utf8');
   const newContent = fileContent.replace(
@@ -166,23 +160,11 @@ function replaceComponentFunction(filePath) {
   );
   fs.writeFileSync(filePath, newContent, 'utf8');
 }
-
-// 获取所有 .js 文件
-const files = readDirWithStack(targetDir).filter(file => file.endsWith('.js'));
-
-// 替换每个文件中的 Component 函数
-files.forEach(file => {
-  if (isComponent(file)) {
-    replaceComponentFunction(file);
-  }
-});
 ```
 
 ## 取全体组件和有流量组件的差集
 
-经过之前的处理，我们已经获取了全体组件的集合，也获取了有流量组件的集合。
-
-它们都可以用数组来表示。因此我们其中需要做的，就是取两个数组的差集。
+经过之前的处理，我们不难得到全体组件的数组，有流量组件的数组。接下来我们只需要获得它们的差集即可：
 
 ```js
 const arr1 = ['a', 'b', 'c', 'd', 'e']
@@ -193,3 +175,16 @@ const diff = arr1.filter(item => !arr2.includes(item))
 console.log(diff) // ['c', 'd']
 ```
 
+之后，我们就可以酌情删除这些无流量的组件，减少包体积了。
+
+## 总结
+
+本文我会分享一种打点检测方法，它可以较低成本地找出所有无流量的组件。
+
+我的整体思路分为三个步骤：
+
+1. 遍历目录，获取全体组件的集合；
+2. 给组件打点，获取有流量组件的集合；
+3. 取全体组件和有流量组件的差集。
+
+拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
