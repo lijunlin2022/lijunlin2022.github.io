@@ -8,5 +8,10 @@
     "text": "笔记",
     "link": "/docs",
     "activeMatch": "^/docs/"
+  },
+  {
+    "text": "视频",
+    "link": "/vedio",
+    "activeMatch": "^/vedio/"
   }
 ]
