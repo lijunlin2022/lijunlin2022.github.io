@@ -1,17 +1,17 @@
 [
   {
     "text": "博客",
-    "link": "/blog",
+    "link": "/blog/index",
     "activeMatch": "^/blog/"
   },
   {
     "text": "笔记",
-    "link": "/docs",
+    "link": "/docs/index",
     "activeMatch": "^/docs/"
   },
   {
     "text": "视频",
-    "link": "/vedio",
+    "link": "/vedio/index",
     "activeMatch": "^/vedio/"
   }
 ]
