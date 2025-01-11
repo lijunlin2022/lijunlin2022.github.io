@@ -1,10 +1,5 @@
 [
   {
-    "type": "file",
-    "name": "index",
-    "label": "总览"
-  },
-  {
     "type": "dir",
     "name": "2023",
     "label": "2023",
