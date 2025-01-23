@@ -49,7 +49,7 @@
 %>
 ```
 
-在浏览器中输入你自己 test.asp 的路径，我输入的是：http://localhost:8080/test.asp
+在浏览器中输入你自己 test.asp 的路径，我输入的是：`http://localhost:8080/test.asp`
 
 应该可以看到：（对比之后看到正是数据库中的内容，证明数据库已经连接成功）
 
