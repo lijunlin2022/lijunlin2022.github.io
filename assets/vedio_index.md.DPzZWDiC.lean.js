@@ -1,0 +1,1 @@
+import{_ as t,c as a,ae as r,o as i}from"./chunks/framework.BzDBnRMZ.js";const p=JSON.parse('{"title":"简介","description":"","frontmatter":{},"headers":[],"relativePath":"vedio/index.md","filePath":"vedio/index.md"}'),o={name:"vedio/index.md"};function l(n,e,s,c,_,d){return i(),a("div",null,e[0]||(e[0]=[r("",3)]))}const h=t(o,[["render",l]]);export{p as __pageData,h as default};
