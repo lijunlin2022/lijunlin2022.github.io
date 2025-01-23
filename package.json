@@ -1,25 +1,16 @@
 {
-  "name": "my-website",
+  "name": "lijunlin2022.github.io",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "rspress dev",
-    "build": "rspress build",
-    "preview": "rspress preview"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "devDependencies": {
-    "rspress": "^1.35.3",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "vitepress": "^1.6.3"
   },
   "engines": {
     "node": ">=18.0"
-  },
-  "dependencies": {
-    "markmap-common": "^0.17.1",
-    "markmap-lib": "^0.17.2",
-    "markmap-toolbar": "^0.17.2",
-    "markmap-view": "^0.17.2",
-    "rspress-plugin-mermaid": "^0.3.0"
   }
 }
