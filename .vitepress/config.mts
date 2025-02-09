@@ -8,6 +8,11 @@ export default defineConfig({
       'meta', {
         name: 'google-site-verification', content: 'z1w9iBabIBZmBrBiQPn3K-e8msiNRO_hR9O3oWhdcok'
       }
+    ],
+    [
+      'link', {
+        rel: 'icon', href: '/icon.png'
+      }
     ]
   ],
   title: "小霖家的混江龙",
@@ -20,6 +25,13 @@ export default defineConfig({
     ],
     sidebar: {
       '/blog/': [
+        {
+          text: '2023',
+          items: [
+            { text: 'H5、小程序 Tab 如何滚动居中？', link: '/blog/2023/07/30/' },
+            { text: 'H5 不复制元素的循环轮播图如何实现？——取模', link: '/blog/2023/12/14/' },
+          ]
+        },
         {
           text: '2024',
           items: [
@@ -48,14 +60,7 @@ export default defineConfig({
             { text: '小程序如何检测无流量组件? 分享一种打点检测方法', link: '/blog/2024/12/04/' },
             { text: '介绍小程序套小程序的三种方案, 最后一种也许只有大厂才用', link: '/blog/2024/12/14' }
           ]
-        },
-        {
-          text: '2023',
-          items: [
-            { text: 'H5、小程序 Tab 如何滚动居中？', link: '/blog/2023/07/30/' },
-            { text: 'H5 不复制元素的循环轮播图如何实现？——取模', link: '/blog/2023/12/14/' },
-          ]
-        },
+        }
       ]
     },
     socialLinks: [
