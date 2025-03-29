@@ -12,7 +12,7 @@
 
 本文我会先介绍 canvas 原生处理文本的 API，然后给出函数 `fillTruncateText`，`fillEllipsisText` 和 `fillWrapText`，分别实现 canvas 文本溢出截断、溢出显示省略号和自动换行。
 
-拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
+我是「小霖家的小龙虾」，关注我，为你端上有料、有温度的前端技术菜肴。
 
 ## fillText
 
@@ -178,7 +178,7 @@ function fillWrapText ({
 
 本文我会先介绍 canvas 原生处理文本的 API，然后给出函数 `fillTruncateText`，`fillEllipsisText` 和 `fillWrapText`，分别实现 canvas 文本溢出截断、溢出显示省略号和自动换行。
 
-拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
+我是「小霖家的小龙虾」，关注我，为你端上有料、有温度的前端技术菜肴。
 
 ## 参考文章
 

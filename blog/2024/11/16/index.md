@@ -12,7 +12,7 @@ Rust 近年很火热，我跟风尝试入门 Rust 几次，都放弃了。其中
 2. WebAssembly 代码会生成一串字符串，再返回给 Vue/React 代码；
 3. Vue/React 把字符串渲染到界面上。
 
-拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
+我是「小霖家的小龙虾」，关注我，为你端上有料、有温度的前端技术菜肴。
 
 ## 五个步骤
 
@@ -56,7 +56,7 @@ cargo add wasm-bindgen
 
 你新建的 wasm-lib 目录结构如下：
 
-```tree
+```
 .
 └── wasm-lib
   ├──src
@@ -109,7 +109,7 @@ wasm-pack build --target web --out-dir pkg
 
 打包成功后，你可以看到 pkg 的目录结构为：
 
-```tree
+```
 .
 └── wasm-lib
   └── pkg
@@ -184,7 +184,7 @@ const onClick = () => {
 
 完整代码我放在 Gitee 上，感兴趣可以下载运行：https://gitee.com/lijunlin2022/vite-rust
 
-拳打 H5，脚踢小程序。我是「小霖家的混江龙」，关注我，带你了解更多实用的 H5、小程序武学。
+我是「小霖家的小龙虾」，关注我，为你端上有料、有温度的前端技术菜肴。
 
 ## 参考资料
 

@@ -7,8 +7,8 @@ head:
 pageType: home
 
 hero:
-  name: 你好
-  text: 我是小霖家的混江龙
+  name: 小霖家的混江龙
+  text: 原创、有实例、有态度、有温度的账号
   tagline: 一个前端程序员
   actions:
     - theme: brand
