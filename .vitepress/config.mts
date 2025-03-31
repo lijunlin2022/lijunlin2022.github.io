@@ -30,6 +30,15 @@ export default defineConfig({
     sidebar: {
       '/blog/': [
         {
+          text: '2025',
+          items: [
+            {
+              text: 'AI 时代，读者需要什么，作者该写什么？',
+              link: '/blog/2025/03/30'
+            }
+          ]
+        },
+        {
           text: '2024',
           items: [
             {
