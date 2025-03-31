@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.BzDBnRMZ.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"blog/2025/03/15/index.md","filePath":"blog/2025/03/15/index.md"}'),o={name:"blog/2025/03/15/index.md"};function n(r,s,c,d,i,p){return a(),t("div")}const m=e(o,[["render",n]]);export{l as __pageData,m as default};
