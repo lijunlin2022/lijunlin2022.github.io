@@ -4,7 +4,7 @@ layout: home
 hero:
   name: 你好，
   text: 我是羊肚JUN
-  tagline: 一位前端程序员，做有温度的轻知识，有深度的硬内容
+  tagline: 一位前端程序员，关注我，了解更多有温度的轻知识，有深度的硬内容
   image:
     src: /avatar.jpg
     alt: avatar
