@@ -15,12 +15,12 @@ export default defineConfig({
       'link',
       {
         rel: 'icon',
-        href: '/caryfish.png',
+        href: '/icon.png',
       },
     ],
   ],
-  title: '小霖家的小龙虾',
-  description: '为你端上有料、有温度、有态度的前端技术菜肴',
+  title: '羊肚JUN',
+  description: '一位前端程序员，做有温度的轻知识，有深度的硬内容',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [

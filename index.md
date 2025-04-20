@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: 你好
-  text: 我是"小霖家的小龙虾"
-  tagline: 关注我，为你端上有料、有温度的前端技术菜肴
+  name: 你好，
+  text: 我是羊肚JUN
+  tagline: 一位前端程序员，做有温度的轻知识，有深度的硬内容
   image:
-    src: /caryfish.png
-    alt: icon
+    src: /avatar.jpg
+    alt: avatar
   actions:
     - theme: brand
       text: 我的博客
